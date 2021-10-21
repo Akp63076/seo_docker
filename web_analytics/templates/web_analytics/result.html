@@ -1,0 +1,243 @@
+{% extends "redshiftClicks/base.html" %}
+{% load static %}
+
+{% block navbar %}
+   {% include "redshiftClicks/navbar.html" %}
+{% endblock navbar %}
+
+
+{% block content %}
+
+<div class="container">
+    <h1 style="text-align: center;">Result Page</h1>
+
+    <!-- all the points from gsc and ga of given url -->
+    <div class="table-responsive">
+        <table class="table table-fixed table-striped table-hover table-bordered"> 
+    
+            <thead class="thead-dark">
+            <tr>
+                <th>Your Given url</th>
+                <th>comparison</th>
+                <th>sessions</th>
+                <th>Bounce Rate</th>
+                <th>Pages/Session</th>
+                <th>Avg. Session Duration</th>
+                <th>Avg TimeOnPage</th> 
+                <th>Clicks</th>
+                <th>Impressions</th>
+                <th>CTR</th>
+                <th>Avg position</th> 
+                <th>Leads Filled</th> 
+            </tr>
+            </thead>
+            
+            <tbody>
+                {% for data in requested_df%}
+                    <tr>
+        
+                        <td >{{data.key}}</td>
+                        <td>curr: {{user_range}}</td>
+                        <td>{{data.sessions}}</td>
+                        <td >{{data.Bounce_Rate}}</td>
+                        <td>{{data.Pages_per_Session}}</td>
+                        <td>{{data.Avg_Session_Duration}}</td>
+                        <td>{{data.Avg_TimeOnPage}}</td>
+                        <td>{{data.clicks}}</td>
+                        <td>{{data.impressions}}</td>
+                        <td>{{data.ctr}}</td>
+                        <td >{{data.avg_position}}</td>
+                        <td>{{data.Leads_Filled}}</td>
+    
+    
+                        
+                    
+                     </tr>
+                     {% endfor %}
+
+                     {% for data in prev%}
+                     <tr>
+         
+                         <td >{{data.key}}</td>
+                         <td>prev: {{user_range}}</td>
+                         <td>{{data.sessions}}</td>
+                         <td >{{data.Bounce_Rate}}</td>
+                         <td>{{data.Pages_per_Session}}</td>
+                         <td>{{data.Avg_Session_Duration}}</td>
+                         <td>{{data.Avg_TimeOnPage}}</td>
+                         <td>{{data.clicks}}</td>
+                         <td>{{data.impressions}}</td>
+                         <td>{{data.ctr}}</td>
+                         <td >{{data.avg_position}}</td>
+                         <td>{{data.Leads_Filled}}</td>
+     
+     
+                         
+                     
+                      </tr>
+                      {% endfor %}
+             </tbody>
+            </table>
+    </div>
+    
+    <hr>
+    <!-- providing infor from gsc -page and query-->
+    <h4>Data from google Search containing <a href ="{{user_url}}" target="_blank" rel="noopener noreferrer">requested url</a></h4>
+    <div>
+        <div>
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#tab1">Page</a>
+                </li>
+                <li>
+                    <a href="#tab2">Query</a>
+                </li>
+            </ul>	
+        </div>
+    
+    <section id="tab1" class="tab-content active">
+        <div class="table-responsive">
+                <table class="table table-fixed table-striped table-hover table-bordered"> 
+            
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Page</th>
+                        <th>Clicks</th>
+                        <th>Impressions</th>
+                        <th>CTR</th>
+                        <th>Avg position</th> 
+                    </tr>
+                    </thead>
+                    
+                    <tbody>
+                        {% for data in gsc_data %}
+                            <tr>
+                
+                                <td >{{data.key}}</td>
+                                <td>{{data.clicks}}</td>
+                                <td>{{data.impressions}}</td>
+                                <td>{{data.ctr}}</td>
+                                <td >{{data.avg_position}}</td>
+            
+                             </tr>
+                             {% endfor %}
+                     </tbody>
+                 </table>
+        </div>
+        
+    </section>
+    <section id="tab2" class="tab-content hide">
+        <div class="table-responsive">
+            <table class="table table-fixed table-striped table-hover table-bordered"> 
+        
+                <thead class="thead-dark">
+                <tr>
+                    <th>Queries</th>
+                    <th>Clicks</th>
+                    <th>Impressions</th>
+                    <th>CTR</th>
+                    <th>Avg position</th> 
+                </tr>
+                </thead>
+                
+                <tbody>
+                    {% for data in gsc_query_dict %}
+                        <tr>
+            
+                            <td >{{data.key}}</td>
+                            <td>{{data.clicks}}</td>
+                            <td>{{data.impressions}}</td>
+                            <td>{{data.ctr}}</td>
+                            <td >{{data.avg_position}}</td>
+        
+                         </tr>
+                         {% endfor %}
+                 </tbody>
+                </table>
+        </div>
+    </section>
+    </section>
+    </div>
+    
+    <!-- providing ga main information-->
+    <hr>
+    <div>
+        <h4>Data from google analytics containing <a href ="{{user_url}}" target="_blank" rel="noopener noreferrer">requested url</a></h4>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-fixed table-striped table-hover table-bordered" id="fixed_header"> 
+        
+            <thead class="thead-dark">
+            <tr>
+                <th>Landing page</th>
+                <th>sessions</th>
+                <th>Bounce Rate</th>
+                <th>Pages/Session</th>
+                <th>Avg. Session Duration</th>
+                <th>Avg TimeOnPage</th> 
+                <th>Leads Filled</th> 
+            </tr>
+            </thead>
+            
+            <tbody>
+                {% for data in ga_data %}
+                    <tr>
+        
+                        <td >{{data.Landing_page}}</td>
+                        <td>{{data.sessions}}</td>
+                        <td >{{data.Bounce_Rate}}</td>
+                        <td>{{data.Pages_per_Session}}</td>
+                        <td>{{data.Avg_Session_Duration}}</td>
+                        <td>{{data.Avg_TimeOnPage}}</td>
+                        <td>{{data.Leads_Filled}}</td>
+                        
+                    
+                     </tr>
+                     {% endfor %}
+             </tbody>
+            </table>
+    </div>
+    
+    <!-- providing ga main information-->
+    <hr>
+    <div>
+        <h4>Data from google analytics of scroll events containing <a href ="{{user_url}}" target="_blank" rel="noopener noreferrer">requested url</a></h4>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-fixed table-striped table-hover table-bordered"> 
+    
+            <thead class="thead-dark">
+            <tr>
+                <th>Event Action</th>
+                <th>Total Events</th>
+                <th>Unique Events</th>
+                <th>Event Value</th>
+                <th>Avg. Event Value</th>
+    
+            </tr>
+            </thead>
+            
+            <tbody>
+                {% for data in scroll %}
+                    <tr>
+                        <td >{{data.event_action}}</td>
+                        <td>{{data.totalEvents}}</td>
+                        <td>{{data.uniqueEvents}}</td>
+                        <td>{{data.eventValue}}</td>
+                        <td>{{data.avgEventValue}}</td>
+                     </tr>
+                     {% endfor %}
+             </tbody>
+            </table>
+    </div>
+    
+</div>
+
+{% endblock content %}
+
+
+{% block style %}
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
+   <script src="{% static 'web_analytics/1.1/analytics.js' %}"></script>
+   <link rel="stylesheet" type="text/css" href="{% static 'web_analytics/1.1/analytics.css' %}">
+{% endblock style %}

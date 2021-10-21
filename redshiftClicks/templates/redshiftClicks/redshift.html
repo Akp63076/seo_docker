@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>result page</title>
+  </head>
+  <style>
+  table{background-color:rgb(220,220,220);}
+  table ,tr td{
+    border:1px solid black;
+}
+body{margin: 20px;
+    padding: 10px ;}
+  </style>
+  <body>
+     <h1 style="text-align: center;">Redshift Data</h1>          
+    <div class="container">
+    <h4 style="text-align: center;">data from redshift for query - 
+      <a href='{{user_choice.url}}' target='_blank' rel='noopener noreferrer'>{{user_choice.url}}</a> and duration - {{user_choice.duration}}</h4>
+        
+    <table class="table table-fixed table-striped table-hover table-bordered"> 
+
+    <thead class="thead-dark">
+    <tr>
+        <th>Outgoing Link</th>
+        <th >Anchor Text</th>
+
+        <th>Click Count</th>
+        
+        
+    </tr>
+    </thead>
+    
+    <tbody>
+        {% for link in task_data %}
+            <tr>
+
+                <td >{{link.event_value}}</td>
+                <td>{{link.link_title}}</td>
+                <td>{{link.session_count}}</td>
+            
+             </tr>
+             {% endfor %}
+     </tbody>
+    </table>
+  </div>
+
+
+  </body>
+</html>
+           
+           
+           
+
+    

@@ -1,0 +1,19 @@
+{% extends "redshiftClicks/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="row" id="outer-box">
+    
+    <div class="col-md-6" id="innnex-box">
+        
+            <h2>You have been logged out</h2>
+            <div class="border-top pt-3">
+                <small class="text-muted">Already have an account
+                    <a class="ml-2" href="{% url 'login' %}">Log IN again</a>
+                </small>
+            </div>
+
+</div>
+
+{% endblock content %}

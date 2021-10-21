@@ -1,0 +1,15 @@
+{
+    "python.defaultInterpreterPath": "/Users/collegedunia/Documents/flask_project/env/bin/python",
+    // "python.formatting.provider": "black",
+    "python.linting.enabled": true,
+    "workbench.settings.editor": "json",
+    "workbench.settings.useSplitJSON": true,
+    "editor.formatOnSave": true,
+    "code-runner.executorMap": {
+        "javascript": "node",
+        "python": "$pythonPath -u $fullFileName",
+    },
+    "files.associations": {
+        "*.html": "jinja-html"
+      },
+}

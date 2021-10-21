@@ -1,0 +1,606 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CourseFinder</title>
+    <link rel = "icon" href = "{% static '/coursefinder/images/logo.jpg' %}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+        
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+   <!-- css file for this proj -->
+   <link rel="stylesheet" href="{% static '/coursefinder/v1/css/main.css' %}" />
+   <script src="https://cdn.rawgit.com/mrk-j/paginga/v0.8.1/paginga.jquery.min.js"></script>
+
+</head>
+
+<body>
+    <h1 style="text-align: center;" class="mb-4"> COURSE FINDER </h1>
+    {% if message %}
+        <p>{{ message }}</p>
+    
+    {% else %}
+    <div class="outer-container">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Filters to added here -->
+                {% if 'college_filter' in user_filters %}
+                <div class="shadow rounded p-3 mb-4">
+                    <h6 class="d-flex justify-content-between align-items-center">
+                        <span> College Filters </span>
+                        <span class="btn btn-link text-sm" onclick="clearFilter('college','[name=college-filter]')"> Clear </span>
+                    </h6>
+                    <div class="filter-cont">
+                        {% for college in user_filters.college_filter %}
+                            <div class="mb-1">
+                                <label for="college-{{ college.id|floatformat:'0' }}" class="cursor-pointer">
+                                    <input name="college-filter" class="college-filter mr-1" id="college-{{ college.id|floatformat:"0" }}" data-id="{{ college.id|floatformat:"0" }}"  type="radio">
+                                    {{ college.name }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if 'degree_filters' in user_filters %}
+                <div class="shadow rounded p-3  mb-4">
+                    <h6 class="d-flex justify-content-between align-items-center">
+                        <span> Degree Filters </span>
+                        <span class="btn btn-link text-sm" onclick="clearFilter('degree','[name=degree-filter]')"> Clear </span>
+                    </h6>
+                    <div class="filter-cont">
+                        {% for degree in user_filters.degree_filters %}
+                            <div class="mb-1">
+                                <label for="degree-{{ degree.id }}" class="cursor-pointer">
+                                    <input name="degree-filter" class="degree-filter mr-1" id="degree-{{ degree.id }}" data-id="{{ degree.id }}"  type="radio">
+                                    {{ degree.name }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if 'institute_type_filters' in user_filters %}
+                <div class="shadow rounded p-3  mb-4">
+                    <h6 class="d-flex justify-content-between align-items-center">
+                        <span> Institute Type Filters </span>
+                        <span class="btn btn-link text-sm" 
+                            onclick="clearFilter('institute_type','[name=institute_type-filter]')"> Clear </span>
+                    </h6>
+                    <div class="filter-cont">
+                        {% for institute_type in user_filters.institute_type_filters %}
+                            <div class="mb-1">
+                                <label for="institute_type-{{ institute_type.id }}" class="cursor-pointer">
+                                    <input name="institute_type-filter" 
+                                        class="institute_type-filter mr-1" 
+                                        id="institute_type-{{ institute_type.id }}" 
+                                        data-id="{{ institute_type.id }}"  
+                                        type="radio">
+                                    {{ institute_type.name }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if 'city_state' in user_filters %}
+                <div class="shadow rounded p-3  mb-4">
+                    <h6 class="d-flex justify-content-between align-items-center">
+                        <span> City Filters </span>
+                        <span class="btn btn-link text-sm" onclick="clearFilter('city','[name=city-filter]')"> Clear </span>
+                    </h6>
+                    <div class="filter-cont">
+                        {% for city in user_filters.city_state %}
+                            <div class="mb-1">
+                                <label for="city-{{ city.id|floatformat:'0' }}" class="cursor-pointer">
+                                    <input name="city-filter" class="city-filter mr-1" id="city-{{ city.id|floatformat:"0" }}" data-id="{{ city.id|floatformat:"0" }}"  type="radio">
+                                    {{ city.name }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if 'level_filter' in user_filters %}
+                <div class="shadow rounded p-3  mb-4">
+                    <h6 class="d-flex justify-content-between align-items-center">
+                        <span> Course Filters </span>
+                        <span class="btn btn-link text-sm" onclick="clearFilter('level','[name=level-filter]')"> Clear </span>
+                    </h6>
+                    <div class="filter-cont">
+                        {% for level in user_filters.level_filter %}
+                            <div class="mb-1">
+                                <label for="level-{{ level.id|floatformat:"0" }}" class="cursor-pointer">
+                                    <input name="level-filter" class="level-filter mr-1" id="level-{{ level.id|floatformat:"0" }}" data-id="{{ level.id|floatformat:"0" }}"  type="radio">
+                                    {{ level.name }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if 'exam_filtes' in user_filters %}
+                <div class="shadow rounded p-3  mb-4">
+                    <h6 class="d-flex justify-content-between align-items-center">
+                        <span> Exams Filters </span>
+                        <span class="btn btn-link text-sm" onclick="clearFilter('exam','[name=exam-filter]')"> Clear </span>
+                    </h6>
+                    <div class="filter-cont">
+                        {% for exam in user_filters.exam_filtes %}
+                            <div class="mb-1">
+                                <label for="exam-{{ exam }}" class="cursor-pointer">
+                                    <input name="exam-filter" class="exam-filter mr-1" id="exam-{{ exam }}" data-id="{{ exam }}"  type="radio">
+                                    {{ exam }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if 'fees_filters' in user_filters %}
+                <div class="shadow rounded p-3  mb-4">
+                    <h6 class="d-flex justify-content-between align-items-center">
+                        <span> Total Fees(Rs) Filters </span>
+                        <span class="btn btn-link text-sm" onclick="clearFilter('fees','[name=fees-filter]')"> Clear </span>
+                    </h6>
+                    <div class="filter-cont">
+                        {% for fees in user_filters.fees_filters %}
+                            <div class="mb-1">
+                                <label for="fees-{{fees.id}}" class="cursor-pointer">
+                                    <input name="fees-filter" class="fees-filter mr-1" id="fees-{{fees.id}}" data-max="{{fees.max}}" data-min="{{fees.min}}" type="radio">
+                                    {{ fees.text }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if 'ielts_filters' in user_filters %}
+                <div class="shadow rounded p-3  mb-4">
+                    <h6 class="d-flex justify-content-between align-items-center">
+                        <span> IELTS Score Filter </span>
+                        <span class="btn btn-link text-sm" onclick="clearFilter('ielts','[name=ielts-filter]')"> Clear </span>
+                    </h6>
+                    <div class="filter-cont">
+                        {% for score in user_filters.ielts_filters %}
+                            <div class="mb-1">
+                                <label for="ielts-{{score.id}}" class="cursor-pointer">
+                                    <input name="ielts-filter" class="ielts-filter mr-1" id="ielts-{{score.id}}" data-max="{{score.max}}" data-min="{{score.min}}" type="radio">
+                                    {{ score.text }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if 'consultant_filtes' in user_filters %}
+                <div class="shadow rounded p-3  mb-4">
+                    <h6 class="d-flex justify-content-between align-items-center">
+                        <span> Consultant Filters </span>
+                        <span class="btn btn-link text-sm" onclick="clearFilter('consultant','[name=consultant-filter]')"> Clear </span>
+                    </h6>
+                    <div class="filter-cont">
+                        {% for consultant in user_filters.consultant_filtes %}
+                            <div class="mb-1">
+                                <label for="consultant-{{ consultant }}" class="cursor-pointer">
+                                    <input name="consultant-filter" class="consultant-filter mr-1" id="consultant-{{ consultant }}" data-id="{{ consultant }}"  type="radio">
+                                    {{ consultant }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-md-9">
+                <div class="paginate"> 
+                    <div>
+                        <div>
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#tab1">Partner Colleges</a>
+                                </li>
+                                <li>
+                                    <a href="#tab2">All+</a>
+                                </li>
+                            </ul>	
+                        </div>
+                        <section id="tab1" class="tab-content active">
+                        {% for link in partner_colleges %}
+                        <div 
+                            class="course-cards mb-3" 
+                            style="text-align: left;"
+                            data-college-id="{{link.college_id|floatformat:"0"}}"
+                            data-city-id="{{link.city_state_id|floatformat:"0"}}"
+                            data-institute_type-id="{{link.institute_type}}"
+                        > 
+                       
+                            <div class='row' id="college-card">
+                                <div class='col pl-1' > <h4>{{link.college_name|title}} </h4>
+
+                                    <div><span class="text-orange">Estimated Living Cost:</span>{% if Est_living_cost_1 != "0" %} INR {{link.Est_living_cost_1|floatformat:"0"}}{% endif %}-{% if Est_living_cost_1 != 0 %}{{link.Est_living_cost_2|floatformat:"0"}}{% endif %}</div>
+                                    <div>{% if link.student_permits != 0 %}<span class="text-orange">Study Permits Issued to Indians:</span>{{link.student_permits|floatformat:"0"}}{% endif %}</div>
+                                    <div><span class="text-orange">Institute Type:</span>{{link.institute_type}}</div>
+                                    <div><span class="text-orange">Distance From main cities (in Kms):</span> <br>
+                                        {% for key,val in link.distance_dict.items %}{% if val != 0 or val != "" or val is defined %}{{key}} : {{val|floatformat:"0"}}{% endif %},{% endfor %}</div>
+                                        <span class="text-orange">Ranking: </span><div>{% for key, val in link.ranking_dict.items %}{% if val != 0 or val != "" or val != "0" %} {{key}}#{{val|floatformat:"0"}},{% endif %} {% endfor %}</div>
+                                
+                                </div>
+    
+                                <div class='col-4 pt-4'>
+                                    <div> <span class="text-orange">Search Volume:</span> {{link.search_volume|floatformat:"0"}}</div>
+                                    <div><span class="text-orange">City:</span> {{link.city|capfirst }},<span class="text-orange">State:</span> {{link.state_name|capfirst }} </div>
+                                    <div> {% if link.cd_application_count != 0 %}<span class="text-orange">Applications: </span>: {{link.cd_application_count|floatformat:"0"}}{% endif %}</div>
+                                    <div> {% if link.application_cost_USD != 0   %}<span class="text-orange">Application Fees:</span> INR {{link.application_cost_USD|floatformat:"0"}} {% endif %}</div>
+                                    <div> {% if link.student_approval != 0 %} <span class="text-orange">Indian students Approval Rate:</span>  {{link.student_approval|floatformat:"2"}}% {% endif %}</div>
+                                </div>
+                        </div>
+                        <hr />
+                        {% for data in link.course_info%}
+                        
+                        <div
+                            class='row course-card mb-2'
+                            data-degree-id="{{data.head_short_form}}"
+                            data-level-id="{{data.streamID|floatformat:"0"}}"
+                            data-eligibility="{{data.eligibility}}"
+                            data-consultant="{{data.consultant}}"
+                            data-fees="{{data.total_fees|floatformat:"0"}}"
+                        >
+                            <div>
+                            <h6 >Course Name : {{data.head_one|capfirst }}
+                            
+                                {% if data.head_two != "-" %} {{data.head_two|capfirst }} {% endif %} {% if data.estimated_LOA_TAT != "-" %} ({{data.estimated_LOA_TAT}}) {% endif %} </h6>
+                            </div>
+                            <div> <span class="text-orange">Stream: </span> {{data.new_sub_streams|capfirst }} | {% if data.degree_type != "Certificate/Diploma" or data.head_short_form != "-" %} <span class="text-orange">Degree: </span> {{data.head_short_form|capfirst }}| {% endif %}
+                                <span class="text-orange">Level: </span> {{data.degree_type|capfirst}} |
+                                <span class="text-orange">Duration: </span> {% if data.course_duration != "" %} {{data.course_duration_value|floatformat:"0"}} {{data.course_duration}}{% endif %}|
+                                <span class="text-orange">Total Fees</span> - {% if data.total_fees != 0 %}INR {{data.total_fees|floatformat:"0"}} {% endif %}
+                            </div>
+                            <div>
+                                {% for key, val in data.consultant.items %}{% if val == 1 %} Application Channel : {{key}}, {% endif %}{% endfor %}
+                            </div>
+                            
+                            <div >
+                                {% for key, val in data.eligibility.items %} {% if val != 0 %}Eligibility: {{key}}: {{val}} {% endif %}{% endfor %} 
+                            </div>
+                            <div>
+                                Total Tuition + Living Cost: INR {{data.tution_living_per_year|floatformat:"0"}}/year
+                            </div>
+                        
+                            <div >Application Deadline :
+                                {% for data in data.deadline%} 
+                                
+                                {% if data.application_end_date != "" %}
+    
+                                    {% if data.custom_name == "-" or data.custom_name == "" or  data.custom_name == "nan" %}{{data.application_end_date}}| 
+                                
+                                    {% else %}
+                                    {{data.custom_name}}: {{data.application_end_date}}|{% endif %}
+                                {% elif data.application_end_date == "-"  %} {{data.custom_name}}
+                                     
+    
+                                {% endif %} 
+                                       
+                                {% endfor %}  
+                            </div>
+                           
+                           
+                       
+                       
+                        </div>
+                        {% endfor %} 
+
+                    </div>
+                    
+                    {% endfor %}  
+                </section>
+                <section id="tab2" class="tab-content hide">
+                    {% for link in filtered_dict %}
+                    <div 
+                        class="course-cards mb-3" 
+                        style="text-align: left;"
+                        data-college-id="{{link.college_id|floatformat:"0"}}"
+                        data-city-id="{{link.city_state_id|floatformat:"0"}}"
+                        data-institute_type-id="{{link.institute_type}}"
+                    > 
+                   
+                        <div class='row' id="college-card">
+                            <div class='col pl-1' > <h4>{{link.college_name|title}} </h4>
+
+                                <div><span class="text-orange">Estimated Living Cost:</span>{% if Est_living_cost_1 != "0" %} INR {{link.Est_living_cost_1|floatformat:"0"}}-{{link.Est_living_cost_2|floatformat:"0"}}{% endif %}</div>
+                                <div>{% if link.student_permits != 0 %}<span class="text-orange">Study Permits Issued to Indians:</span>{{link.student_permits|floatformat:"0"}}{% endif %}</div>
+                                <div><span class="text-orange">Institute Type:</span>{{link.institute_type}}</div>
+                                <div><span class="text-orange">Distance From main cities (in Kms):</span> <br>
+                                    {% for key,val in link.distance_dict.items %} {% if val != 0 or val != "" or val != None %}{{key}} : {{val|floatformat:"0"}},{% endif %}{% endfor %}</div>
+                                    <span class="text-orange">Ranking: </span><div>{% for key, val in link.ranking_dict.items %}{% if val != 0 or val != "" or val != "0" %} {{key}}#{{val|floatformat:"0"}},{% endif %} {% endfor %}</div>
+                            
+                            </div>
+
+                            <div class='col-4 pt-4'>
+                                <div> <span class="text-orange">Search Volume:</span> {{link.search_volume|floatformat:"0"}}</div>
+                                <div><span class="text-orange">City:</span> {{link.city|capfirst }},<span class="text-orange">State:</span> {{link.state_name|capfirst }} </div>
+                                <div> {% if link.cd_application_count != 0 %}<span class="text-orange">Applications: </span>: {{link.cd_application_count|floatformat:"0"}}{% endif %}</div>
+                                <div> {% if link.application_cost_USD != 0 or link.application_cost_USD != "-" or link.application_cost_USD != "0"  %}<span class="text-orange">Application Fees:</span> INR {{link.application_cost_USD|floatformat:"0"}} {% endif %}</div>
+                                <div>  {% if link.student_approval != 0 %} <span class="text-orange">Indian students Approval Rate:</span>{{link.student_approval|floatformat:"2"}}%  {% endif %}</div>
+                            </div>
+                    </div>
+                    <hr />
+                    {% for data in link.course_info%}
+                    
+                    <div
+                        class='row course-card mb-2'
+                        data-degree-id="{{data.head_short_form}}"
+                        data-level-id="{{data.streamID|floatformat:"0"}}"
+                        data-eligibility="{{data.eligibility}}"
+                        data-consultant="{{data.consultant}}"
+                        data-fees="{{data.total_fees|floatformat:"0"}}"
+                    >
+                        <div>
+                        <h6 >Course Name : {{data.head_one|capfirst }}
+                        
+                            {% if data.head_two != '-' %} {{data.head_two|capfirst }} {% endif %} {% if data.estimated_LOA_TAT != '-' %} ({{data.estimated_LOA_TAT}}) {% endif %} </h6>
+                        </div>
+                        <div> <span class="text-orange">Stream: </span> {{data.new_sub_streams|capfirst }} | {% if data.degree_type != "Certificate/Diploma" or data.head_short_form != "-" %} <span class="text-orange">Degree: </span> {{data.head_short_form|capfirst }}| {% endif %}
+                            <span class="text-orange">Level: </span> {{data.degree_type|capfirst}} |
+                            <span class="text-orange">Duration: </span> {% if data.course_duration != "" %} {{data.course_duration_value|floatformat:"0"}} {{data.course_duration}}{% endif %}|
+                            <span class="text-orange">Total Fees:</span> {% if data.total_fees != 0 %}INR {{data.total_fees|floatformat:"0"}} {% endif %}
+                        </div>
+                        <div>
+                             
+                            {% for key, val in data.consultant.items %}{% if val == 1 %}Application Channel: {{key}}, {% endif %}{% endfor %}
+                        </div>
+                        
+                        <div >
+                            Eligibility: {% for key, val in data.eligibility.items %} {% if val != 0 %}  {{key}}: {{val}} {% endif %}{% endfor %} 
+                        </div>
+                        <div>
+                            Total Tution + Living Cost: INR {{data.tution_living_per_year|floatformat:"0"}}/year
+                        </div>
+                    
+                        <div >Application Deadline :
+                            {% for data in data.deadline%} 
+                                
+                            {% if data.application_end_date != "" %}
+
+                                {% if data.custom_name == "-" or data.custom_name == "" or  data.custom_name == "nan" %}{{data.application_end_date}}| 
+                            
+                                {% else %}
+                                {{data.custom_name}}:{{data.application_end_date}}|{% endif %}
+                            {% elif data.application_end_date == "-"  %} {{data.custom_name}}
+                                 
+
+                            {% endif %} 
+                                   
+                            {% endfor %} 
+                        </div>
+                       
+                   
+                   
+                    </div>
+                    {% endfor %} 
+
+                </div>
+                
+                {% endfor %}  
+            </section>
+                    </div>
+    
+    </div>
+    </div>
+    {% endif %}
+    <script src="{% static '/coursefinder/v1/js/finder.js' %}"></script>
+
+    <script type="text/javascript">
+        
+
+        var filterHandler = {
+            filters : {
+                college: '',
+                city: '',
+                level: '',
+                degree: '',
+                exam: '',
+                consultant: '',
+                fees: '',
+                ielts: '',
+                institution_type:'',
+            },
+            updateFilters : function(key, value) {
+                this.filters[key] = value;
+                this.renderListing();
+            },
+            renderListing: function() {
+                const curFilters = this.filters;
+                $('.course-cards').each(function(el) {
+                    let show = true;
+                    
+
+                    if(curFilters.college && this.dataset.collegeId != curFilters.college ) {
+                        show = false;
+                    } 
+                    if(curFilters.city && this.dataset.cityId != curFilters.city ) {
+                        show = false;
+                    } 
+                    if(curFilters.institute_type && this.dataset.institute_typeId != curFilters.institute_type ) {
+                        show = false;
+                    } 
+
+                    let count = 0;
+                    let hideCount = 0;
+                    $('> .course-card', this).each(function(el) {
+                        let show = true;
+                        const examList = JSON.parse(this.dataset.eligibility.replaceAll("'",'"'));
+                        const consultantList = JSON.parse(this.dataset.consultant.replaceAll("'",'"'));
+
+                        if(curFilters.degree && this.dataset.degreeId != curFilters.degree) {
+                            show= false;
+                        } if(curFilters.level && this.dataset.levelId != curFilters.level) {
+                            show= false;
+                        } if(curFilters.exam && examList[curFilters.exam] == '-') {
+                            show= false;
+                        } if(curFilters.consultant && consultantList[curFilters.consultant] == 0) {
+                            show= false;
+                        } if(curFilters.fees) {
+                            if(!this.dataset.fees) show= false;
+                            else if(curFilters.fees.max && curFilters.fees.min) {
+                                if(Number(this.dataset.fees) > Number(curFilters.fees.max) || Number(this.dataset.fees) < Number(curFilters.fees.min)) {
+                                    show = false;
+                                }
+                            } else if(curFilters.fees.max && Number(this.dataset.fees) > Number(curFilters.fees.max)) {
+                                show = false;
+                            } else if(curFilters.fees.min && Number(this.dataset.fees) < Number(curFilters.fees.min)) {
+                                show = false;
+                            }
+                        } if(curFilters.ielts) {
+                            if(examList['IELTS'] == '-') show = false;
+                            else if(curFilters.ielts.max && curFilters.ielts.min) {
+                                if(Number(examList['IELTS']) > Number(curFilters.ielts.max) || Number(examList['IELTS']) < Number(curFilters.ielts.min)) {
+                                    show = false;
+                                }
+                            } else if(curFilters.ielts.max && Number(examList['IELTS']) > Number(curFilters.ielts.max)) {
+                                show = false;
+                            } else if(curFilters.ielts.min && Number(examList['IELTS']) < Number(curFilters.ielts.min)) {
+                                show = false;
+                            }
+                        }
+                        count++;
+
+                        if(show) {
+                            $(this).removeClass('d-none');
+                        } else {
+                            hideCount++;
+                            $(this).addClass('d-none');
+                        }
+                    })
+
+                    if(count!=0 && count == hideCount) {
+                        show = false;
+                    }
+
+                    if(show) {
+                        $(this).removeClass('d-none');
+                    } else {
+                        $(this).addClass('d-none');
+                    }
+
+                });
+
+                
+            }
+        }
+
+        $(`[name=college-filter]`).change((e) => {
+            if(e.target && e.target.dataset.id) {
+                const collegeId = e.target.dataset.id;
+                filterHandler.updateFilters('college', collegeId);
+            } else {
+                filterHandler.updateFilters('college', '');
+            } 
+        });
+        $(`[name=institute_type-filter]`).change((e) => {
+            if(e.target && e.target.dataset.id) {
+                const institute_typeId = e.target.dataset.id;
+                filterHandler.updateFilters('institute_type', institute_typeId);
+            } else {
+                filterHandler.updateFilters('institute_type', '');
+            } 
+        });
+
+
+
+        $(`[name=city-filter]`).change((e) => {
+            if(e.target && e.target.dataset.id) {
+                const cityId = e.target.dataset.id;
+                filterHandler.updateFilters('city', cityId);
+            } else {
+                filterHandler.updateFilters('city', '');
+            }
+        });
+        $(`[name=level-filter]`).change((e) => {
+            if(e.target && e.target.dataset.id) {
+                const levelId = e.target.dataset.id;
+                filterHandler.updateFilters('level', levelId);
+            } else {
+                filterHandler.updateFilters('level', '');
+            }
+        });
+        $(`[name=degree-filter]`).change((e) => {
+            if(e.target && e.target.dataset.id) {
+                const degreeId = e.target.dataset.id;
+                filterHandler.updateFilters('degree', degreeId);
+            } else {
+                filterHandler.updateFilters('degree', '');
+            }
+        });
+
+        $(`[name=fees-filter]`).change((e) => {
+            if(e.target && (e.target.dataset.max || e.target.dataset.min)) {
+                const obj={};
+                if(e.target.dataset.max) obj.max = e.target.dataset.max;
+                if(e.target.dataset.min) obj.min = e.target.dataset.min;
+
+                filterHandler.updateFilters('fees', obj);
+            } else {
+                filterHandler.updateFilters('fees', '');
+            }
+        });
+        $(`[name=ielts-filter]`).change((e) => {
+            if(e.target && (e.target.dataset.max || e.target.dataset.min)) {
+                const obj={};
+                if(e.target.dataset.max) obj.max = e.target.dataset.max;
+                if(e.target.dataset.min) obj.min = e.target.dataset.min;
+
+                filterHandler.updateFilters('ielts', obj);
+            } else {
+                filterHandler.updateFilters('ielts', '');
+            }
+        });
+        $(`[name=exam-filter]`).change((e) => {
+            if(e.target && e.target.dataset.id) {
+                const examId = e.target.dataset.id;
+                filterHandler.updateFilters('exam', examId);
+            } else {
+                filterHandler.updateFilters('exam', '');
+            }
+        });
+        $(`[name=consultant-filter]`).change((e) => {
+            if(e.target && e.target.dataset.id) {
+                const consultantId = e.target.dataset.id;
+                filterHandler.updateFilters('consultant', consultantId);
+            } else {
+                filterHandler.updateFilters('consultant', '');
+            }
+        });
+
+        function clearFilter(key, selector) {
+            $(selector).val('');
+            $(selector).prop('checked', false);
+            filterHandler.updateFilters(key, '');
+        }
+
+
+    </script>
+    <script>
+
+    
+    </script>
+</body>
+
+</html>
+
+

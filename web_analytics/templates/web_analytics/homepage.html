@@ -1,0 +1,20 @@
+{% extends "redshiftClicks/base.html" %}
+{% load static %}
+
+{% block navbar %}
+   {% include "redshiftClicks/navbar.html" %}
+{% endblock navbar %}
+
+{% block content %}
+
+<h3>Welcome to collegedunia-analytics-portal</h3>
+<ul>
+   
+      <li><a href="{% url 'redshiftClicks-index' %}">RedShift-data</a></li>
+      <li><a href="{% url 'web_analytics-index' %}">Analytics</a></li>
+      <li><a href="{% url 'web_analytics-kwplanner' %}">keyword-planner</a></li>
+
+</ul>
+
+{% endblock content %}
+  

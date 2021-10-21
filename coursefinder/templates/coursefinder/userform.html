@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CourseFinder</title>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+
+<!-- bootstrap css -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+   
+</head>
+<style>
+body {padding: 20px;
+        margin:10px;
+
+}
+.providingspace{margin-top:10px;}
+</style>
+<body>
+<!-- 
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %} -->
+    
+    <div class="container-fluid">
+        <h2 style="text-align: center;">Course Finder</h2>
+        <div class="inner container">
+            <form method="post" class="form" name="myForm" method="POST" id="searchForm">
+                {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-4">
+                            {{ form.Stream.errors }}
+                            <label for="stream" class="form-label" >Course</label>
+                            {{ form.Stream}}
+                            <!-- <select id="stream-dropdown" name="stream" class="form-select"></select> -->
+                        </div>  
+                         
+                        <div class="col-sm-4">
+                            {{ form.Country.errors }}
+                            <label for="country" class="form-label">Country</label>
+                            {{ form.Country}}
+                                <!-- <select id="country-dropdown" name="country" class="form-select"></select> -->
+                        </div> 
+                        
+                   
+                
+                        <div class="col-sm-4">
+                            
+                            {{ form.Level.errors }} 
+                            <label for="level" class="form-label">Level</label>
+                            {{ form.Level}}
+                                <!-- <select name="level" id="level-dropdown" class="form-select">
+                                    <option value="Bachelor">Bachelor</option>
+                                    <option value="Master">Master</option>
+                                    <option value="Certificate">Certificate
+                                    </option>
+                                    <option value="Doctorate">Doctorate</option> 
+                                </select> -->
+                                    
+                        </div>
+                    </div>
+
+                    <div class="providingspace">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Go!</button>
+                        </div>
+                    </div>
+            </form>
+    </div>   
+
+</body>
+</html>
+
+<script  type="text/javascript">
+
+
+let countrydropdown = $('#country-dropdown');
+countrydropdown.empty();
+countrydropdown.append('<option selected="true" disabled>Choose Country</option>');
+countrydropdown.prop('selectedIndex', 0);
+
+const countryurl = 'http://127.0.0.1:8000/coursefinder/countrybins/7xq2x';
+
+// Populate dropdown with list of provinces
+$.getJSON(countryurl, function (data) {
+  $.each(data, function (key, entry) {
+    countrydropdown.append($('<option></option>').attr('value', entry.Country).text(entry.Country));
+  })
+  $("#country-dropdown").select2({})
+});
+
+
+let leveldropdown = $('#level-dropdown');
+leveldropdown.empty();
+leveldropdown.append('<option selected="true" disabled>Choose Level</option>');
+leveldropdown.prop('selectedIndex', 0);
+
+const levelurl = 'http://127.0.0.1:8000/coursefinder/levelbins/7lq2x';
+
+// Populate dropdown with list of provinces
+$.getJSON(levelurl, function (data) {
+  $.each(data, function (key, entry) {
+    leveldropdown.append($('<option></option>').attr('value', entry.DegreeType).text(entry.DegreeType));
+  })
+  $("#level-dropdown").select2({})
+});
+
+    let coursedropdown = document.getElementById('stream-dropdown');
+    coursedropdown.length = 0;
+
+    let defaultOption = document.createElement('option');
+    defaultOption.text = 'Choose Course';
+
+    coursedropdown.add(defaultOption);
+    coursedropdown.selectedIndex = 0;
+
+    const url = 'http://127.0.0.1:8000/coursefinder/coursebins/7sq2x';
+
+    const request = new XMLHttpRequest();
+    request.open('GET', url, true);
+
+    request.onload = function() {
+    if (request.status === 200) {
+        const data = JSON.parse(request.responseText);
+        let option;
+        for (let i = 0; i < data.length; i++) {
+        option = document.createElement('option');
+        option.text = data[i].CourseName;
+        option.value = data[i].CourseName;
+        coursedropdown.add(option);
+        }
+        $("#stream-dropdown").select2({})
+    } else {
+        // Reached the server, but it returned an error
+    }   
+    }
+
+    request.onerror = function() {
+    console.error('An error occurred fetching the JSON from ' + url);
+    };
+
+    request.send();
+
+// level dropdown 
+//     $(document).ready(function() {
+//   $("#level-dropdown").select2();
+// });
+
+
+</Script>
+

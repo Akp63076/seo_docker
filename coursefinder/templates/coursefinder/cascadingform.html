@@ -1,0 +1,271 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CourseFinder</title>
+  <link rel="icon" href="{% static '/coursefinder/images/logo.jpg' %}" type="image/x-icon">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</head>
+<style>
+  body {
+    padding: 20px;
+    margin: 10px;
+
+  }
+
+  .providingspace {
+    margin-top: 10px;
+  }
+
+  .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    max-height: 150px;
+    overflow-y: auto;
+  }
+
+  .select2-container--open .select2-dropdown {
+    left: 10px;
+    top: 10px;
+  }
+</style>
+  <body>
+    <div class="container-fluid">
+      <h2 style="text-align: center;">Course Finder</h2>
+      <div class="inner container">
+        <form method="post" class="form" name="myForm" method="POST" id="searchForm">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-sm-4">
+              {{ form.Level.errors }}
+              <label for="level" class="form-label">Level</label>
+              {{ form.Level}}
+            </div>
+            <div class="col-sm-4">
+              {{ form.Stream.errors }}
+              <div class="d-flex justify-content-between">
+                <label for="stream" class="form-label">Course </label>
+              </div>
+              <div>
+                {{ form.Stream}}
+              </div>
+            </div>
+            <div class="col-sm-4">
+              {{ form.substream.errors }}
+              <div class="d-flex justify-content-between">
+                <label for="stream" class="form-label">Sub Stream </label>
+                <label class="d-none select-all-checkbox">
+                  <input type="checkbox" />
+                  Select All
+                </label>
+              </div>
+              <div>
+                {{ form.substream}}
+              </div>
+            </div>
+            <div class="col-sm-4">
+              {{ form.Country.errors }}
+              <div>
+              <label for="country" class="form-label">Country</label>
+              </div>
+              <div>
+              {{ form.Country}}
+            </div>
+          </div>
+          <div class="row providingspace">
+            <div class="col">
+              <button type="submit" class="btn btn-primary">Go!</button>
+            </div>
+          </div>
+        </form>
+      </div>
+  </body>
+</html>
+
+<script type="text/javascript">
+  let countrydropdown = $('#country-dropdown');
+  countrydropdown.empty();
+  countrydropdown.append('<option selected="true" disabled>Choose Country</option>');
+  countrydropdown.prop('selectedIndex', 0);
+  countrydropdown.prop('disabled', true);
+  
+  let dropdown = document.getElementById('level-dropdown');
+  dropdown.length = 0;
+
+  const url = '/coursefinder/levelbins/7lq2x';
+  var levelType = '';
+  var selectedStreams='';
+  var selectedSubStreams='';
+  var streamData = [];
+
+  function resetStreamDropdown() {
+    streamData = [];
+    $('#stream-dropdown option').remove();
+    $('#stream-dropdown').trigger('change');
+  }
+  function resetSubStreamDropdown() {
+    streamData = [];
+    $('#sub-stream-dropdown option').remove();
+    $('#sub-stream-dropdown').trigger('change');
+  }
+
+  $(document).ready(function () {
+    $('#level-dropdown').on('change', function (e) {
+      levelType = $.map($('#level-dropdown').select2('data'), function (item) {
+        return item.id;
+      }).join(',');
+
+      var $checkbox = $('.select-all-checkbox input');
+      var levelDropdown = $('#level-dropdown').select2('data');
+
+      if ($checkbox.is(':checked')) {
+        resetStreamDropdown();
+        $checkbox.prop('checked', false);
+      } else {
+        $('#stream-dropdown').prop('disabled', false);
+        $checkbox.parent().removeClass('d-none');
+      }
+
+      if (levelDropdown.length === 0) {
+        resetStreamDropdown();
+        $checkbox.parent().addClass('d-none');
+      }
+    });
+
+    $('.select-all-checkbox input').on('change', function () {
+      var checked = $(this).prop('checked');
+
+      var map = $.map(streamData, function (item) {
+        return `<option value="${item.id}">${item.text}</option>`
+      });
+
+      if (checked) {
+        $('#sub-stream-dropdown').append(map);
+        $('#sub-stream-dropdown option').prop('selected', true)
+        $('#sub-stream-dropdown').trigger('change');
+      } else {
+        resetSubStreamDropdown();
+      }
+    });
+
+    var csrfToken = $('#searchForm input[name="csrfmiddlewaretoken"]').val();
+
+    $('#stream-dropdown').select2({
+      closeOnSelect: false,
+      ajax: {
+        delay: 500,
+        url: "/coursefinder/streams",
+        method: 'post',
+        data: function (val) {
+          return {
+            typeid: levelType.split(','),
+            name: val.term,
+            csrfmiddlewaretoken: csrfToken,
+          }
+        },
+        processResults: function (data) {
+          // streamData = data;
+          return {
+            results: data
+          };
+        }
+      }
+    }).prop('disabled', true);
+
+  $("#stream-dropdown").on('change', function (){
+    selectedStreams = $.map($('#stream-dropdown').select2('data'), function (item) {
+      return item.id;
+    }).join(',');
+    $('#sub-stream-dropdown').prop('disabled', false);
+  })
+
+  $('#sub-stream-dropdown').select2({
+      closeOnSelect: false,
+      ajax: {
+        delay: 500,
+        url: "/coursefinder/streams",
+        method: 'post',
+        data: function (val) {
+          return {
+            typeid: levelType.split(','),
+            Streamid: selectedStreams.split(','),
+            name: val.term,
+            csrfmiddlewaretoken: csrfToken,
+          }
+        },
+        processResults: function (data) {  
+          streamData = data;
+          return {
+            results: data
+          };
+        }
+      }
+    }).prop('disabled', true);
+    $("#sub-stream-dropdown").on('change', function (){
+      selectedSubStreams = $.map($('#sub-stream-dropdown').select2('data'), function (item) {
+        return item.id;
+      }).join(',');
+      $('#country-dropdown').prop('disabled', false);
+    })
+    $('#country-dropdown').select2({
+        closeOnSelect: false, ajax: {
+          delay: 500,
+          url: "/coursefinder/streams",
+          method: 'post',
+          data: function (val) {
+            return {
+
+              typeid: levelType.split(','),
+              Streamid: selectedStreams.split(','),
+              substreamid: selectedSubStreams.split(','),
+              name: val.term,
+              csrfmiddlewaretoken: csrfToken,
+            }
+          },
+          processResults: function (data) {  
+            return {
+              results: data
+            };
+          }
+        }
+      }).prop('disabled', true);
+  })
+  
+
+  const request = new XMLHttpRequest();
+  request.open('GET', url, true);
+
+  request.onload = function () {
+    if (request.status === 200) {
+      const data = JSON.parse(request.responseText);
+      let option;
+      for (let i = 0; i < data.length; i++) {
+        option = document.createElement('option');
+        option.text = data[i].degree_type;
+        option.value = data[i].levelID;
+        dropdown.add(option);
+      }
+      $("#level-dropdown").select2({ placeholder: "Choose Level" ,})
+    } else {
+      // Reached the server, but it returned an error
+    }
+  }
+
+  request.onerror = function () {
+    console.error('An error occurred fetching the JSON from ' + url);
+  };
+
+  request.send();
+</Script>

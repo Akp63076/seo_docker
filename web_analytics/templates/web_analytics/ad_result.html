@@ -1,0 +1,76 @@
+{% extends "redshiftClicks/base.html" %}
+{% load static %}
+
+{% block navbar %}
+   {% include "redshiftClicks/navbar.html" %}
+{% endblock navbar %}
+
+
+{% block content %}
+
+<div class="container">
+    <h1 style="text-align: center;">Result Page</h1>
+    <div class="table-responsive">
+        <div class = "row">
+            <div class ="col-sm-4"><h4>Keywords you provided</h4></div> 
+            <div class ="col-sm-6"></div>
+            <div class ="col-sm-2"><button><a href="{% url 'web_analytics-getfile' %}">download complete list</a></button></div>
+        </div>
+        
+        <table class="table table-fixed table-striped table-hover table-bordered"> 
+            
+            <thead class="thead-dark">
+            <tr>
+                <th>Keyword</th>
+                <th>Search volume</th>
+                <th>competition</th>
+
+            </tr>
+            </thead>
+            
+            <tbody>
+                {% for data in kwsv %}
+                    <tr>
+        
+                        <td >{{data.keywords}}</td>
+                        <td>{{data.search_volume}}</td>
+                        <td>{{data.competition}}</td>
+
+    
+                     </tr>
+                     {% endfor %}
+             </tbody>
+         </table>
+    </div>        
+    <br>
+    <div class="table-responsive">
+        <h4>Keywords Ideas</h4>
+        
+        <table class="table table-fixed table-striped table-hover table-bordered"> 
+    
+            <thead class="thead-dark">
+            <tr>
+                <th>Keyword</th>
+                <th>Search volume</th>
+                <th>competition</th>
+
+            </tr>
+            </thead>
+            
+            <tbody>
+                {% for data in kwideas %}
+                    <tr>
+        
+                        <td >{{data.keywords}}</td>
+                        <td>{{data.search_volume}}</td>
+                        <td>{{data.competition}}</td>
+
+    
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>
+
+{% endblock content %}
