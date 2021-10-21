@@ -165,16 +165,18 @@ def index(request):
         substream_id = request.POST.getlist("substream")
         country_id = request.POST["Country"]
 
+        print(datafile.dtypes)
 
-        streamFilter = datafile["new_sub_streamsID"].isin(stream_id)
+        streamFilter = datafile["new_sub_streamsID"].isin(map(int,stream_id))
         
-        levelFilter = datafile["levelID"].isin(list(map(int, level_id)))
+        levelFilter = datafile["levelID"].isin(map(int,level_id))
         
-        headFilter  = datafile['head2ID'].isin(list(map(int, substream_id)))
+        headFilter  = datafile['head2ID'].isin(map(int,substream_id))
         
+        print(datafile[streamFilter & levelFilter  & headFilter])
         country_name = country_map[country_map["country_id"] == int(country_id)]['country'].values[0]
-        
         country_filter = datafile['country_id']==int(country_id)
+        
         
         filtered_data = datafile[streamFilter & levelFilter  & headFilter & country_filter]
         # print(filtered_data.shape[0])
@@ -237,7 +239,7 @@ def index(request):
 
         file = (
             filtered_data.groupby("college_id")[course_columns]
-            .apply(lambda x: x.to_dict("r"))
+            .apply(lambda x: x.to_dict("records"))
             .reset_index()
         )
 
@@ -328,8 +330,10 @@ def streamlist(request):
             ("typeid[]" in request.POST)
             and ("Streamid[]" in request.POST)
             and ("substreamid[]" in request.POST)
+            
         ):
             level_id = request.POST.getlist("typeid[]")
+            
             level_filter = dropdownData["levelID"].isin(list(map(int, level_id)))
             stream_id = request.POST.getlist("Streamid[]")
             print()
@@ -348,7 +352,51 @@ def streamlist(request):
                 columns={"country_id": "id", "country": "text"}, inplace=True
             )
             dropdown_datadict = dropdown_data.to_dict("records")
-        elif ("typeid[]" in request.POST) and ("Streamid[]" in request.POST):
+
+        elif (
+            ("typeid[]" in request.POST)
+            and ("Streamid[]" in request.POST)
+            and ("substreamid[]" in request.POST)
+           
+        ):
+            level_id = request.POST.getlist("typeid[]")
+            
+            level_filter = dropdownData["levelID"].isin(list(map(int, level_id)))
+            stream_id = request.POST.getlist("Streamid[]")
+            print()
+            stream_filter = dropdownData["new_sub_streamsID"].isin(list(map(int, stream_id)))
+            substream_id = request.POST.getlist("substreamid[]")
+            country_filter = dropdownData["country"]
+            substream_filter = (
+                dropdownData["head2ID"].isin(list(map(int, substream_id)))
+            )
+
+            dropdown_data = dropdownData[
+                level_filter & stream_filter & substream_filter 
+            ][["country", "country_id"]].drop_duplicates()
+            
+            dropdown_data.rename(
+                columns={"country_id": "id", "country": "text"}, inplace=True
+            )
+            dropdown_datadict = dropdown_data.to_dict("records")        
+        
+        elif ("typeid[]" in request.POST) and ("Streamid[]" in request.POST) and "name" in request.POST:
+            level_id = request.POST.getlist("typeid[]")
+            name = request.POST.get("name")
+            level_filter = dropdownData["levelID"].isin(list(map(int, level_id)))
+            stream_id = request.POST.getlist("Streamid[]")
+            stream_filter = dropdownData["new_sub_streamsID"].isin(list(map(int, stream_id)))
+            head2_filter = dropdownData["head2"].str.contains(name, case=False)
+            dropdown_data = dropdownData[level_filter & stream_filter & head2_filter][
+                ["head2", "head2ID","course_rating"]
+            ].drop_duplicates().sort_values(by=["course_rating"])
+
+            dropdown_data.rename(
+                columns={"head2ID": "id", "head2": "text"}, inplace=True
+            )
+            dropdown_datadict = dropdown_data[["id","text"]].to_dict("records")
+
+        elif ("typeid[]" in request.POST) and ("Streamid[]" in request.POST) and "name" not in request.POST:
             level_id = request.POST.getlist("typeid[]")
             level_filter = dropdownData["levelID"].isin(list(map(int, level_id)))
             stream_id = request.POST.getlist("Streamid[]")
@@ -362,9 +410,26 @@ def streamlist(request):
                 columns={"head2ID": "id", "head2": "text"}, inplace=True
             )
             dropdown_datadict = dropdown_data[["id","text"]].to_dict("records")
-        elif request.POST.__contains__("typeid[]"):
+        elif request.POST.__contains__("typeid[]") and "name" in request.POST:
             level_id = request.POST.getlist("typeid[]")
-           
+            name = request.POST.get("name")
+
+            level_filter = dropdownData["levelID"].isin(list(map(int, level_id)))
+            new_sub_streams = dropdownData['new_sub_streams'].str.contains(name, case=False)
+            dropdown_data = dropdownData[level_filter & new_sub_streams][
+                ["new_sub_streams", "new_sub_streamsID","stream_rating"]
+            ].drop_duplicates().sort_values(by=["stream_rating"])
+
+            dropdown_data.rename(
+                columns={"new_sub_streamsID": "id", "new_sub_streams": "text"},
+                inplace=True,
+            )
+            dropdown_datadict = dropdown_data[["id","text"]].to_dict("records")
+
+        elif request.POST.__contains__("typeid[]") and "name" not in request.POST:
+            level_id = request.POST.getlist("typeid[]")
+            
+
             level_filter = dropdownData["levelID"].isin(list(map(int, level_id)))
 
             dropdown_data = dropdownData[level_filter][
