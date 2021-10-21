@@ -1,5 +1,5 @@
 {
-    "python.defaultInterpreterPath": "/Users/collegedunia/Documents/flask_project/env/bin/python",
+    "python.defaultInterpreterPath": "/Users/collegedunia/Documents/flask_project/seoTool/env/bin/python",
     // "python.formatting.provider": "black",
     "python.linting.enabled": true,
     "workbench.settings.editor": "json",
