@@ -276,5 +276,4 @@ dmypy.json
 cython_debug/
 __pycache__
 
-.DS_Store
 .vscode/
