@@ -321,7 +321,7 @@ def levellist(request):
     leveldict = levelfile.dropna().to_dict("records")
     return JsonResponse(leveldict, safe=False)
 
-@csrf_exempt
+
 def streamlist(request):
     dropdown_datadict = {}
     if request.method == "POST":
