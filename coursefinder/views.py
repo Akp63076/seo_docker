@@ -134,6 +134,9 @@ course_columns = [
     "streamID",
     "levelID",
     "tution_living_per_year",
+    "program_url",
+    "min_application_requirements",
+    "entry_requirements"
 ]
 eligibility_col = ["Gmat", "TOEFL", "IELTS", "GRE", "SAT"]
 datafile = coursesheet.merge(collegesheet, on="college_id", how="left")
