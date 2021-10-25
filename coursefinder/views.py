@@ -139,6 +139,8 @@ course_columns = [
     "entry_requirements"
 ]
 eligibility_col = ["Gmat", "TOEFL", "IELTS", "GRE", "SAT"]
+
+coursesheet['course_partner'] = coursesheet[consultant_col].sum(axis=1)
 datafile = coursesheet.merge(collegesheet, on="college_id", how="left")
 datafile.drop_duplicates(inplace=True)
 
@@ -240,6 +242,8 @@ def index(request):
         )
         # filtered_data['tution_living_total'] = filtered_data['total_tuition_fees']+filtered_data['total_living_cost']
 
+        
+        #all the course of single college in a dict
         file = (
             filtered_data.groupby("college_id")[course_columns]
             .apply(lambda x: x.to_dict("records"))
@@ -247,17 +251,42 @@ def index(request):
         )
 
         file.columns = ["college_id", "course_info"]
+        #college list
         filtered_data_unique = filtered_data.drop_duplicates(
             ["college_id"], keep="first"
         )
+        #combining unique college with its course list.
+        nonpartner_data = filtered_data_unique.merge(file, on="college_id", how="left")
 
-        filtered_data = filtered_data_unique.merge(file, on="college_id", how="left")
-
-        filtered_data.sort_values(["search_volume"], inplace=True, ascending=False)
+        nonpartner_data.sort_values(["search_volume"], inplace=True, ascending=False)
+        nonpartner_dict = nonpartner_data.to_dict("records")
         # filtered_data = filtered_data[filtered_data['Partner']!=1]
-        partner_colleges = filtered_data[filtered_data["Partner"] == 1].to_dict("records")
+        # partner_colleges = filtered_data[filtered_data["Partner"] == 1].to_dict("records")
+        # filter patner course 
+        
+        # partnered_course = filtered_data[filtered_data['course_partner'] !=  0]
 
-        filtered_dict = filtered_data.to_dict("records")
+        # course_file = (
+        #     partnered_course.groupby("college_id")[course_columns]
+        #     .apply(lambda x: x.to_dict("records"))
+        #     .reset_index()
+        # )
+
+        # course_file.columns = ["college_id", "course_info"]
+        # #college list
+        # partnered_college_unique = partnered_course.drop_duplicates(
+        #     ["college_id"], keep="first"
+        # )
+        # #combining unique college with its course list.
+        # patnered_data = partnered_college_unique.merge(course_file, on="college_id", how="left")
+
+        # patnered_data.sort_values(["search_volume"], inplace=True, ascending=False)
+        #second method
+        partnered_course=  filtered_data.groupby(['college_id'])['course_partner'].sum().reset_index()
+        partnered_colleges = partnered_course[partnered_course['course_partner']!=0]
+        patnered_data = partnered_colleges.merge(nonpartner_data,on='college_id', how='left')
+        patnered_dict = patnered_data.to_dict("records")
+        
         degree = filtered_data[[col for col in ["head_short_form"] for i in range(2)]]
 
         degree.columns = ["id", "name"]
@@ -306,9 +335,9 @@ def index(request):
         filtered_data.drop(dropcol, axis=1, inplace=True)
 
         d_context = {
-            "filtered_dict": filtered_dict,
+            "filtered_dict": nonpartner_dict,
             "user_filters": user_filters,
-            "partner_colleges": partner_colleges,
+            "partner_colleges": patnered_dict,
         }
         return render(request, "coursefinder/coursefinderResult.html", d_context)
     return render(

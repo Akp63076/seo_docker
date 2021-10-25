@@ -269,9 +269,10 @@
                                         {% endif %} 
                                         {% if data.estimated_LOA_TAT != '-' %} 
                                         ({{data.estimated_LOA_TAT}}) {% endif %} 
-                                    </h6>
                                 {% if data.program_url != "-" %}<a href="{{data.program_url}}" target="_blank">official program url</a>
-                                {% endif %}
+                                {% endif %}                                    
+                                    </h6>
+
                                 </div>
                                 <div> 
                                     <span class="text-orange">Stream: </span> 
@@ -291,10 +292,10 @@
                                             INR {{data.total_fees|floatformat:"0"}} 
                                         {% endif %}
                                 </div>
-                                <div>                         
+                                <div> Application Channel:                        
                                     {% for key, val in data.consultant.items %}
                                         {% if val == 1 %}
-                                            Application Channel: {{key}}, 
+                                             {{key}}, 
                                         {% endif %}
                                     {% endfor %}
                                 </div>       
@@ -413,10 +414,10 @@
                                             INR {{data.total_fees|floatformat:"0"}} 
                                         {% endif %}
                                 </div>
-                                <div>                         
+                                <div> Application Channel:                        
                                     {% for key, val in data.consultant.items %}
                                         {% if val == 1 %}
-                                            Application Channel: {{key}}, 
+                                             {{key}}, 
                                         {% endif %}
                                     {% endfor %}
                                 </div>       
