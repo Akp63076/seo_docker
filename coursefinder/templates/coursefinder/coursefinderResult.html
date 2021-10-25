@@ -235,11 +235,16 @@
                                     <div><span class="text-orange">Estimated Living Cost:</span>{% if Est_living_cost_1 != "0" %} INR {{link.Est_living_cost_1|floatformat:"0"}}-{{link.Est_living_cost_2|floatformat:"0"}}{% endif %}</div>
                                     <div>{% if link.student_permits != 0 %}<span class="text-orange">Study Permits Issued to Indians:</span>{{link.student_permits|floatformat:"0"}}{% endif %}</div>
                                     <div><span class="text-orange">Institute Type:</span>{{link.institute_type}}</div>
+                                        <div>
+                                        <span class="text-orange">Ranking: </span>
+                                        {% for key, val in link.ranking_dict.items %}
+                                        {% if val != 0 or val != "" or val != "0" %} {{key}}#{{val|floatformat:"0"}},{% endif %} {% endfor %}
+                                        </div>                                    
                                     <div><span class="text-orange">Distance From main cities (in Kms):</span> <br>
-                                        {% for key,val in link.distance_dict.items %} {% if val != 0 or val != "" or val != None %}{{key}} : {{val|floatformat:"0"}},{% endif %}{% endfor %}</div>
-                                        <span class="text-orange">Ranking: </span><div>{% for key, val in link.ranking_dict.items %}{% if val != 0 or val != "" or val != "0" %} {{key}}#{{val|floatformat:"0"}},{% endif %} {% endfor %}</div>
-                                
-                            </div>
+                                        {% for key,val in link.distance_dict.items %} {% if val != 0 or val != "" or val != None %}{{key}} : {{val|floatformat:"0"}},{% endif %}{% endfor %}
+                                    </div>
+
+                                </div>
 
                             <div class='col-4 pt-4'>
                                 <div> <span class="text-orange">Search Volume:</span> {{link.search_volume|floatformat:"0"}}</div>
@@ -292,7 +297,7 @@
                                             INR {{data.total_fees|floatformat:"0"}} 
                                         {% endif %}
                                 </div>
-                                <div> Application Channel:                        
+                                <div> <span class="text-orange">Application Channel:</span>                       
                                     {% for key, val in data.consultant.items %}
                                         {% if val == 1 %}
                                              {{key}}, 
@@ -301,28 +306,27 @@
                                 </div>       
                                 <div>                         
                                     {% if data.min_application_requirements != "-"%} 
-                                        Minimum Application Requirements:
+                                        <span class="text-orange">Minimum Application Requirements:</span>
                                         {{data.min_application_requirements}}
                                     {% endif %}
                                 </div>
                                 <div>                         
                                     {% if data.entry_requirements != "-" %} 
-                                        Entry Requirements:
+                                        <span class="text-orange">Entry Requirements:</span>
                                         {{data.entry_requirements}}
                                     {% endif %}
                                 </div>  
                                 <div >
-                                    Eligibility: 
+                                    <span class="text-orange">Eligibility:</span>
                                     {% for key, val in data.eligibility.items %} 
                                         {% if val != 0 %}  {{key}}: {{val}} 
                                         {% endif %}
                                     {% endfor %} 
-                                </div>
-                                <div> 
-                                    Total Tution + Living Cost: 
+                                    |
+                                    <span class="text-orange">Total Tution + Living Cost:</span>
                                     INR {{data.tution_living_per_year|floatformat:"0"}}/year
-                                </div>                    
-                                <div >Application Deadline :
+                                </div>                 
+                                <div><span class="text-orange">Application Deadline:</span>
                                     {% for data in data.deadline%} 
                                         
                                         {% if data.application_end_date != "" %}
@@ -352,16 +356,21 @@
                             data-institute_type-id="{{link.institute_type}}"
                         >                    
                         <div class='row' id="college-card">
-                            <div class='col pl-1' > <h4>{{link.college_name|title}} </h4>
+                                <div class='col pl-1' > <h4>{{link.college_name|title}} </h4>
 
-                                <div><span class="text-orange">Estimated Living Cost:</span>{% if Est_living_cost_1 != "0" %} INR {{link.Est_living_cost_1|floatformat:"0"}}-{{link.Est_living_cost_2|floatformat:"0"}}{% endif %}</div>
-                                <div>{% if link.student_permits != 0 %}<span class="text-orange">Study Permits Issued to Indians:</span>{{link.student_permits|floatformat:"0"}}{% endif %}</div>
-                                <div><span class="text-orange">Institute Type:</span>{{link.institute_type}}</div>
-                                <div><span class="text-orange">Distance From main cities (in Kms):</span> <br>
-                                    {% for key,val in link.distance_dict.items %} {% if val != 0 or val != "" or val != None %}{{key}} : {{val|floatformat:"0"}},{% endif %}{% endfor %}</div>
-                                    <span class="text-orange">Ranking: </span><div>{% for key, val in link.ranking_dict.items %}{% if val != 0 or val != "" or val != "0" %} {{key}}#{{val|floatformat:"0"}},{% endif %} {% endfor %}</div>
-                            
-                            </div>
+                                    <div><span class="text-orange">Estimated Living Cost:</span>{% if Est_living_cost_1 != "0" %} INR {{link.Est_living_cost_1|floatformat:"0"}}-{{link.Est_living_cost_2|floatformat:"0"}}{% endif %}</div>
+                                    <div>{% if link.student_permits != 0 %}<span class="text-orange">Study Permits Issued to Indians:</span>{{link.student_permits|floatformat:"0"}}{% endif %}</div>
+                                    <div><span class="text-orange">Institute Type:</span>{{link.institute_type}}</div>
+                                    <div>
+                                        <span class="text-orange">Ranking: </span>
+                                        {% for key, val in link.ranking_dict.items %}
+                                        {% if val != 0 or val != "" or val != "0" %} {{key}}#{{val|floatformat:"0"}},{% endif %} {% endfor %}
+                                    </div>                                    
+                                    <div><span class="text-orange">Distance From main cities (in Kms):</span> <br>
+                                        {% for key,val in link.distance_dict.items %} {% if val != 0 or val != "" or val != None %}{{key}} : {{val|floatformat:"0"}},{% endif %}{% endfor %}
+                                    </div>
+
+                                </div>
 
                             <div class='col-4 pt-4'>
                                 <div> <span class="text-orange">Search Volume:</span> {{link.search_volume|floatformat:"0"}}</div>
@@ -391,8 +400,8 @@
                                         {% endif %} 
                                         {% if data.estimated_LOA_TAT != '-' %} 
                                         ({{data.estimated_LOA_TAT}}) {% endif %} 
-                                        {% if data.program_url != "-" %}<a href="{{data.program_url}}" target="_blank">official program url</a>
-                                    {% endif %}
+                                {% if data.program_url != "-" %}<a href="{{data.program_url}}" target="_blank">official program url</a>
+                                {% endif %}                                    
                                     </h6>
 
                                 </div>
@@ -414,7 +423,7 @@
                                             INR {{data.total_fees|floatformat:"0"}} 
                                         {% endif %}
                                 </div>
-                                <div> Application Channel:                        
+                                <div> <span class="text-orange">Application Channel:</span>                       
                                     {% for key, val in data.consultant.items %}
                                         {% if val == 1 %}
                                              {{key}}, 
@@ -423,28 +432,27 @@
                                 </div>       
                                 <div>                         
                                     {% if data.min_application_requirements != "-"%} 
-                                        Minimum Application Requirements:
+                                        <span class="text-orange">Minimum Application Requirements:</span>
                                         {{data.min_application_requirements}}
                                     {% endif %}
                                 </div>
                                 <div>                         
                                     {% if data.entry_requirements != "-" %} 
-                                        Entry Requirements:
+                                        <span class="text-orange">Entry Requirements:</span>
                                         {{data.entry_requirements}}
                                     {% endif %}
                                 </div>  
                                 <div >
-                                    Eligibility: 
+                                    <span class="text-orange">Eligibility:</span>
                                     {% for key, val in data.eligibility.items %} 
                                         {% if val != 0 %}  {{key}}: {{val}} 
                                         {% endif %}
                                     {% endfor %} 
-                                </div>
-                                <div> 
-                                    Total Tution + Living Cost: 
+                                    |
+                                    <span class="text-orange">Total Tution + Living Cost:</span>
                                     INR {{data.tution_living_per_year|floatformat:"0"}}/year
-                                </div>                    
-                                <div >Application Deadline :
+                                </div>                 
+                                <div><span class="text-orange">Application Deadline:</span>
                                     {% for data in data.deadline%} 
                                         
                                         {% if data.application_end_date != "" %}
