@@ -136,7 +136,7 @@ course_columns = [
     "tution_living_per_year",
     "program_url",
     "min_application_requirements",
-    "entry_requirements"
+    "entry_requirements",
 ]
 eligibility_col = ["Gmat", "TOEFL", "IELTS", "GRE", "SAT"]
 
@@ -159,6 +159,17 @@ def convert_tostring(x):
 
     return val
 
+def get_rank_bracket(x):
+    if x == 0:
+        return "not ranked"
+    if x >=1 and x <100:
+        return "1-100"
+    if x >= 100 and x <250:
+        return "100-250"
+    if x >= 250 and x <500:
+        return "250-500"
+    if x >= 501:
+        return "500+"
 
 # @app.route('/coursefinder/form')
 def index(request):
@@ -170,7 +181,7 @@ def index(request):
         substream_id = request.POST.getlist("substream")
         country_id = request.POST["Country"]
 
-        print(datafile.dtypes)
+        # print(datafile.dtypes)
 
         streamFilter = datafile["new_sub_streamsID"].isin(map(int,stream_id))
         
@@ -184,6 +195,8 @@ def index(request):
         
         
         filtered_data = datafile[streamFilter & levelFilter  & headFilter & country_filter]
+        filtered_data['rank_bracket'] = filtered_data['THE'].apply(get_rank_bracket)
+        # print(filtered_data['rank_bracket'].head(5))
         # print(filtered_data.shape[0])
         d_context = {"message": ""}
         if filtered_data.shape[0] == 0:
@@ -296,6 +309,10 @@ def index(request):
         institute_type.columns = ["id", "name"]
         institute_type = institute_type[institute_type.id != "-"]
 
+        rank_bracket = filtered_data[[col for col in ["rank_bracket"] for i in range(2)]]
+        rank_bracket.columns = ["id", "name"]
+        rank_bracket = rank_bracket[rank_bracket.id != "-"]
+
         user_filters = {
             "college_filter": filtered_data[["college_id", "college_name"]]
             .dropna()
@@ -313,6 +330,9 @@ def index(request):
             .to_dict("records"),
             "institute_type_filters": institute_type.dropna()
             .drop_duplicates()
+            .to_dict("records"),
+
+            "rank_bracket_filters": rank_bracket.dropna().drop_duplicates()
             .to_dict("records"),
             
             "city_state": filtered_data[["city_state_id", "city_state"]]
