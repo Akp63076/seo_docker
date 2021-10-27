@@ -331,11 +331,13 @@
                                         
                                         {% if data.application_end_date != "" %}
 
-                                            {% if data.custom_name == "-" or data.custom_name == "" or  data.custom_name == "nan" %}{{data.application_end_date}}| 
+                                            {% if data.custom_name == "-" or data.custom_name == ""  %}
+                                            {{data.application_end_date}}| 
                                         
                                             {% else %}
                                             {{data.custom_name}}:{{data.application_end_date}}|{% endif %}
-                                        {% elif data.application_end_date == "-"  %} {{data.custom_name}}
+                                        {% elif data.application_end_date == "-" or  data.application_end_date == "" %} 
+                                            {{data.custom_name}}|
                                         {% endif %} 
                                         
                                     {% endfor %} 
@@ -393,6 +395,7 @@
                             >
                                 <div>
                                     <h6 > 
+                                    
                                         Course Name : {{data.head_one|capfirst }}
                                     
                                         {% if data.head_two != '-' %} 
@@ -457,11 +460,13 @@
                                         
                                         {% if data.application_end_date != "" %}
 
-                                            {% if data.custom_name == "-" or data.custom_name == "" or  data.custom_name == "nan" %}{{data.application_end_date}}| 
+                                            {% if data.custom_name == "-" or data.custom_name == "" %}
+                                            {{data.application_end_date}}| 
                                         
                                             {% else %}
                                             {{data.custom_name}}:{{data.application_end_date}}|{% endif %}
-                                        {% elif data.application_end_date == "-"  %} {{data.custom_name}}
+                                        {% elif data.application_end_date == "-" or data.application_end_date == ""  %} 
+                                        {{data.custom_name}}
                                         {% endif %} 
                                         
                                     {% endfor %} 
