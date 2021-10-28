@@ -242,7 +242,7 @@ def index(request):
         filtered_data["ranking_dict"] = filtered_data[ranking_col].to_dict("records")
         filtered_data["distance_dict"] = filtered_data[distance_from].to_dict("records")
         filtered_data["deadline"] = filtered_data["deadline"].apply(
-            lambda x: json.loads(x)
+            lambda x: json.loads(x, strict=False)
         )
         filtered_data["consultant"] = filtered_data[consultant_col].to_dict("records")
 
