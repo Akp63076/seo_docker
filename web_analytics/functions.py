@@ -1,12 +1,6 @@
-
-import string
-import random
 import sys
-import itertools
 from multiprocessing import Pool
 import uuid
-
-
 import pandas
 from datetime import date,datetime,timedelta
 from web_analytics.auth.google_analytics import  main_analytics_func as method1
@@ -15,8 +9,8 @@ from web_analytics.auth.search_analytics import gsc_function as method3
 from web_analytics.auth.adwords import kwvolume,kwIdeas
 from multiprocessing import Process, Queue
 from django.conf import settings
-
 import logging
+
 logger = logging.getLogger(__name__)
 
 fileDir = settings.STATIC_ROOT
