@@ -1,0 +1,845 @@
+,Keyword,Tag,Search Volume,Category,Exam Tag,new_tag
+41,NEET,Exams,823000,Overview,NEET,Exams
+42,NEET APPLICATION FORM,Exams,14800,Application,NEET,Exams
+43,NEET REGISTRATION,Exams,12100,Application,NEET,Exams
+44,NEET ELIGIBILITY,Exams,6600,Eligibility,NEET,Exams
+45,NEET RESERVATION,Exams,1000,General,NEET,Exams
+46,NEET EXAM DATES,Exams,27100,Exam_Dates,NEET,Exams
+47,NEET ADMIT CARD,Exams,49500,Admit_Card,NEET,Exams
+48,NEET EXAM CENTERS,Exams,3600,Exam_Centers,NEET,Exams
+49,NEET EXAM PATTERN,Exams,5400,Exam_Pattern,NEET,Exams
+50,NEET PAPER ANALYSIS,Exams,590,Paper_Analysis,NEET,Exams
+51,NEET SYLLABUS,Exams,33100,Syllabus,NEET,Exams
+52,NEET PREPARATION TIPS,Exams,1600,Preparation,NEET,Exams
+53,NEET PRACTICE PAPERS,Exams,880,Practice_Papers,NEET,Exams
+54,NEET RESULT,Exams,165000,Result,NEET,Exams
+55,NEET MERIT LIST,Exams,720,Counselling,NEET,Exams
+56,NEET COUNSELLING,Exams,14800,Counselling,NEET,Exams
+57,NEET ANSWER KEY,Exams,5400,Answer_Key,NEET,Exams
+58,NEET CUTOFF,Exams,6600,Cut_Off,NEET,Exams
+59,NEET RANK PREDICTOR,Exams,8100,Rank_Predictor,NEET,Exams
+60,NEET NOTIFICATION,Exams,720,Notification,NEET,Exams
+61,IIT JAM,Exams,49500,Overview,IIT JAM,Exams
+62,IIT JAM APPLICATION FORM,Exams,260,Application,IIT JAM,Exams
+63,IIT JAM ELIGIBILITY,Exams,2900,Eligibility,IIT JAM,Exams
+64,IIT JAM EXAM DATES,Exams,210,Exam_Dates,IIT JAM,Exams
+65,IIT JAM ADMIT CARD,Exams,480,Admit_Card,IIT JAM,Exams
+66,IIT JAM EXAM PATTERN,Exams,480,Exam_Pattern,IIT JAM,Exams
+67,IIT JAM SYLLABUS,Exams,6600,Syllabus,IIT JAM,Exams
+68,IIT JAM RESULT,Exams,1000,Result,IIT JAM,Exams
+69,IIT JAM COUNSELLING,Exams,210,Counselling,IIT JAM,Exams
+70,IIT JAM ANSWER KEY,Exams,170,Answer_Key,IIT JAM,Exams
+71,IIT JAM CUTOFF,Exams,590,Cut_Off,IIT JAM,Exams
+72,NEET MDS,Exams,8100,Overview,NEET MDS,Exams
+73,NEET MDS APPLICATION FORM,Exams,140,Application,NEET MDS,Exams
+74,NEET MDS ADMIT CARD,Exams,480,Admit_Card,NEET MDS,Exams
+75,NEET MDS EXAM PATTERN,Exams,110,Exam_Pattern,NEET MDS,Exams
+76,NEET MDS SYLLABUS,Exams,390,Syllabus,NEET MDS,Exams
+77,NEET MDS RESULT,Exams,2400,Result,NEET MDS,Exams
+78,NEET MDS COUNSELLING,Exams,1900,Counselling,NEET MDS,Exams
+79,JIPMER PG,Exams,260,Overview,JIPMER,Exams
+80,AIIMS PG,Exams,12100,Overview,AIIMS PG,Exams
+81,AIIMS PG REGISTRATION,Exams,1600,Application,AIIMS PG,Exams
+82,AIIMS PG ADMIT CARD,Exams,1600,Admit_Card,AIIMS PG,Exams
+83,AIIMS PG EXAM PATTERN,Exams,140,Exam_Pattern,AIIMS PG,Exams
+84,AIIMS PG RESULT,Exams,1900,Result,AIIMS PG,Exams
+85,AIIMS PG COUNSELLING,Exams,210,Counselling,AIIMS PG,Exams
+86,AIIMS PG CUTOFF,Exams,170,Cut_Off,AIIMS PG,Exams
+87,NEET PG,Exams,74000,Overview,NEET,Exams
+88,NEET PG application,Exams,480,Application,NEET,Exams
+89,NEET PG admit card,Exams,6600,Admit_Card,NEET,Exams
+90,NEET PG eligibility,Exams,590,Eligibility,NEET,Exams
+91,NEET PG exam pattern,Exams,720,Exam_Pattern,NEET,Exams
+92,NEET PG syllabus,Exams,2400,Syllabus,NEET,Exams
+93,NEET PG result,Exams,9900,Result,NEET,Exams
+94,NEET PG counselling,Exams,880,Counselling,NEET,Exams
+95,NEET PG cut off,Exams,720,Cut_Off,NEET,Exams
+96,NEET PG rank predictor,Exams,1300,Rank_Predictor,NEET,Exams
+97,JEE Main,Exams,1500000,Overview,JEE Main,Exams
+98,JEE Main Exam Pattern,Exams,2900,Exam_Pattern,JEE Main,Exams
+99,JEE Main Syllabus,Exams,22200,Syllabus,JEE Main,Exams
+100,JEE Main Registration,Exams,18100,Application,JEE Main,Exams
+101,JEE Main Preparation,Exams,1000,Preparation,JEE Main,Exams
+102,JEE Main Preparation Tips,Exams,210,Preparation,JEE Main,Exams
+103,JEE Main Admit Card,Exams,135000,Admit_Card,JEE Main,Exams
+104,JEE Main Application,Exams,5400,Application,JEE Main,Exams
+105,JEE Main Exam Dates,Exams,8100,Exam_Dates,JEE Main,Exams
+106,JEE Main FAQs,Exams,210,General,JEE Main,Exams
+107,JEE Main Latest News,Exams,22200,News,JEE Main,Exams
+108,JEE Main Ranks vs Marks,Exams,8100,Comparison,JEE Main,Exams
+109,JEE Main Physics Syllabus,Exams,1600,Syllabus,JEE Main,Exams
+110,JEE Main Mock Test,Exams,9900,Practice_Papers,JEE Main,Exams
+111,JEE Main Eligibility,Exams,2900,Eligibility,JEE Main,Exams
+112,JEE Main Form Correction,Exams,590,Form_Correction,JEE Main,Exams
+113,JEE Main Notification,Exams,320,Notification,JEE Main,Exams
+114,JEE Main Counselling,Exams,8100,Counselling,JEE Main,Exams
+115,JEE Main Toppers,Exams,2900,General,JEE Main,Exams
+116,JEE Main Rank Predictor,Exams,6600,Rank_Predictor,JEE Main,Exams
+117,JEE Main Answer key,Exams,22200,Answer_Key,JEE Main,Exams
+118,BITSAT,Exams,110000,Overview,BITSAT,Exams
+119,BITSAT Exam,Exams,5400,Overview,BITSAT,Exams
+120,BITSAT Application Form,Exams,1900,Application,BITSAT,Exams
+121,BITSAT Registration,Exams,1300,Application,BITSAT,Exams
+122,BITSAT Eligibility,Exams,720,Eligibility,BITSAT,Exams
+123,BITSAT Admit Card,Exams,3600,Admit_Card,BITSAT,Exams
+124,BITSAT Exam Dates,Exams,5400,Exam_Dates,BITSAT,Exams
+125,BITSAT Exam Centers,Exams,480,Exam_Centers,BITSAT,Exams
+126,BITSAT Exam Pattern,Exams,2400,Exam_Pattern,BITSAT,Exams
+127,BITSAT Syllabus,Exams,3600,Syllabus,BITSAT,Exams
+128,BITSAT Slot Booking,Exams,8100,Slot_Booking,BITSAT,Exams
+129,BITSAT Preparation,Exams,390,Preparation,BITSAT,Exams
+130,Best books for BITSAT,Exams,320,Books,BITSAT,Exams
+131,BITSAT Practice Papers,Exams,140,Practice_Papers,BITSAT,Exams
+132,BITSAT Sample Paper,Exams,2900,Practice_Papers,BITSAT,Exams
+133,BITSAT Sample Papers,Exams,2900,Practice_Papers,BITSAT,Exams
+134,BITSAT Mock Test,Exams,4400,Practice_Papers,BITSAT,Exams
+135,BITSAT Result,Exams,1600,Result,BITSAT,Exams
+136,BITSAT Counselling,Exams,880,Counselling,BITSAT,Exams
+137,BITSAT Cutoff,Exams,8100,Cut_Off,BITSAT,Exams
+138,BITSAT Fees,Exams,3600,Fees,BITSAT,Exams
+139,BITSAT Previous Year Papers,Exams,5400,Question_Paper,BITSAT,Exams
+140,JEE Advanced,Exams,301000,Overview,JEE Advance,Exams
+141,JEE Advanced Application Form,Exams,260,Application,JEE Advance,Exams
+142,JEE Advanced Registration,Exams,22200,Application,JEE Advance,Exams
+143,JEE Advanced Eligibility,Exams,1900,Eligibility,JEE Advance,Exams
+144,JEE Advanced Admit Card,Exams,27100,Admit_Card,JEE Advance,Exams
+145,JEE Advanced Exam Dates,Exams,590,Exam_Dates,JEE Advance,Exams
+146,JEE Advanced Exam Pattern,Exams,1900,Exam_Pattern,JEE Advance,Exams
+147,JEE Advanced Syllabus,Exams,9900,Syllabus,JEE Advance,Exams
+148,JEE Advanced Preparation,Exams,320,Preparation,JEE Advance,Exams
+149,Best books for JEE Advanced,Exams,1600,Books,JEE Advance,Exams
+150,JEE Advanced Practice Papers,Exams,140,Practice_Papers,JEE Advance,Exams
+151,JEE Advanced Sample Paper,Exams,880,Practice_Papers,JEE Advance,Exams
+152,JEE Advanced Sample Papers,Exams,880,Practice_Papers,JEE Advance,Exams
+153,JEE Advanced Mock Test,Exams,2400,Practice_Papers,JEE Advance,Exams
+154,JEE Advanced Result,Exams,22200,Result,JEE Advance,Exams
+155,JEE Advanced Counselling,Exams,390,Counselling,JEE Advance,Exams
+156,JEE Advanced Cutoff,Exams,4400,Cut_Off,JEE Advance,Exams
+157,MHT CET,Exams,450000,Overview,MHT CET,Exams
+158,MHT CET Exam,Exams,1900,Overview,MHT CET,Exams
+159,MHT CET Application Form,Exams,2900,Application,MHT CET,Exams
+160,MHT CET Registration,Exams,2900,Application,MHT CET,Exams
+161,MHT CET Eligibility,Exams,480,Eligibility,MHT CET,Exams
+162,MHT CET Admit Card,Exams,27100,Admit_Card,MHT CET,Exams
+163,MHT CET Exam Dates,Exams,4400,Exam_Dates,MHT CET,Exams
+164,MHT CET Exam Centers,Exams,320,Exam_Centers,MHT CET,Exams
+165,MHT CET Exam Pattern,Exams,880,Exam_Pattern,MHT CET,Exams
+166,MHT CET Syllabus,Exams,2400,Syllabus,MHT CET,Exams
+167,MHT CET Preparation,Exams,210,Preparation,MHT CET,Exams
+168,Best books for MHT CET,Exams,480,Books,MHT CET,Exams
+169,MHT CET Practice Papers,Exams,260,Practice_Papers,MHT CET,Exams
+170,MHT CET Sample Paper,Exams,1000,Practice_Papers,MHT CET,Exams
+171,MHT CET Sample Papers,Exams,1000,Practice_Papers,MHT CET,Exams
+172,MHT CET Mock Test,Exams,5400,Practice_Papers,MHT CET,Exams
+173,MHT CET Result,Exams,27100,Result,MHT CET,Exams
+174,MHT CET Counselling,Exams,3600,Counselling,MHT CET,Exams
+175,MHT CET Merit List,Exams,480,Merit_List,MHT CET,Exams
+176,MHT CET Cutoff,Exams,1900,Cut_Off,MHT CET,Exams
+177,TS EAMCET,Exams,450000,Overview,TS EAMCET,Exams
+178,TS EAMCET Exam,Exams,260,Overview,TS EAMCET,Exams
+179,TS EAMCET Application Form,Exams,590,Application,TS EAMCET,Exams
+180,TS EAMCET Registration,Exams,480,Application,TS EAMCET,Exams
+181,TS EAMCET Eligibility,Exams,140,Eligibility,TS EAMCET,Exams
+182,TS EAMCET Admit Card,Exams,1000,Admit_Card,TS EAMCET,Exams
+183,TS EAMCET Exam Dates,Exams,110,Exam_Dates,TS EAMCET,Exams
+184,TS EAMCET Exam Pattern,Exams,170,Exam_Pattern,TS EAMCET,Exams
+185,TS EAMCET Syllabus,Exams,260,Syllabus,TS EAMCET,Exams
+186,TS EAMCET Sample Paper,Exams,110,Practice_Papers,TS EAMCET,Exams
+187,TS EAMCET Mock Test,Exams,1900,Practice_Papers,TS EAMCET,Exams
+188,TS EAMCET Result,Exams,27100,Result,TS EAMCET,Exams
+189,TS EAMCET Counselling,Exams,27100,Counselling,TS EAMCET,Exams
+190,TS EAMCET Cutoff,Exams,320,Cut_Off,TS EAMCET,Exams
+191,OJEE,Exams,135000,Overview,OJEE,Exams
+192,OJEE Exam,Exams,720,Overview,OJEE,Exams
+193,OJEE Application Form,Exams,260,Application,OJEE,Exams
+194,OJEE Registration,Exams,590,Application,OJEE,Exams
+195,OJEE Eligibility,Exams,140,Eligibility,OJEE,Exams
+196,OJEE Admit Card,Exams,6600,Admit_Card,OJEE,Exams
+197,OJEE Exam Dates,Exams,1600,Exam_Dates,OJEE,Exams
+198,OJEE Exam Pattern,Exams,260,Exam_Pattern,OJEE,Exams
+199,OJEE Syllabus,Exams,1000,Syllabus,OJEE,Exams
+200,OJEE Sample Paper,Exams,110,Practice_Papers,OJEE,Exams
+201,OJEE Mock Test,Exams,320,Practice_Papers,OJEE,Exams
+202,OJEE Result,Exams,1900,Result,OJEE,Exams
+203,OJEE Counselling,Exams,4400,Counselling,OJEE,Exams
+204,WBJEE,Exams,201000,Overview,WBJEE,Exams
+205,WBJEE Exam,Exams,880,Overview,WBJEE,Exams
+206,WBJEE Application Form,Exams,2900,Application,WBJEE,Exams
+207,WBJEE Registration,Exams,720,Application,WBJEE,Exams
+208,WBJEE Eligibility,Exams,210,Eligibility,WBJEE,Exams
+209,WBJEE Admit Card,Exams,3600,Admit_Card,WBJEE,Exams
+210,WBJEE Exam Dates,Exams,1900,Exam_Dates,WBJEE,Exams
+211,WBJEE Exam Centers,Exams,480,Exam_Centers,WBJEE,Exams
+212,WBJEE Exam Pattern,Exams,720,Exam_Pattern,WBJEE,Exams
+213,WBJEE Syllabus,Exams,1600,Syllabus,WBJEE,Exams
+214,Best books for WBJEE,Exams,320,Books,WBJEE,Exams
+215,WBJEE Sample Paper,Exams,480,Practice_Papers,WBJEE,Exams
+216,WBJEE Mock Test,Exams,390,Practice_Papers,WBJEE,Exams
+217,WBJEE Result,Exams,6600,Result,WBJEE,Exams
+218,WBJEE Counselling,Exams,12100,Counselling,WBJEE,Exams
+219,WBJEE Cutoffs,Exams,320,Cut_Off,WBJEE,Exams
+220,WBJEE Cutoff,Exams,210,Cut_Off,WBJEE,Exams
+221,KEAM,Exams,74000,Overview,KEAM,Exams
+222,KEAM Exam,Exams,1900,Overview,KEAM,Exams
+223,KEAM Application Form,Exams,210,Application,KEAM,Exams
+224,KEAM Registration,Exams,4400,Application,KEAM,Exams
+225,KEAM Admit Card,Exams,1000,Admit_Card,KEAM,Exams
+226,KEAM Exam Dates,Exams,590,Exam_Dates,KEAM,Exams
+227,KEAM Exam Pattern,Exams,320,Exam_Pattern,KEAM,Exams
+228,KEAM Syllabus,Exams,720,Syllabus,KEAM,Exams
+229,KEAM Sample Paper,Exams,260,Practice_Papers,KEAM,Exams
+230,KEAM Mock Test,Exams,1000,Practice_Papers,KEAM,Exams
+231,KEAM Result,Exams,1600,Result,KEAM,Exams
+232,KEAM Cutoff,Exams,260,Cut_Off,KEAM,Exams
+233,VITEEE,Exams,49500,Overview,VITEEE,Exams
+234,VITEEE Exam,Exams,4400,Overview,VITEEE,Exams
+235,VITEEE Application Form,Exams,1900,Application,VITEEE,Exams
+236,VITEEE Registration,Exams,590,Application,VITEEE,Exams
+237,VITEEE Eligibility,Exams,260,Eligibility,VITEEE,Exams
+238,VITEEE Admit Card,Exams,590,Admit_Card,VITEEE,Exams
+239,JIPMER ELIGIBILITY,Exams,210,Eligibility,VITEEE,Exams
+240,VITEEE Exam Dates,Exams,2400,Exam_Dates,VITEEE,Exams
+241,VITEEE Exam Centers,Exams,480,Exam_Centers,VITEEE,Exams
+242,VITEEE Exam Pattern,Exams,1900,Exam_Pattern,VITEEE,Exams
+243,VITEEE Syllabus,Exams,2900,Syllabus,VITEEE,Exams
+244,VITEEE Slot Booking,Exams,6600,Slot_Booking,VITEEE,Exams
+245,VITEEE Sample Paper,Exams,2400,Practice_Papers,VITEEE,Exams
+246,VITEEE Mock Test,Exams,3600,Practice_Papers,VITEEE,Exams
+247,VITEEE Result,Exams,9900,Result,VITEEE,Exams
+248,VITEEE Counselling,Exams,1900,Counselling,VITEEE,Exams
+249,cat application fee,Exams,480,Fees,VITEEE,Exams
+250,VITEEE Cutoff,Exams,2400,Cut_Off,VITEEE,Exams
+251,GATE RANK PREDICTOR,Exams,6600,Rank_Predictor,GATE,Exams
+252,GATE,Exams,201000,Overview,GATE,Exams
+253,GATE ADMIT CARD,Exams,8100,Admit_Card,GATE,Exams
+254,GATE SYLLABUS,Exams,22200,Syllabus,GATE,Exams
+255,GATE ELIGIBILITY,Exams,4400,Eligibility,GATE,Exams
+256,GATE Cut off,Exams,2900,Cut_Off,GATE,Exams
+257,GATE RESULT,Exams,9900,Result,GATE,Exams
+258,GATE EXAM PATTERN,Exams,5400,Exam_Pattern,GATE,Exams
+259,GATE APPLICATION FORM,Exams,3600,Application,GATE,Exams
+260,GATE PREPARATION TIPS,Exams,110,Preparation,GATE,Exams
+261,GATE Answer Key,Exams,1600,Answer_Key,GATE,Exams
+262,GATE Login,Exams,18100,General,GATE,Exams
+263,GATE Scholarship,Exams,1600,Scholarship,GATE,Exams
+264,GATE Validity,Exams,260,General,GATE,Exams
+265,GATE Virtual Calculator,Exams,3600,General,GATE,Exams
+266,GATE Mock Test,Exams,2400,Practice_Papers,GATE,Exams
+267,GATE question paper,Exams,4400,Question_Paper,GATE,Exams
+268,GATE statistics syllabus,Exams,320,Syllabus,GATE,Exams
+269,GATE engineering sciences syllabus,Exams,110,Syllabus,GATE,Exams
+270,GATE production engineering syllabus,Exams,210,Syllabus,GATE,Exams
+271,GATE petroleum engineering syllabus,Exams,140,Syllabus,GATE,Exams
+272,GATE agricultural engineering syllabus,Exams,170,Syllabus,GATE,Exams
+273,GATE aerospace engineering syllabus,Exams,140,Syllabus,GATE,Exams
+274,GATE civil engineering syllabus,Exams,4400,Syllabus,GATE,Exams
+275,GATE electronics and communication syllabus,Exams,320,Syllabus,GATE,Exams
+276,GATE cse syllabus,Exams,12100,Syllabus,GATE,Exams
+277,GATE electrical syllabus,Exams,1300,Syllabus,GATE,Exams
+278,GATE chemical engineering syllabus,Exams,1900,Syllabus,GATE,Exams
+279,GATE biotechnology syllabus,Exams,1600,Syllabus,GATE,Exams
+280,GATE mechanical syllabus,Exams,4400,Syllabus,GATE,Exams
+281,GATE life sciences syllabus,Exams,1900,Syllabus,GATE,Exams
+282,GATE physics syllabus,Exams,1600,Syllabus,GATE,Exams
+283,GATE chemistry syllabus,Exams,1600,Syllabus,GATE,Exams
+284,GATE maths syllabus,Exams,1000,Syllabus,GATE,Exams
+285,set,Exams,550000,Overview,SET,Exams
+286,set application form,Exams,210,Application,SET,Exams
+287,set admit card,Exams,880,Admit_Card,SET,Exams
+288,set syllabus,Exams,1600,Syllabus,SET,Exams
+289,set exam pattern,Exams,390,Exam_Pattern,SET,Exams
+290,set result,Exams,2400,Result,SET,Exams
+291,cat,Exams,1000000,Overview,CAT,Exams
+292,cat eligibility,Exams,3600,Eligibility,CAT,Exams
+293,cat eligibility criteria,Exams,1600,Eligibility,CAT,Exams
+294,cat admit card,Exams,8100,Admit_Card,CAT,Exams
+295,cat exam dates,Exams,8100,Exam_Dates,CAT,Exams
+296,cat exam centres,Exams,390,Exam_Centers,CAT,Exams
+297,cat syllabus,Exams,49500,Syllabus,CAT,Exams
+298,JEE Main Question Paper,Exams,9900,Question_Paper,JEE Main,Exams
+299,KMAT,Exams,5400,Overview,KMAT,Exams
+300,JEE MAIN PRACTICE PAPERS,Exams,590,Practice_Papers,JEE Main,Exams
+301,JEE Main Result,Exams,550000,Result,JEE Main,Exams
+302,cat preparation books,Exams,4400,Preparation,CAT,Exams
+303,cat coaching centres in chennai,Exams,110,Coaching_center,CAT,Exams
+304,cat coaching centres in Hyderabad,Exams,140,Coaching_center,CAT,Exams
+305,JEE Main Chemistry Syllabus,Exams,880,Syllabus,JEE Main,Exams
+306,cat mock test free,Exams,5400,Practice_Papers,CAT,Exams
+307,cat result,Exams,8100,Result,CAT,Exams
+308,cat result date,Exams,1600,Result,CAT,Exams
+309,JEE Main Cut off,Exams,5400,Cut_Off,JEE Main,Exams
+310,cat score vs percentile,Exams,1900,Comparison,CAT,Exams
+311,cat answer key,Exams,1300,Answer_Key,CAT,Exams
+312,cat topper,Exams,720,General,CAT,Exams
+313,cat response sheet,Exams,1300,General,CAT,Exams
+314,Iift,Exams,60500,Overview,LIFT,Exams
+315,Iift registration,Exams,2400,Application,LIFT,Exams
+316,Iift exam date,Exams,4400,Exam_Dates,LIFT,Exams
+317,Iift eligibility,Exams,210,Eligibility,LIFT,Exams
+318,Iift admit card,Exams,8100,Admit_Card,LIFT,Exams
+319,Iift exam centres,Exams,210,Exam_Centers,LIFT,Exams
+320,Iift exam pattern,Exams,1600,Exam_Pattern,LIFT,Exams
+321,Iift syllabus,Exams,1300,Syllabus,LIFT,Exams
+322,Iift mock test,Exams,320,Practice_Papers,LIFT,Exams
+323,Iift result,Exams,8100,Result,LIFT,Exams
+324,Iift result date,Exams,590,Result,LIFT,Exams
+325,xat,Exams,27100,Overview,XAT,Exams
+326,xat registration date,Exams,260,Application,XAT,Exams
+327,xat admit card,Exams,3600,Admit_Card,XAT,Exams
+328,xat eligibility,Exams,390,Eligibility,XAT,Exams
+329,xat exam pattern,Exams,1600,Exam_Pattern,XAT,Exams
+330,xat syllabus,Exams,2900,Syllabus,XAT,Exams
+331,xat mock test,Exams,590,Practice_Papers,XAT,Exams
+332,xat result,Exams,6600,Result,XAT,Exams
+333,xat answer key,Exams,2900,Answer_Key,XAT,Exams
+334,xat cutoff,Exams,1300,Cut_Off,XAT,Exams
+335,mat,Exams,110000,Overview,MAT,Exams
+336,mat registration,Exams,1900,Application,MAT,Exams
+337,mat admit card,Exams,1900,Admit_Card,MAT,Exams
+338,mat exam centres,Exams,140,Exam_Centers,MAT,Exams
+339,mat eligibility,Exams,390,Eligibility,MAT,Exams
+340,mat syllabus,Exams,4400,Syllabus,MAT,Exams
+341,mat exam pattern,Exams,1000,Exam_Pattern,MAT,Exams
+342,mat ibt,Exams,480,Overview,MAT,Exams
+343,mat preparation,Exams,320,Preparation,MAT,Exams
+344,mat books for preparation,Exams,260,Preparation,MAT,Exams
+345,mat result,Exams,4400,Result,MAT,Exams
+346,mat cutoff,Exams,210,Cut_Off,MAT,Exams
+347,cmat,Exams,49500,Overview,CMAT,Exams
+348,cmat registration,Exams,2900,Application,CMAT,Exams
+349,cmat exam date,Exams,8100,Exam_Dates,CMAT,Exams
+350,cmat eligibility,Exams,390,Eligibility,CMAT,Exams
+351,cmat admit card,Exams,5400,Admit_Card,CMAT,Exams
+352,cmat exam centres,Exams,170,Exam_Centers,CMAT,Exams
+353,cmat exam pattern,Exams,1000,Exam_Pattern,CMAT,Exams
+354,cmat paper pattern,Exams,390,Exam_Pattern,CMAT,Exams
+355,cmat syllabus,Exams,5400,Syllabus,CMAT,Exams
+356,cmat preparation,Exams,210,Preparation,CMAT,Exams
+357,cmat previous year question paper,Exams,590,Question_Paper,CMAT,Exams
+358,cmat mock test,Exams,1300,Practice_Papers,CMAT,Exams
+359,cmat result,Exams,1600,Result,CMAT,Exams
+360,cmat score vs percentile,Exams,1000,Comparison,CMAT,Exams
+361,cmat answer key,Exams,260,Answer_Key,CMAT,Exams
+362,cmat cutoff,Exams,480,Cut_Off,CMAT,Exams
+363,Kmat registration,Exams,260,Application,KMAT,Exams
+364,kmat admit card,Exams,320,Admit_Card,KMAT,Exams
+365,kmat syllabus,Exams,390,Syllabus,KMAT,Exams
+366,kmat result,Exams,260,Result,KMAT,Exams
+367,kmat kerala,Exams,1600,Overview,KMAT,Exams
+368,ailet registration,Exams,260,Application,AILET,Exams
+369,ailet eligibility,Exams,170,Eligibility,AILET,Exams
+370,ailet admit card,Exams,390,Admit_Card,AILET,Exams
+371,ailet exam date,Exams,320,Exam_Dates,AILET,Exams
+372,ailet exam pattern,Exams,260,Exam_Pattern,AILET,Exams
+373,ailet syllabus,Exams,880,Syllabus,AILET,Exams
+374,ailet mock test,Exams,170,Practice_Papers,AILET,Exams
+375,upsee mba,Exams,320,Overview,UPSEE,Exams
+376,upsee mba syllabus,Exams,170,Syllabus,UPSEE,Exams
+377,tancet,Exams,18100,Overview,TANCET,Exams
+378,tancet eligibility,Exams,210,Eligibility,TANCET,Exams
+379,tancet exam date,Exams,260,Exam_Dates,TANCET,Exams
+380,tancet exam pattern,Exams,170,Exam_Pattern,TANCET,Exams
+381,tancet syllabus,Exams,1300,Syllabus,TANCET,Exams
+382,tancet result,Exams,1000,Result,TANCET,Exams
+383,tancet counselling,Exams,2400,Counselling,TANCET,Exams
+384,tancet cutoff,Exams,140,Cut_Off,TANCET,Exams
+385,mah cet,Exams,49500,Overview,MAH CET,Exams
+386,mah cet registration,Exams,260,Application,MAH CET,Exams
+387,mah cet admit card,Exams,480,Admit_Card,MAH CET,Exams
+388,mah cet exam centres,Exams,110,Exam_Centers,MAH CET,Exams
+389,mah cet exam pattern,Exams,170,Exam_Pattern,MAH CET,Exams
+390,mah cet syllabus,Exams,880,Syllabus,MAH CET,Exams
+391,mah cet result,Exams,590,Result,MAH CET,Exams
+392,mah cet counselling,Exams,3600,Counselling,MAH CET,Exams
+393,tissnet,Exams,14800,Overview,TISSNET,Exams
+394,tissnet application form,Exams,260,Application,TISSNET,Exams
+395,tissnet admit card,Exams,1900,Admit_Card,TISSNET,Exams
+396,tissnet exam date,Exams,1600,Exam_Dates,TISSNET,Exams
+397,tissnet exam centres,Exams,260,Exam_Centers,TISSNET,Exams
+398,tissnet exam pattern,Exams,720,Exam_Pattern,TISSNET,Exams
+399,tissnet syllabus,Exams,2400,Syllabus,TISSNET,Exams
+400,tissnet result,Exams,6600,Result,TISSNET,Exams
+401,tissnet selection process,Exams,110,Admission,TISSNET,Exams
+402,tissnet cutoff,Exams,390,Cut_Off,TISSNET,Exams
+403,clat,Exams,135000,Overview,CLAT,Exams
+404,clat registration,Exams,590,Application,CLAT,Exams
+405,clat admit card,Exams,1300,Admit_Card,CLAT,Exams
+406,clat exam centres,Exams,170,Exam_Centers,CLAT,Exams
+407,clat exam dates,Exams,1900,Exam_Dates,CLAT,Exams
+408,clat Eligibility,Exams,2400,Eligibility,CLAT,Exams
+409,clat exam pattern,Exams,1900,Exam_Pattern,CLAT,Exams
+410,clat syllabus,Exams,18100,Syllabus,CLAT,Exams
+411,clat english syllabus,Exams,140,Syllabus,CLAT,Exams
+412,clat quantitative techniques,Exams,2900,General,CLAT,Exams
+413,clat mock test,Exams,1600,Practice_Papers,CLAT,Exams
+414,clat preparation,Exams,1300,Preparation,CLAT,Exams
+415,clat result,Exams,8100,Result,CLAT,Exams
+416,clat toppers interview,Exams,110,General,CLAT,Exams
+417,clat cutoff,Exams,1000,Cut_Off,CLAT,Exams
+418,mh cet law,Exams,5400,Overview,MHCET,Exams
+419,mh cet law application form,Exams,260,Application,MHCET,Exams
+420,mh cet law admit card,Exams,210,Admit_Card,MHCET,Exams
+421,mh cet law exam date,Exams,320,Exam_Dates,MHCET,Exams
+422,mh cet law syllabus,Exams,320,Syllabus,MHCET,Exams
+423,mh cet law result,Exams,880,Result,MHCET,Exams
+424,nmat,Exams,40500,Overview,NMAT,Exams
+425,nmat registration,Exams,4400,Application,NMAT,Exams
+426,nmat eligibility,Exams,140,Eligibility,NMAT,Exams
+427,nmat admit card,Exams,590,Admit_Card,NMAT,Exams
+428,nmat exam date,Exams,2900,Exam_Dates,NMAT,Exams
+429,nmat test centre,Exams,170,Practice_Papers,NMAT,Exams
+430,nmat exam pattern,Exams,1000,Exam_Pattern,NMAT,Exams
+431,nmat paper pattern,Exams,480,Exam_Pattern,NMAT,Exams
+432,nmat syllabus,Exams,2400,Syllabus,NMAT,Exams
+433,nmat preparation,Exams,140,Preparation,NMAT,Exams
+434,nmat mock test,Exams,880,Practice_Papers,NMAT,Exams
+435,nmat result,Exams,1300,Result,NMAT,Exams
+436,nmat cutoff for nmims,Exams,480,Cut_Off,NMAT,Exams
+437,nmat cutoff,Exams,1000,Cut_Off,NMAT,Exams
+438,snap,Exams,90500,Overview,SNAP,Exams
+439,snap registration,Exams,2900,Application,SNAP,Exams
+440,snap application form,Exams,170,Application,SNAP,Exams
+441,snap exam date,Exams,3600,Exam_Dates,SNAP,Exams
+442,snap admit card,Exams,3600,Admit_Card,SNAP,Exams
+443,snap exam centre,Exams,110,Exam_Centers,SNAP,Exams
+444,snap exam pattern,Exams,1300,Exam_Pattern,SNAP,Exams
+445,snap syllabus,Exams,1600,Syllabus,SNAP,Exams
+446,snap preparation,Exams,210,Preparation,SNAP,Exams
+447,snap result,Exams,5400,Result,SNAP,Exams
+448,snap cutoff,Exams,1300,Cut_Off,SNAP,Exams
+449,AILET,Exams,18100,Overview,AILET,Exams
+450,ATMA,Exams,27100,Overview,ATMA,Exams
+451,BLAT,Exams,3600,Overview,BLAT,Exams
+452,MAHCET,Exams,49500,Overview,MAH CET,Exams
+453,TS LAWCET,Exams,49500,Overview,TS LAWCET,Exams
+454,TS PGLCET,Exams,260,Overview,TSPGLCET,Exams
+455,ULSAT,Exams,390,Overview,ULSAT,Exams
+456,VITMEE,Exams,1300,Overview,VITMEE,Exams
+457,icse 10th syllabus,Exams,880,Syllabus,ICSE,Exams
+458,icse 12th syllabus,Exams,140,Syllabus,ICSE,Exams
+460,COMEDK UGET,Exams,8100,Overview,COMEDK,Exams
+461,NIFT,Exams,135000,Overview,NIFT,Exams
+462,NIFT Application Form,Exams,320,Application,NIFT,Exams
+463,NIFT Registration,Exams,170,Application,NIFT,Exams
+464,cbse exam pattern,Exams,590,Exam_Pattern,CBSE,Exams
+466,cbse 12th syllabus,Exams,2400,Syllabus,CBSE,Exams
+467,CBSE 12th Chemistry Syllabus,Exams,720,Syllabus,CBSE,Exams
+468,cbse 12th exam date,Exams,1300,Exam_Dates,CBSE,Exams
+469,cbse 10th exam date,Exams,880,Exam_Dates,CBSE,Exams
+470,cbse 10th syllabus,Exams,4400,Syllabus,CBSE,Exams
+471,CBSE 12th Biology Syllabus,Exams,320,Syllabus,CBSE,Exams
+472,CBSE 10th Hindi Syllabus,Exams,170,Syllabus,CBSE,Exams
+473,CBSE 12th Physics Syllabus,Exams,1300,Syllabus,CBSE,Exams
+474,AP EAMCET,Exams,301000,Overview,AP EAMCET,Exams
+475,AP EAMCET Exam,Exams,390,Overview,AP EAMCET,Exams
+476,AP EAMCET Application Form,Exams,480,Application,AP EAMCET,Exams
+477,AP EAMCET Registration,Exams,480,Application,AP EAMCET,Exams
+478,AP EAMCET Admit Card,Exams,320,Admit_Card,AP EAMCET,Exams
+479,AP EAMCET Exam Dates,Exams,110,Exam_Dates,AP EAMCET,Exams
+480,AP EAMCET Exam Pattern,Exams,110,Exam_Pattern,AP EAMCET,Exams
+481,AP EAMCET Syllabus,Exams,210,Syllabus,AP EAMCET,Exams
+482,AP EAMCET Mock Test,Exams,1600,Practice_Papers,AP EAMCET,Exams
+483,AP EAMCET Result,Exams,22200,Result,AP EAMCET,Exams
+484,AP EAMCET Counselling,Exams,22200,Counselling,AP EAMCET,Exams
+485,AP EAMCET Cutoff,Exams,260,Cut_Off,AP EAMCET,Exams
+486,AP EAMCET Rank Card,Exams,6600,General,AP EAMCET,Exams
+487,AP EAMCET Rank Predictor,Exams,1600,Rank_Predictor,AP EAMCET,Exams
+488,GPAT,Exams,22200,Overview,GPAT,Exams
+489,GPAT Application form,Exams,110,Application,GPAT,Exams
+490,GPAT Registration,Exams,210,Application,GPAT,Exams
+491,GPAT Admit Card,Exams,1000,Admit_Card,GPAT,Exams
+492,GPAT Exam Pattern,Exams,320,Exam_Pattern,GPAT,Exams
+493,GPAT Syllabus,Exams,2900,Syllabus,GPAT,Exams
+494,GPAT Eligibility,Exams,260,Eligibility,GPAT,Exams
+495,GPAT Results,Exams,1600,Result,GPAT,Exams
+496,cat preparation strategy,Exams,880,Preparation,CAT,Exams
+497,cat preparation,Exams,6600,Preparation,CAT,Exams
+498,books for cat preparation,Exams,4400,Preparation,CAT,Exams
+499,cat online preparation,Exams,1600,Preparation,CAT,Exams
+500,cat practice paper,Exams,140,Practice_Papers,CAT,Exams
+501,cat counselling,Exams,110,Counselling,CAT,Exams
+502,Iift cutoff,Exams,1900,Cut_Off,,Exams
+503,micat syllabus,Exams,140,Syllabus,,Exams
+504,mah cet application form,Exams,140,Application,MAH CET,Exams
+505,snap exam,Exams,9900,Overview,SNAP,Exams
+506,snap eligibility criteria,Exams,110,Eligibility,SNAP,Exams
+507,snap paper pattern,Exams,390,Exam_Pattern,SNAP,Exams
+508,snap exam syllabus,Exams,720,Syllabus,SNAP,Exams
+509,snap mock test,Exams,1900,Practice_Papers,SNAP,Exams
+510,snap result date,Exams,1300,Result,SNAP,Exams
+511,KCET,Exams,90500,Overview,KCET,Exams
+512,KCET Exam,Exams,2900,Overview,KCET,Exams
+513,KCET Application Form,Exams,1900,Application,KCET,Exams
+514,KCET Registration,Exams,590,Application,KCET,Exams
+515,KCET Eligibility,Exams,590,Eligibility,KCET,Exams
+516,KCET Admit Card,Exams,1000,Admit_Card,KCET,Exams
+517,KCET Exam Dates,Exams,880,Exam_Dates,KCET,Exams
+518,KCET Exam Pattern,Exams,480,Exam_Pattern,KCET,Exams
+519,KCET Syllabus,Exams,480,Syllabus,KCET,Exams
+520,KCET Preparation,Exams,140,Preparation,KCET,Exams
+521,Best books for KCET,Exams,320,Books,KCET,Exams
+522,KCET Sample Paper,Exams,320,Practice_Papers,KCET,Exams
+523,KCET Mock Test,Exams,880,Practice_Papers,KCET,Exams
+524,KCET Result,Exams,4400,Result,KCET,Exams
+525,KCET Counselling,Exams,1300,Counselling,KCET,Exams
+526,KCET Cutoff,Exams,590,Cut_Off,KCET,Exams
+527,Karnataka PGCET,Exams,2900,Overview,Karnataka PGCET,Exams
+528,Karnataka PGCET Result,Exams,260,Result,Karnataka PGCET,Exams
+529,UPSEE,Exams,165000,Overview,UPSEE,Exams
+530,UPSEE Exam,Exams,880,Overview,UPSEE,Exams
+531,UPSEE Application Form,Exams,210,Application,UPSEE,Exams
+532,UPSEE Registration,Exams,320,Application,UPSEE,Exams
+533,UPSEE Eligibility,Exams,170,Eligibility,UPSEE,Exams
+534,UPSEE Admit Card,Exams,880,Admit_Card,UPSEE,Exams
+535,UPSEE Exam Dates,Exams,720,Exam_Dates,UPSEE,Exams
+536,UPSEE Exam Pattern,Exams,260,Exam_Pattern,UPSEE,Exams
+537,UPSEE Syllabus,Exams,720,Syllabus,UPSEE,Exams
+538,UPSEE Result,Exams,4400,Result,UPSEE,Exams
+539,UPSEE Counselling,Exams,14800,Counselling,UPSEE,Exams
+540,UPSEE Cutoff,Exams,260,Cut_Off,UPSEE,Exams
+541,TNEA,Exams,165000,Overview,TNEA,Exams
+542,TNEA Exam,Exams,1000,Overview,TNEA,Exams
+543,TNEA Application Form,Exams,260,Application,TNEA,Exams
+544,TNEA Registration,Exams,1600,Application,TNEA,Exams
+545,TNEA Eligibility,Exams,140,Eligibility,TNEA,Exams
+546,TNEA Counselling,Exams,14800,Counselling,TNEA,Exams
+547,TNEA Cutoff,Exams,720,Cut_Off,TNEA,Exams
+548,AP PGECET,Exams,14800,Overview,AP PGECET,Exams
+549,AP PGECET Syllabus,Exams,110,Syllabus,AP PGECET,Exams
+550,AP PGECET Result,Exams,590,Result,AP PGECET,Exams
+551,AP PGECET Counselling,Exams,1300,Counselling,AP PGECET,Exams
+552,BCECE,Exams,450000,Overview,BCECE,Exams
+553,BCECE Application Form,Exams,390,Application,BCECE,Exams
+554,BCECE Registration,Exams,170,Application,BCECE,Exams
+555,BCECE Admit Card,Exams,5400,Admit_Card,BCECE,Exams
+556,BCECE Exam Pattern,Exams,170,Exam_Pattern,BCECE,Exams
+557,BCECE Syllabus,Exams,390,Syllabus,BCECE,Exams
+558,BCECE Result,Exams,1600,Result,BCECE,Exams
+559,BCECE Counselling,Exams,3600,Counselling,BCECE,Exams
+560,CMAT Question Papers,Exams,1000,Question_Paper,CMAT,Exams
+561,IIT JAM Question Papers,Exams,720,Question_Paper,IIT JAM,Exams
+562,XAT Question Papers,Exams,720,Question_Paper,XAT,Exams
+563,GATE 2022,Exams,201000,Overview,GATE,Exams
+564,GATE Admit Card 2022,Exams,140,Admit_Card,GATE,Exams
+565,GATE Application Form 2022,Exams,8100,Application,GATE,Exams
+566,GATE Eligibility Criteria 2022,Exams,390,Eligibility,GATE,Exams
+567,GATE Exam Dates 2022,Exams,1600,Exam_Dates,GATE,Exams
+568,GATE Registration 2022,Exams,8100,Application,GATE,Exams
+569,GATE Syllabus 2022,Exams,1900,Syllabus,GATE,Exams
+570,GATE Syllabus for Civil Engineering 2022,Exams,170,Syllabus,GATE,Exams
+571,GATE Syllabus for CSE 2022,Exams,590,Syllabus,GATE,Exams
+572,GATE Syllabus for ECE 2022,Exams,480,Syllabus,GATE,Exams
+573,GATE Syllabus for Electrical Engineering 2022,Exams,170,Syllabus,GATE,Exams
+574,GATE Syllabus for Mechanical Engineering 2022,Exams,210,Syllabus,GATE,Exams
+575,JEE Main 2022,Exams,6600,Overview,JEE Main,Exams
+576,JEE Main Exam,Exams,6600,Application,JEE Main,Exams
+577,LSAT,Exams,12100,Overview,LSAT,Exams
+578,LSAT INDIA,Exams,3600,Overview,LSAT,Exams
+579,LSAT EXAM,Exams,5400,Overview,LSAT,Exams
+580,LSAT FULL FORM,Exams,2400,Overview,LSAT,Exams
+581,LSAT COLLEGES,Exams,880,General,LSAT,Exams
+582,LSAT SYLLABUS,Exams,880,Syllabus,LSAT,Exams
+583,LSAT COLLEGES IN INDIA,Exams,720,General,LSAT,Exams
+584,LSAT INDIA COLLEGES,Exams,720,General,LSAT,Exams
+585,LSAT EXAM DATE,Exams,390,Exam_Dates,LSAT,Exams
+586,LSAT RESULT,Exams,140,Result,LSAT,Exams
+587,LSAT SAMPLE PAPER,Exams,320,Practice_Papers,LSAT,Exams
+588,LSAT EXAM PATTERN,Exams,260,Exam_Pattern,LSAT,Exams
+589,LSAT REGISTRATION,Exams,210,Application,LSAT,Exams
+590,LSAT EXAM SYLLABUS,Exams,320,Syllabus,LSAT,Exams
+591,LSAT OFFICIAL WEBSITE,Exams,210,General,LSAT,Exams
+592,LSAT MOCK TEST,Exams,260,Practice_Papers,LSAT,Exams
+593,LSAT ENTRANCE EXAM,Exams,320,Entrance_Exam,LSAT,Exams
+594,LSAT PREP,Exams,170,Preparation,LSAT,Exams
+595,LSAT PRACTICE TEST,Exams,210,Practice_Papers,LSAT,Exams
+596,LSAT TEST,Exams,210,Practice_Papers,LSAT,Exams
+597,LSAT APPLICATION FORM,Exams,110,Application,LSAT,Exams
+598,LSAT FOR LLM,Exams,140,Course,LSAT,Exams
+599,LSAT PAPER,Exams,110,Overview,LSAT,Exams
+600,AP LAWCET,Exams,18100,Overview,AP LAWCET,Exams
+601,AP LAWCET RESULT,Exams,1600,Result,AP LAWCET,Exams
+602,AP LAWCET COUNSELLING DATE,Exams,320,Counselling,AP LAWCET,Exams
+603,AP LAWCET COUNSELLING,Exams,1000,Counselling,AP LAWCET,Exams
+604,AP LAWCET RESULTS,Exams,1600,Result,AP LAWCET,Exams
+605,AP LAWCET EXAM DATE,Exams,140,Exam_Dates,AP LAWCET,Exams
+606,AP LAW CET,Exams,1000,Overview,AP LAWCET,Exams
+607,LAWCET SYLLABUS,Exams,1000,Syllabus,AP LAWCET,Exams
+608,AP LAWCET NOTIFICATION,Exams,110,Notification,AP LAWCET,Exams
+609,LAWCET AP,Exams,390,Overview,AP LAWCET,Exams
+610,AP LAWCET SYLLABUS,Exams,210,Syllabus,AP LAWCET,Exams
+611,LAWCET NOTIFICATION,Exams,110,Notification,AP LAWCET,Exams
+612,AP LAWCET OFFICIAL WEBSITE,Exams,390,General,AP LAWCET,Exams
+613,LAWCET EXAM DATE,Exams,320,Exam_Dates,AP LAWCET,Exams
+614,AP LAWCET PREVIOUS PAPERS,Exams,260,Question_Paper,AP LAWCET,Exams
+615,AP LAWCET ENTRANCE EXAM,Exams,210,Entrance_Exam,AP LAWCET,Exams
+616,AP LAWCET HALL TICKET,Exams,170,Admit_Card,AP LAWCET,Exams
+617,DU LLB,Exams,9900,Overview,DU LLB,Exams
+618,LLB DU,Exams,9900,Overview,DU LLB,Exams
+619,DU LLB RESULT,Exams,1900,Result,DU LLB,Exams
+620,DU LLB ENTRANCE RESULT,Exams,260,Result,DU LLB,Exams
+621,DU LLB ENTRANCE EXAM,Exams,2400,Overview,DU LLB,Exams
+622,DU LLB ENTRANCE,Exams,1000,Overview,DU LLB,Exams
+623,DU LLB SYLLABUS,Exams,1300,Syllabus,DU LLB,Exams
+624,DU LLB ADMISSION,Exams,260,Admission,DU LLB,Exams
+625,LAW FROM DU,Exams,1300,Overview,DU LLB,Exams
+626,DU LLB ENTRANCE EXAM SYLLABUS,Exams,1000,Syllabus,DU LLB,Exams
+627,DU LLB ENTRANCE SYLLABUS,Exams,590,Syllabus,DU LLB,Exams
+628,NTA DU LLB,Exams,390,Overview,DU LLB,Exams
+629,DU LLB ADMIT CARD,Exams,720,Admit_Card,DU LLB,Exams
+630,DU LLB PREVIOUS YEAR QUESTION PAPERS,Exams,590,Question_Paper,DU LLB,Exams
+631,DU LLB FORM,Exams,480,Overview,DU LLB,Exams
+632,DU LAW ENTRANCE EXAM,Exams,320,Overview,DU LLB,Exams
+633,DU LLB EXAM DATE,Exams,260,Exam_Dates,DU LLB,Exams
+634,DU LLB ELIGIBILITY,Exams,390,Eligibility,DU LLB,Exams
+635,DU LLB CUT OFF,Exams,320,Cut_Off,DU LLB,Exams
+636,DU LLB ENTRANCE EXAM QUESTION PAPER,Exams,260,Question_Paper,DU LLB,Exams
+637,DU LLB APPLICATION FORM,Exams,480,Application,DU LLB,Exams
+638,IELTS,Exams,246000,Overview,IELTS,Exams
+639,UPCET,Exams,49500,Overview,UPCET,Exams
+640,AP EAPCET,Exams,9900,Overview,AP EAPCET,Exams
+641,CAT EXAM,Exams,165000,Overview,CAT EXAM,Exams
+642,COMEDK,Exams,135000,Overview,COMEDK,Exams
+643,CTET ADMIT CARD,Exams,74000,Admit_Card,CTET,Exams
+644,CUCET,Exams,135000,Overview,CUCET,Exams
+645,MHTCET,Exams,246000,Overview,MHTCET,Exams
+646,GRE,Exams,90500,Overview,GRE,Exams
+647,NATA,Exams,49500,Overview,NATA,Exams
+648,NEST,Exams,74000,Overview,NEST,Exams
+649,GMAT,Exams,60500,Overview,GMAT,Exams
+650,TOEFL,Exams,60500,Overview,TOEFL,Exams
+651,KIITEE,Exams,22200,Overview,KIITEE,Exams
+652,REAP,Exams,27100,Overview,REAP,Exams
+653,GUJCET,Exams,22200,Overview,GUJCET,Exams
+654,MH CET,Exams,49500,Overview,MH CET,Exams
+655,NIMCET,Exams,40500,Overview,NIMCET,Exams
+656,TSICET,Exams,60500,Overview,TSICET,Exams
+657,TS PGECET,Exams,40500,Overview,TS PGECET,Exams
+658,APICET,Exams,33100,Overview,APICET,Exams
+659,CENTAC,Exams,49500,Overview,CENTAC,Exams
+660,IOCL RECRUITMENT,Exams,33100,PSU_Recruitment,,Exams
+661,MHTCET ADMIT CARD,Exams,14800,Admit_Card,MHT CET,Exams
+662,PTE,Exams,27100,Overview,,Exams
+663,TSLAWCET,Exams,49500,Overview,,Exams
+664,IPU CET,Exams,12100,Overview,,Exams
+665,AP ECET,Exams,33100,Overview,,Exams
+666,JNUEE,Exams,18100,Overview,,Exams
+667,JCECE,Exams,14800,Overview,,Exams
+668,CAT REGISTRATION,Exams,6600,Application,CAT,Exams
+669,NPAT,Exams,5400,Overview,,Exams
+670,PU CET,Exams,8100,Overview,,Exams
+671,CAT EXAM PATTERN,Exams,8100,Exam_Pattern,CAT,Exams
+672,CEED,Exams,8100,Overview,,Exams
+673,JEE MAIN QUESTION PAPERS,Exams,9900,Question_Paper,JEE Main,Exams
+674,LPUNEST,Exams,8100,Overview,,Exams
+675,SAAT,Exams,8100,Overview,,Exams
+676,NEET CUT OFF,Exams,6600,Cut_Off,NEET,Exams
+677,JEE MAIN APPLICATION FORM,Exams,6600,Application,JEE Main,Exams
+678,GCET,Exams,6600,Overview,,Exams
+679,AUCET,Exams,8100,Overview,,Exams
+680,IBSAT,Exams,5400,Overview,,Exams
+681,IPU COUNSELLING,Exams,12100,Counselling,,Exams
+682,JEE ADVANCED CUT OFF,Exams,4400,Cut_Off,JEE Advance,Exams
+683,NATA RESULT,Exams,3600,Result,NATA,Exams
+684,XAT 2022,Exams,2900,Overview,XAT,Exams
+685,AEEE,Exams,6600,Overview,AEEE,Exams
+686,COMEDK ADMIT CARD,Exams,2900,Admit_Card,COMEDK,Exams
+687,SRMJEE,Exams,6600,Overview,,Exams
+688,UPCET RESULT,Exams,6600,Result,UPCET,Exams
+689,VEE,Exams,5400,Overview,,Exams
+690,TS EAMCET HALL TICKET,Exams,3600,Admit_Card,TS EAMCET,Exams
+691,COMEDK RESULT,Exams,6600,Result,COMEDK,Exams
+692,CUSAT CAT,Exams,3600,Overview,,Exams
+693,LEET,Exams,4400,Overview,,Exams
+694,MICAT,Exams,2900,Overview,,Exams
+695,IPU CET RESULT,Exams,1600,Result,,Exams
+696,COMEDK APPLICATION FORM,Exams,1600,Application,COMEDK,Exams
+697,GATE CUTOFF,Exams,2900,Cut_Off,GATE,Exams
+698,IIFT CUT OFF,Exams,1900,Cut_Off,IIFT,Exams
+699,MAH MCA CET,Exams,6600,Overview,,Exams
+700,JKCET,Exams,1900,Overview,,Exams
+701,AMUEEE,Exams,1900,Overview,,Exams
+702,ANUPGCET,Exams,1900,Overview,,Exams
+703,CAT APPLICATION FORM,Exams,1000,Application,CAT,Exams
+704,CAT CUT OFF,Exams,2400,Cut_Off,CAT,Exams
+705,CAT CUTOFF,Exams,2400,Cut_Off,CAT,Exams
+706,COMEDK SYLLABUS,Exams,1300,Syllabus,COMEDK,Exams
+707,CUEE,Exams,1900,Overview,,Exams
+708,SYMBIOSIS ENTRANCE TEST,Exams,1300,Practice_Papers,,Exams
+709,XAT RESULTS,Exams,6600,Result,XAT,Exams
+710,ATIT,Exams,1600,Overview,,Exams
+711,BEEE,Exams,1900,Overview,,Exams
+712,GATE ANSWER KEYS,Exams,1600,Answer_Key,GATE,Exams
+713,NATA SYLLABUS,Exams,1600,Syllabus,NATA,Exams
+714,VITEEE CUT OFF,Exams,2400,Cut_Off,VITEEE,Exams
+715,CMAT 2022,Exams,1300,Overview,,Exams
+716,IIFT 2022,Exams,1000,Overview,,Exams
+717,BPCL RECRUITMENT,Exams,1900,PSU_Recruitment,,Exams
+718,HPCET,Exams,1300,Overview,,Exams
+719,IEM JEE,Exams,1300,Overview,,Exams
+720,MHT CET CUT OFF,Exams,1900,Cut_Off,MHT CET,Exams
+721,SUAT,Exams,1600,Overview,,Exams
+722,UPESEAT,Exams,1600,Overview,,Exams
+723,XAT CUT OFF,Exams,1300,Cut_Off,XAT,Exams
+724,AUAT,Exams,1900,Overview,,Exams
+725,BMAT,Exams,1600,Overview,,Exams
+726,BVP CET,Exams,2900,Overview,,Exams
+727,IISER ENTRANCE EXAM,Exams,1000,Overview,,Exams
+728,KVPY ADMIT CARD,Exams,12100,Admit_Card,,Exams
+729,AUEET,Exams,2400,Overview,,Exams
+730,NMAT CUT OFF,Exams,1000,Cut_Off,NMAT,Exams
+731,TANCET RESULTS,Exams,1000,Result,,Exams
+732,UNI GAUGE,Exams,1600,Overview,,Exams
+733,AIEED,Exams,1600,Overview,AIEED,Exams
+734,PULEET,Exams,1300,Overview,,Exams
+735,MCAER PG CET,Exams,1000,Overview,,Exams
+736,MHCET RESULTS,Exams,5400,Result,MHCET,Exams
+737,PESSAT,Exams,9900,Overview,,Exams
+738,BSAUEEE,Exams,1300,Overview,,Exams
+739,DAVUET,Exams,18100,Overview,,Exams
+740,JELET,Exams,14800,Overview,,Exams
+741,MUJEE,Exams,4400,Overview,,Exams
+742,TS EAMCET RESULTS,Exams,27100,Result,,Exams
+743,CAT 2019 Question Papers,Exams,3600,Question_Paper,CAT,Exams
+744,CAT 2020 Question Papers,Exams,9900,Question_Paper,CAT,Exams
+745,CAT Question Papers,Exams,8100,Question_Paper,CAT,Exams
+746,CLAT 2020 Question Paper,Exams,4400,Question_Paper,CLAT,Exams
+747,CLAT Question Paper,Exams,1600,Question_Paper,CLAT,Exams
+748,NEET 2017 Question Papers,Exams,2400,Question_Paper,NEET,Exams
+749,NEET 2018 Question Papers,Exams,4400,Question_Paper,NEET,Exams
+750,NEET 2019 Question Papers,Exams,9900,Question_Paper,NEET,Exams
+751,NEET 2020 Question Papers,Exams,40500,Question_Paper,NEET,Exams
+752,NEET Question Papers,Exams,18100,Question_Paper,NEET,Exams
+753,GATE Exam Date,Exams,5400,Exam_Dates,GATE,Exams
+754,JEE Advanced 2022,Exams,1300,Overview,JEE Advance,Exams
+755,GATE 2018 Question Papers,Exams,1000,Question_Paper,GATE,Exams
+756,GATE 2019 Question Papers,Exams,1900,Question_Paper,GATE,Exams
+757,GATE 2020 Question Papers,Exams,4400,Question_Paper,GATE,Exams
+758,GATE Question Papers,Exams,4400,Question_Paper,GATE,Exams
+759,JEE Main 2019 Question Papers,Exams,2400,Question_Paper,JEE Main,Exams
+760,TS EAMCET 2020 Question Papers,Exams,1000,Question_Paper,,Exams
+761,AIIMS MBBS,Exams,590,Overview,AIIMS MBBS,Exams
+762,AILET APPLICATION FORM,Exams,140,Application,,Exams
+763,AISEEE,Exams,390,Overview,,Exams
+764,AJEE,Exams,480,Overview,,Exams
+765,AMIETE,Exams,390,Overview,,Exams
+766,AMITY JEE,Exams,590,Overview,,Exams
+767,BIT MCA,Exams,480,Overview,,Exams
+768,BUMAT,Exams,590,Overview,,Exams
+769,CAT NOTIFICATION,Exams,590,Notification,CAT,Exams
+770,CAT PREPARATION TIPS,Exams,110,Preparation,CAT,Exams
+771,CEE AMPAI,Exams,720,Overview,,Exams
+772,CLAT APPLICATION FORM,Exams,480,Application,,Exams
+773,COMEDK ELIGIBILITY,Exams,260,Eligibility,,Exams
+774,CSSET,Exams,260,Overview,,Exams
+775,EMAT,Exams,590,Overview,,Exams
+776,GATE PSU CUT OFF,Exams,1900,Cut_Off,,Exams
+777,HITSEEE,Exams,720,Overview,,Exams
+778,HPU MAT,Exams,720,Overview,,Exams
+779,IBSAT APPLICATION FORM,Exams,210,Application,,Exams
+780,INDIAN INSTITUTE OF MASS COMMUNICATION ENTRANCE EXAM,Exams,210,Overview,,Exams
+781,IPU CET ADMIT CARD,Exams,320,Admit_Card,,Exams
+782,ITM NEST,Exams,170,Overview,,Exams
+783,ITSAT,Exams,110,Overview,,Exams
+784,JAIN ENTRANCE TEST,Exams,390,Practice_Papers,,Exams
+785,JEECE,Exams,320,Overview,,Exams
+786,JEMAT,Exams,880,Overview,,Exams
+787,JUEE,Exams,210,Overview,,Exams
+788,KERALA MCA,Exams,170,Overview,,Exams
+789,KLUEEE,Exams,170,Overview,,Exams
+790,MAH MCA CET SYLLABUS,Exams,590,Syllabus,,Exams
+791,MDL RECRUITMENT,Exams,720,PSU_Recruitment,,Exams
+792,MDUCEE,Exams,210,Overview,,Exams
+793,MH CET EXAM PATTERN,Exams,170,Exam_Pattern,,Exams
+794,MU OET,Exams,590,Overview,,Exams
+795,NATA APPLICATION FORM,Exams,320,Application,,Exams
+796,NATA ELIGIBILITY,Exams,480,Eligibility,,Exams
+797,PSU THROUGH GATE,Exams,1600,PSU_Recruitment,,Exams
+798,PU CET SYLLABUS,Exams,320,Syllabus,,Exams
+799,RAJASTHAN JET,Exams,390,Overview,,Exams
+800,RMAT,Exams,210,Overview,,Exams
+801,RMCAAT,Exams,110,Overview,,Exams
+802,RPET,Exams,590,Overview,,Exams
+803,RULET,Exams,590,Overview,,Exams
+804,SKUCET,Exams,1600,Overview,,Exams
+805,TANCET CUT OFF,Exams,140,Cut_Off,,Exams
+806,UPES DAT,Exams,140,Overview,,Exams
+807,UPESMET,Exams,210,Overview,,Exams
+808,VITMEE SYLLABUS,Exams,140,Syllabus,,Exams
+809,VTUEEE,Exams,210,Overview,,Exams
+810,WB JECA,Exams,480,Overview,,Exams
+811,YVUCET,Exams,480,Overview,,Exams
+812,AP EAPCET RESULT,Exams,110,Result,,Exams
+813,AP EAPCET COUNSELLING,Exams,390,Counselling,,Exams
+814,PSU Recruitment through GATE,Exams,210,PSU_Recruitment,,Exams
+815,TISSNET 2022,Exams,880,Overview,,Exams
+816,WBJEE 2022,Exams,390,Overview,,Exams
+817,TANCET 2022,Exams,260,Overview,,Exams
+818,CAT 2017 Question Papers,Exams,880,Question_Paper,CAT,Exams
+819,CLAT 2019 Question Paper,Exams,720,Question_Paper,CLAT,Exams
+820,IIT JAM 2019 Question Papers,Exams,260,Question_Paper,IIT JAM,Exams
+821,IIT JAM 2020 Question Papers,Exams,480,Question_Paper,IIT JAM,Exams
+822,TS EAMCET 2022,Exams,140,Overview,TS EAMCET,Exams
+823,MHT CET 2022,Exams,390,Overview,MHT CET,Exams
+824,GATE 2017 Question Papers,Exams,720,Question_Paper,GATE,Exams
+825,JEE Main 2018 Question Paper,Exams,880,Question_Paper,JEE Main,Exams
+826,TS EAMCET Question Papers,Exams,390,Question_Paper,TS EAMCET,Exams
+827,IPU CET APPLICATION FORM,Exams,110,Application,IPU CET,Exams
+828,IPU CET EXAM DATES,Exams,590,Exam_Dates,IPU CET,Exams
+829,IPU CET SYLLABUS,Exams,720,Syllabus,IPU CET,Exams
+830,IPU CET COUNSELLING,Exams,320,Counselling,IPU CET,Exams
+831,CU CET,Exams,135000,Overview,CU CET,Exams
+832,CU CET application,Exams,320,Application,CU CET,Exams
+833,CU CET admit card,Exams,3600,Admit_Card,CU CET,Exams
+834,CU CET syllabus,Exams,6600,Syllabus,CU CET,Exams
+835,TANATA,Exams,260,Overview,TANATA,Exams
+836,GUJCET registration,Exams,590,Application,GUJCET,Exams
+837,GUJCET admit card,Exams,1300,Admit_Card,GUJCET,Exams
+838,jmi ba llb,Exams,320,Overview,,Exams
+839,jmi ba llb syllabus,Exams,110,Syllabus,,Exams
+840,aclat,Exams,170,Overview,ACLAT,Exams
+841,aibe,Exams,135000,Overview,AIBE,Exams
+842,aibe application form,Exams,170,Application,AIBE,Exams
+843,aibe registration,Exams,4400,Application,AIBE,Exams
+844,aibe admit card,Exams,8100,Admit_Card,AIBE,Exams
+845,aibe hall ticket,Exams,140,Admit_Card,AIBE,Exams
+846,aibe mock test,Exams,210,Practice_Papers,AIBE,Exams
+847,aibe result,Exams,9900,Result,AIBE,Exams
+848,amu ba llb,Exams,260,Overview,,Exams
+849,amu ba llb syllabus,Exams,140,Syllabus,,Exams
+850,blat exam,Exams,210,Overview,,Exams
+851,blat syllabus,Exams,110,Syllabus,,Exams
+852,Cusat cat syllabus,Exams,210,Syllabus,CUSAT CAT,Exams
+853,Cusat cat mock test,Exams,110,Practice_Papers,CUSAT CAT,Exams
+854,Cusat cat result,Exams,390,Result,CUSAT CAT,Exams
+855,du llb registration,Exams,110,Application,,Exams
+856,du llb exam pattern,Exams,210,Exam_Pattern,,Exams
+857,du llb cutoff,Exams,170,Cut_Off,,Exams
+858,vitmee exam,Exams,140,Overview,,Exams
+859,lfat,Exams,210,Overview,,Exams
+860,pu llb,Exams,1900,Overview,,Exams
+861,Ibsat registration,Exams,170,Application,IBSAT,Exams
+862,Ibsat exam date,Exams,210,Exam_Dates,IBSAT,Exams
+863,Ibsat admit card,Exams,170,Admit_Card,IBSAT,Exams
+864,Ibsat exam pattern,Exams,320,Exam_Pattern,IBSAT,Exams
+865,Ibsat syllabus,Exams,210,Syllabus,IBSAT,Exams
+866,syllabus for ibsat,Exams,4400,Syllabus,IBSAT,Exams
+867,Ibsat mock test,Exams,320,Practice_Papers,IBSAT,Exams
+868,Ibsat result,Exams,260,Result,IBSAT,Exams
+869,Ibsat cutoff,Exams,140,Cut_Off,IBSAT,Exams
+870,DU JAT,Exams,12100,Overview,DU JAT,Exams
+871,DU JAT Result,Exams,1000,Result,DU JAT,Exams
+872,DU JAT Cut off,Exams,320,Cut_Off,DU JAT,Exams
+873,NID DAT,Exams,1300,Overview,,Exams
+874,NID,Exams,49500,Overview,,Exams
+875,NID Registration,Exams,390,Application,,Exams
+876,NID Application Form,Exams,260,Application,,Exams
+877,UCEED,Exams,18100,Overview,UCEED,Exams
+878,UCEED Registration,Exams,480,Application,UCEED,Exams
+879,CEED Exam Pattern,Exams,110,Exam_Pattern,CEED,Exams
+880,CEED Syllabus,Exams,480,Syllabus,CEED,Exams
+881,NCHMCT JEE,Exams,14800,Overview,NCHMCT JEE,Exams
+882,NCHMCT JEE Registration,Exams,110,Application,NCHMCT JEE,Exams
+883,AIAPGET Admit Card,Exams,1300,Admit_Card,AIAPGET,Exams
+884,AIAPGET Syllabus,Exams,590,Syllabus,AIAPGET,Exams
+885,AIAPGET Exam Pattern,Exams,110,Exam_Pattern,AIAPGET,Exams
+886,TISSBAT,Exams,27100,Overview,TISSBAT,Exams
