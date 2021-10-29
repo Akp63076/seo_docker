@@ -6,7 +6,7 @@ import logging
 import sys
 import os
 
-
+os.chdir("/home/django_app/seo/ranking/")
 # change this
 ACCESS_KEY = "d98dff95c6mshbdce2aebd6a6bd5p13b64ejsn38873cb010b6"
 # change to keywords of interest
