@@ -1,16 +1,20 @@
+
 import json
 import requests
 import pandas as pd
 import datetime
+import time
 import logging
 import sys
 import os
+
+from concurrent.futures import ThreadPoolExecutor
 
 os.chdir("/home/django_app/seo/ranking/")
 # change this
 ACCESS_KEY = "d98dff95c6mshbdce2aebd6a6bd5p13b64ejsn38873cb010b6"
 # change to keywords of interest
-KEYWORD = "jee main"
+# KEYWORD = "jee main"
 # change this to the website of interest
 
 websites = {'collegedunia.com':"CollegeDunia",
@@ -26,19 +30,25 @@ websites = {'collegedunia.com':"CollegeDunia",
             "embibe.com":"embibe" ,"leverageedu.com":"leverageedu.com","buddy4study.com":"buddy4study.com"}
 
 output_timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H")
+# print(output_timestamp)
 filename = str(sys.argv[1])
-keyword_file=pd.read_csv(f"data/input/{filename}.csv",encoding='unicode_escape')
+print(filename)
 
-keywords=keyword_file['Keyword'].tolist()
 date_folder = f"data/{output_timestamp}"
 try:
+    os.mkdir(date_folder)
     os.mkdir(f"{date_folder}/result")
     os.mkdir(f"{date_folder}/modified")
-    os.mkdir("data/output_timestamp/modified")
+    
 except FileExistsError as  e :
     pass
+
 path2 =f"{date_folder}/result/{filename}-result.csv"
 path3 = f"{date_folder}/modified/{filename}-modified.csv"
+
+keyword_file = pd.read_csv(f"data/input/{filename}.csv",encoding='unicode_escape')
+
+keywords=keyword_file['Keyword'].tolist()
 
 def get_url(KEYWORD):
 
@@ -66,7 +76,6 @@ def get_response(url):
     results = json.loads(content)
     return results
 
-
 def get_rank(pagesource,keyword,WEBSITE):
     
     temp_df=pd.DataFrame(columns=('Keyword,Rank,Website,Date,URL').split(','))
@@ -93,29 +102,25 @@ def get_rank(pagesource,keyword,WEBSITE):
             for web in WEBSITE:
     
                 if web in link:
-                    print(web)
-                    print("Found website at rank: " + str(rank))
+                    # print(web)
+                    # print("Found website at rank: " + str(rank))
                     found_in_results = True
                     # data= {'Keyword': keyword,'title':title,'URL':link,'description':description,'Rank':rank}
                     data= {'Keyword': keyword,'URL':link,'Rank':rank,'Date':now,'Website':web}
                     temp_df = temp_df.append(data,ignore_index=True)
-                    print(temp_df)
+                    
     else :
         print("empty page resource")                    
                     
 
     return temp_df
     
-
-
 def check_df(size,keyword,i):
     try :
 
         if(size==0):
             logging.info("Got Empty DataFrame",keyword,i)
-            raise Exception("Got Empty DataFrame",keyword,i)
-            
-            
+            raise Exception("Got Empty DataFrame",keyword,i)            
         else :
             return True
     except Exception as e:
@@ -150,18 +155,9 @@ def new_format_gen(rank_df):
 
 
 
-def add_row(temp_df):
-    global rank_df 
-    rank_df = rank_df.append(temp_df,ignore_index=True)
-    print(id(rank_df))
-    print(rank_df)
-    return rank_df
-
-
-
 def save_df(rank_df):
     try: 
-
+        print("save_df")
         rank_df = rank_df[['Keyword', 'Rank', 'Website', 'Date', 'URL']]
         mod = new_format_gen(rank_df)    
         print('mod_file_created')
@@ -171,6 +167,7 @@ def save_df(rank_df):
         result.to_csv(path2)
         mod_file.to_csv(path3)
     except Exception as e:
+        print("error in saving file")
         logging.info(e,"there is an error in save_df")
        
 
@@ -202,36 +199,62 @@ def run_processs_api(keyword):
     
 def run_process(keyword):
     global rank_df
-    print(id(rank_df))
+    # print(id(rank_df))
     ty=0
-    while ty<20:
-        if ty < 10 :
-            try :     
-                temp_df = run_processs_api(keyword)
-                print("run_processs_api_process",ty,keyword)
-                
-                print("--------------keyword---temp--------------------")
-                if check_df(temp_df.size,keyword,ty):
-                    rank_df = add_row(temp_df,keyword)
-                    ty = 20
-                    logging.info("keyword got"+str(temp_df.size)+"lines")
-                    save_df(rank_df)
-                    
-                    print("----------keyword--check-temp-------------------------")
-                else:
-                    logging.info("there is an error in check_df")
-                    ty += 1
+    while ty<20:      
+        try :     
+            temp_df = run_processs_api(keyword)
+            print("run_processs_api_process",ty,keyword)            
+            # print("--------------keyword---temp--------------------")
+            if check_df(temp_df.size,keyword,ty):
+                print("df not empty")
+                ty = 20
+                rank_df  = rank_df.append(temp_df,ignore_index=True)
+                save_df(rank_df)
+                print("saveed successfully")
+                logging.info("keyword got"+str(temp_df.size)+"lines")
 
-            except Exception as e:
-                logging.info("in exceptions",e)
+            else:
+                print("there is an error in check_df")
+                logging.info("there is an error in check_df")
                 ty += 1
+
+        except Exception as e:
+            logging.info("in exceptions",e)
+            ty += 1
     
+
+
+def concurrent_func(total_length,keywords):
+    futures = []
+    with ThreadPoolExecutor(max_workers=20) as executor:
+        print(executor)
+        total_length = len(keywords)
+        start_time = time.time()
+        for i in range(0,total_length):          
+                    
+            try:
+                print(i,keywords[i])
+                run_process(keywords[i])
+            except Exception as e:
+            
+                logging.info("in exceptions",e) 
+        end = time.time()
+        print(f"Runtime of the program is {end - start_time}") 
+  
+if __name__=="__main__":    
     
-total_length = len(keywords)   
-for i in range(0,total_length) :
-    run_process(keywords[i])    
+    start_time = time.time()
     
+    total_length = len(keywords) 
     
+    #add filepath which neeeds to be read and scrawled
+    
+    concurrent_func(total_length,keywords)  
+    
+    # end time
+    end = time.time()
+    print(f"Runtime of the program is {end - start_time}")   
     
     
     
