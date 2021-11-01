@@ -10,7 +10,8 @@ import os
 
 from concurrent.futures import ThreadPoolExecutor
 
-os.chdir("/home/django_app/seo/ranking/")
+# os.chdir("/home/django_app/seo/ranking/")
+os.chdir(os.getcwd())
 # change this
 ACCESS_KEY = "d98dff95c6mshbdce2aebd6a6bd5p13b64ejsn38873cb010b6"
 # change to keywords of interest
@@ -201,7 +202,7 @@ def run_process(keyword):
     global rank_df
     # print(id(rank_df))
     ty=0
-    while ty<20:      
+    while ty<=20:      
         try :     
             temp_df = run_processs_api(keyword)
             print("run_processs_api_process",ty,keyword)            
@@ -211,57 +212,61 @@ def run_process(keyword):
                 ty = 20
                 rank_df  = rank_df.append(temp_df,ignore_index=True)
                 save_df(rank_df)
-                print("saveed successfully")
+                print("saved successfully")
                 logging.info("keyword got"+str(temp_df.size)+"lines")
-
+                return 1
             else:
                 print("there is an error in check_df")
                 logging.info("there is an error in check_df")
                 ty += 1
 
         except Exception as e:
+
             logging.info("in exceptions",e)
+            print("error : ",keyword,"attempt:",ty)
             ty += 1
+
+
+    return 0 
     
 
 
-def concurrent_func(total_length,keywords):
+def concurrent_func(keywords):
     futures = []
     with ThreadPoolExecutor(max_workers=20) as executor:
         print(executor)
         total_length = len(keywords)
         start_time = time.time()
+        failed_keywords= []
         for i in range(0,total_length):          
                     
             try:
                 print(i,keywords[i])
-                run_process(keywords[i])
+                status = run_process(keywords[i])
+                print(status)
+                if status == 0 :
+                    failed_keywords.append(keywords[i])
             except Exception as e:
-            
+                print(e)
                 logging.info("in exceptions",e) 
         end = time.time()
         print(f"Runtime of the program is {end - start_time}") 
+    return failed_keywords
   
 if __name__=="__main__":    
     
     start_time = time.time()
     
-    total_length = len(keywords) 
+    
     
     #add filepath which neeeds to be read and scrawled
     
-    concurrent_func(total_length,keywords)  
+    new_keywords = concurrent_func(keywords)  
+    print(new_keywords)
+    for i in range(10):
+        if len(new_keywords) !=0:
+            new_keywords = concurrent_func(new_keywords)
     
     # end time
     end = time.time()
     print(f"Runtime of the program is {end - start_time}")   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
