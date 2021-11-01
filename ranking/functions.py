@@ -70,7 +70,8 @@ def get_response(url):
 
     headers = {
     'x-rapidapi-key': "d98dff95c6mshbdce2aebd6a6bd5p13b64ejsn38873cb010b6",
-    'x-rapidapi-host': "google-search3.p.rapidapi.com"
+    'x-rapidapi-host': "google-search3.p.rapidapi.com",
+    'X-Proxy-Location':'IN'
     }
     response = requests.request("GET", url, headers=headers)
     content = response.text
