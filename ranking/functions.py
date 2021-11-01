@@ -9,7 +9,7 @@ import sys
 import os
 
 from concurrent.futures import ThreadPoolExecutor
-print(os.getcwd())
+
 # os.chdir("/home/django_app/seo/ranking/")
 os.chdir(os.getcwd())
 # change this
@@ -198,7 +198,7 @@ def run_processs_api(keyword):
     
     
     
-def run_process(keyword,failed_keywords):
+def run_process(keyword):
     global rank_df
     # print(id(rank_df))
     ty=0
@@ -214,17 +214,20 @@ def run_process(keyword,failed_keywords):
                 save_df(rank_df)
                 print("saved successfully")
                 logging.info("keyword got"+str(temp_df.size)+"lines")
-
+                return 1
             else:
                 print("there is an error in check_df")
                 logging.info("there is an error in check_df")
                 ty += 1
 
         except Exception as e:
-            if ty==20:
-                failed_keywords.append(keyword)
+
             logging.info("in exceptions",e)
+            print("error : ",keyword,"attempt:",ty)
             ty += 1
+
+
+    return 0 
     
 
 
@@ -233,44 +236,38 @@ def concurrent_func(keywords):
     with ThreadPoolExecutor(max_workers=20) as executor:
         print(executor)
         total_length = len(keywords)
-        
-        failed_keywords = []
+        start_time = time.time()
+        failed_keywords= []
         for i in range(0,total_length):          
                     
             try:
                 print(i,keywords[i])
-                run_process(keywords[i],failed_keywords)
+                status = run_process(keywords[i])
+                print(status)
+                if status == 0 :
+                    failed_keywords.append(keywords[i])
             except Exception as e:
-            
+                print(e)
                 logging.info("in exceptions",e) 
+        end = time.time()
+        print(f"Runtime of the program is {end - start_time}") 
     return failed_keywords
-
   
 if __name__=="__main__":    
     
     start_time = time.time()
     
- 
+    
     
     #add filepath which neeeds to be read and scrawled
     
-    failed_keywords = concurrent_func(keywords)
-    for i in range(3):
-        if len(failed_keywords) != 0:
-            print("retrying failed keywords")
-            failed_keywords = concurrent_func(failed_keywords)
-
+    new_keywords = concurrent_func(keywords)  
+    print(new_keywords)
+    for i in range(10):
+        if len(new_keywords) !=0:
+            new_keywords = concurrent_func(new_keywords)
     
     # end time
     end = time.time()
     print(f"Runtime of the program is {end - start_time}")   
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
