@@ -1,4 +1,5 @@
-
+#!/home/django_app/myenv/bin/python
+print("file started")
 import json
 import requests
 import pandas as pd
@@ -7,11 +8,9 @@ import time
 import logging
 import sys
 import os
-
 from concurrent.futures import ThreadPoolExecutor
-
-# os.chdir("/home/django_app/seo/ranking/")
-os.chdir(os.getcwd())
+print(os.getcwd())
+os.chdir("/home/django_app/seo/ranking")
 # change this
 ACCESS_KEY = "d98dff95c6mshbdce2aebd6a6bd5p13b64ejsn38873cb010b6"
 # change to keywords of interest
@@ -36,13 +35,17 @@ filename = str(sys.argv[1])
 print(filename)
 
 date_folder = f"data/{output_timestamp}"
+folder_loc = os.path.join("/home/django_app/seo/ranking/",date_folder)
+print(folder_loc)
 try:
-    os.mkdir(date_folder)
-    os.mkdir(f"{date_folder}/result")
-    os.mkdir(f"{date_folder}/modified")
+    os.mkdir(folder_loc)
+    os.mkdir(f"{folder_loc}/result")
+    os.mkdir(f"{folder_loc}/modified")
+
     
 except FileExistsError as  e :
     pass
+
 
 path2 =f"{date_folder}/result/{filename}-result.csv"
 path3 = f"{date_folder}/modified/{filename}-modified.csv"
@@ -70,7 +73,8 @@ def get_response(url):
 
     headers = {
     'x-rapidapi-key': "d98dff95c6mshbdce2aebd6a6bd5p13b64ejsn38873cb010b6",
-    'x-rapidapi-host': "google-search3.p.rapidapi.com"
+    'x-rapidapi-host': "google-search3.p.rapidapi.com",
+    'X-Proxy-Location':'IN'
     }
     response = requests.request("GET", url, headers=headers)
     content = response.text
