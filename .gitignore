@@ -277,3 +277,4 @@ cython_debug/
 __pycache__
 
 .vscode/
+*.DS_Store
