@@ -60,13 +60,13 @@ def get_url(KEYWORD):
     language = "lang_en"
     
     data = {
-    "q" : KEYWORD,
+    "q" : KEYWORD.replace(" ","%20"),
     "country" : country,
     "language" : language,
     "num": 100
     }
 
-    url = "https://google-search3.p.rapidapi.com/api/v1/search/q="+data.get("q")+"&country="+data.get("country")+"&language="+data.get("language")+"&gl=IN&num=100&uule=w+CAIQICIFSU5ESUE"
+    url = "https://google-search3.p.rapidapi.com/api/v1/search/q="+data.get("q")+"&country="+data.get("country")+"&language="+data.get("language")+"&gl=IN&num=100"
     return url
 
 def get_response(url):
