@@ -10,7 +10,7 @@ import sys
 import os
 from concurrent.futures import ThreadPoolExecutor
 print(os.getcwd())
-os.chdir("/home/django_app/seo/ranking")
+os.chdir("/home/django_app/seo/ranking/static/ranking")
 # change this
 ACCESS_KEY = "d98dff95c6mshbdce2aebd6a6bd5p13b64ejsn38873cb010b6"
 # change to keywords of interest
@@ -29,13 +29,13 @@ websites = {'collegedunia.com':"CollegeDunia",
            "fresherslive.com":"fresherslive",
             "embibe.com":"embibe" ,"leverageedu.com":"leverageedu.com","buddy4study.com":"buddy4study.com"}
 
-output_timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H")
+output_timestamp = datetime.datetime.now().strftime("%Y-%m-%d")
 # print(output_timestamp)
 filename = str(sys.argv[1])
 print(filename)
 
 date_folder = f"data/{output_timestamp}"
-folder_loc = os.path.join("/home/django_app/seo/ranking/",date_folder)
+folder_loc = os.path.join("/home/django_app/seo/ranking/static/ranking",date_folder)
 print(folder_loc)
 try:
     os.mkdir(folder_loc)
@@ -260,9 +260,7 @@ def concurrent_func(keywords):
 if __name__=="__main__":    
     
     start_time = time.time()
-    
-    
-    
+        
     #add filepath which neeeds to be read and scrawled
     
     new_keywords = concurrent_func(keywords)  
