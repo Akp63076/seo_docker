@@ -30,7 +30,8 @@ GSC_CREDS = 'client_secrets.json'
 def gsc_authorize_creds():
     os.chdir(filepath)
     try :
-        SCOPES = ['https://www.googleapis.com/auth/webmasters.readonly']
+        SCOPES = ["https://www.googleapis.com/auth/webmasters",
+                'https://www.googleapis.com/auth/webmasters.readonly']
         CLIENT_SECRETS_PATH = GSC_CREDS
  
         # Create a parser to be able to open browser for Authorization
@@ -56,7 +57,7 @@ def gsc_authorize_creds():
         if credentials is None or credentials.invalid:
             credentials = tools.run_flow(flow, storage, flags)
         http = credentials.authorize(http=httplib2.Http())
-        webmasters_service = build('webmasters', 'v3', http=http)
+        webmasters_service = build('searchconsole', 'v1', http=http)
         # webmasters_service = build('webmasters', 'v3', http=http)
         
         return webmasters_service
