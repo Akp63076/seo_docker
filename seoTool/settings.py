@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "redshiftClicks.apps.RedshiftclicksConfig",
     "coursefinder.apps.CoursefinderConfig",
     "web_analytics.apps.WebAnalyticsConfig",
+    "ranking.apps.RankingConfig",
     "users.apps.UsersConfig",
     "crispy_forms",
     "allauth",

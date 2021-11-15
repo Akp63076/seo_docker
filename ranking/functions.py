@@ -74,7 +74,8 @@ def get_response(url):
     headers = {
     'x-rapidapi-key': "d98dff95c6mshbdce2aebd6a6bd5p13b64ejsn38873cb010b6",
     'x-rapidapi-host': "google-search3.p.rapidapi.com",
-    'X-Proxy-Location':'IN'
+    'X-Proxy-Location':'IN',
+     'x-user-agent': "desktop",
     }
     response = requests.request("GET", url, headers=headers)
     content = response.text
@@ -84,7 +85,6 @@ def get_response(url):
 def get_rank(pagesource,keyword,WEBSITE):
     
     temp_df=pd.DataFrame(columns=('Keyword,Rank,Website,Date,URL').split(','))
-    found_in_results = False # keep track if we found the website
     
     if pagesource['results']:
     
@@ -109,7 +109,6 @@ def get_rank(pagesource,keyword,WEBSITE):
                 if web in link:
                     # print(web)
                     # print("Found website at rank: " + str(rank))
-                    found_in_results = True
                     # data= {'Keyword': keyword,'title':title,'URL':link,'description':description,'Rank':rank}
                     data= {'Keyword': keyword,'URL':link,'Rank':rank,'Date':now,'Website':web}
                     temp_df = temp_df.append(data,ignore_index=True)
