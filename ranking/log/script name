@@ -1,0 +1,30 @@
+functions_College-HS.sh                  functions_Prepp-C3.sh
+functions_College-LS.sh                  functions_Study_Abroad-College-HS.sh
+functions_College-MS.sh                  functions_Study_Abroad-College-LS.sh
+functions_Courses.sh                     functions_Study_Abroad-Part_1.sh
+functions_Exams.sh                       functions_Study_Abroad-Part_2.sh
+functions_Keywords_Listing_ragini.sh     functions_Study_Abroad-Part_3.sh
+functions_Main_Research_Sheet-part_1.sh  functions_Study_Abroad-Single_Course_Page.sh
+functions_Main_Research_Sheet-part_2.sh  functions_part2.sh
+functions_Prepp-C1.sh                    functions_part_1.sh
+functions_Prepp-C2.sh 
+
+/home/django_app/seo/ranking/script/functions_College-HS.sh > /home/django_app/seo/ranking/log/College-HS.log 2>&1
+/home/django_app/seo/ranking/script/functions_College-LS.sh > /home/django_app/seo/ranking/log/College-LS.log 2>&1
+/home/django_app/seo/ranking/script/functions_College-MS.sh > /home/django_app/seo/ranking/log/College-MS.log 2>&1
+/home/django_app/seo/ranking/scriptfunctions_Courses.sh > /home/django_app/seo/ranking/log/Courses.log 2>&1
+/home/django_app/seo/ranking/script/functions_Exams.sh > /home/django_app/seo/ranking/log/Exams.log 2>&1
+/home/django_app/seo/ranking/script/functions_Study_Abroad-College-HS.sh > /home/django_app/seo/ranking/log/Study_Abroad-College-HS.log 2>&1
+/home/django_app/seo/ranking/script/functions_Study_Abroad-College-LS.sh > /home/django_app/seo/ranking/log/Study_Abroad-College-LS.log 2>&1
+/home/django_app/seo/ranking/script/functions_Study_Abroad-Part_2.sh > /home/django_app/seo/ranking/log/Study_Abroad-Part_2.log 2>&1
+/home/django_app/seo/ranking/script/functions_Study_Abroad-Single_Course_Page.sh > /home/django_app/seo/ranking/log/Study_Abroad-Single_Course_Page.log 2>&1
+/home/django_app/seo/ranking/script/functions_Study_Abroad-Part_1.sh > /home/django_app/seo/ranking/log/Study_Abroad-part_1.log 2>&1
+/home/django_app/seo/ranking/script/functions_Study_Abroad-Part_3.sh > /home/django_app/seo/ranking/log/Study_Abroad-part_3.log 2>&1
+/home/django_app/seo/ranking/script/functions_Keywords_Listing_ragini.sh > /home/django_app/seo/ranking/log/Keywords_Listing_ragini.log 2>&1
+/home/django_app/seo/ranking/script/functions_Main_Research_Sheet-part_1.sh > /home/django_app/seo/ranking/log/.log 2>&1
+/home/django_app/seo/ranking/script/functions_Main_Research_Sheet-part_2.sh > /home/django_app/seo/ranking/log/Main_Research_Sheet-part_2.log 2>&1
+/home/django_app/seo/ranking/script/functions_part2.sh > /home/django_app/seo/ranking/log/part2.log 2>&1
+/home/django_app/seo/ranking/script/functions_part_1.sh > /home/django_app/seo/ranking/log/part_1.log 2>&1
+/home/django_app/seo/ranking/script/functions_Prepp-C2.sh > /home/django_app/seo/ranking/log/Prepp-C2.log 2>&1
+/home/django_app/seo/ranking/script/functions_Prepp-C3.sh > /home/django_app/seo/ranking/log/Prepp-C3.log 2>&1
+/home/django_app/seo/ranking/script/functions_Prepp-C1.sh > /home/django_app/seo/ranking/log/Prepp-C1.log 2>&1
