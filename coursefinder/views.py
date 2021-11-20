@@ -172,7 +172,7 @@ def get_rank_bracket(x):
         return "500+"
 
 # @app.route('/coursefinder/form')
-@login_required
+# @login_required
 def index(request):
     form = Myform()
     if request.method == "POST":

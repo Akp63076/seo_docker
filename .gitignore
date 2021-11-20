@@ -280,3 +280,5 @@ __pycache__
 */.DS_Store
 .DS_Store
 ranking/.gitignore
+
+/ranking/script/database.inidatabase.ini
