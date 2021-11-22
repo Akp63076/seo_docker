@@ -14,4 +14,4 @@ create virtualen : python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
 
-to run project python manange.py runserver
+to run project python manage.py runserver
