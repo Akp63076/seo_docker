@@ -12,11 +12,12 @@ class Keywords(models.Model):
     def __str__(self):
         return self.keyword
 
-class Ranking(models.Model):
+class GoogleSerp(models.Model):
+    id = models.AutoField(primary_key=True)
     keyword = models.ForeignKey(Keywords, on_delete=models.CASCADE)
     rank = models.IntegerField()
-    date = models.DateField(null=True)
+    date = models.CharField(max_length=100)
     domain = models.CharField(max_length=600)
     url = models.TextField()
     def __str__(self):
-        return self.keyword
+        return self.domain

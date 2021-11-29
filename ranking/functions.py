@@ -18,16 +18,18 @@ ACCESS_KEY = "d98dff95c6mshbdce2aebd6a6bd5p13b64ejsn38873cb010b6"
 # change this to the website of interest
 
 websites = {'collegedunia.com':"CollegeDunia",
-             'prepp.in':"Prepp",
-              'shiksha.com':"Shiksha",
-              'careers360.com':"Careers360",
-               'collegedekho.com':"collegedekho",
+            'prepp.in':"Prepp",
+            'shiksha.com':"Shiksha",
+            'careers360.com':"Careers360",
+            'collegedekho.com':"collegedekho",
             'jeemains.in': 'jeemains',
             'mbbsneet.in':'mbbsneet',
-           "aglasem.com":"Aglasem",
-           "byjus.com":"Byjus",
-           "fresherslive.com":"fresherslive",
-            "embibe.com":"embibe" ,"leverageedu.com":"leverageedu.com","buddy4study.com":"buddy4study.com"}
+            "aglasem.com":"Aglasem",
+            "byjus.com":"Byjus",
+            "fresherslive.com":"fresherslive",
+            "embibe.com":"embibe" ,
+            "leverageedu.com":"leverageedu.com",
+            "buddy4study.com":"buddy4study.com"}
 
 output_timestamp = datetime.datetime.now().strftime("%Y-%m-%d")
 # print(output_timestamp)

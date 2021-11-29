@@ -13,6 +13,7 @@ result_dir = glob(os.path.join(data_folder,"20*","*","combined_csv_result.csv"))
 modified_dir = glob(os.path.join(data_folder,"20*","*","combined_csv_modified.csv"))
 print(result_dir)
 print(modified_dir)
+
 # Create your views here.
 structure = []
 for x,y,z in zip(date_dir,result_dir,modified_dir):
@@ -30,3 +31,6 @@ def index(request):
     return render(request, 'ranking/index.html',{"context":structure})
 
 
+# def wonwreport(request):
+
+#     return HttpResponse "wow report will be shown here"

@@ -10,6 +10,7 @@ base_dir = os.getcwd()
 
 path = "/Users/collegedunia/Documents/flask_project/seoTool/ranking/script/data.csv"
 df= pd.read_csv(path,encoding = 'unicode_escape')
+
 def copy_from_file(conn,df,table):
     """
     Here we are going save the dataframe on disk as 
@@ -21,10 +22,11 @@ def copy_from_file(conn,df,table):
     
     tmp_df = "/Users/collegedunia/Documents/flask_project/seoTool/ranking/script/data-1.csv"
     
-    df.to_csv(tmp_df,index_label='id', header=False,sep='|')
+    # df.to_csv(tmp_df,index_label='id', header=False,sep='|')
+    # df.to_csv(tmp_df,header=False,sep='|')
     
-    # tmp_df = ""
-    # df.to_csv(tmp_df, index_label='id', header=False)
+    
+    df.to_csv(tmp_df, header=False,sep='|')
     f = open(tmp_df, 'r')
     print(f)
     cursor = conn.cursor()
@@ -34,14 +36,16 @@ def copy_from_file(conn,df,table):
     except (Exception, psycopg2.DatabaseError) as error:
       
         print("Error: %s" % error)
-        conn.rollback()
+        conn.rollback() 
         cursor.close()
+        os.remove(tmp_df)
         return 1
     print("copy_from_file() done")
     cursor.close()
+    os.remove(tmp_df)
     return 1
 
-def connect():
+def connect(df,table):
     """ Connect to the PostgreSQL database server """
     conn = None
     try:
@@ -52,8 +56,8 @@ def connect():
         print('Connecting to the PostgreSQL database...')
         conn = psycopg2.connect(**params)
         # table = "ranking_keywords"
-        # x = copy_from_file(conn,df,table)
-        # print(x)
+        x = copy_from_file(conn,df,table)
+        print(x)
         # create a cursor
         cur = conn.cursor()
 
