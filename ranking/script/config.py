@@ -4,7 +4,7 @@ def config(filename='ranking/script/database.ini', section='postgresql'):
     parser = ConfigParser()
     # read config file
     parser.read(filename)
-
+    # datestyle = 'dmy'
     # get section, default to postgresql
     db = {}
     if parser.has_section(section):
@@ -15,4 +15,5 @@ def config(filename='ranking/script/database.ini', section='postgresql'):
         raise Exception('Section {0} not found in the {1} file'.format(section, filename))
 
     return db
+
 
