@@ -11,25 +11,22 @@ import os
 from concurrent.futures import ThreadPoolExecutor
 print(os.getcwd())
 os.chdir("/home/django_app/seo/ranking/static/ranking")
-# change this
-ACCESS_KEY = "d98dff95c6mshbdce2aebd6a6bd5p13b64ejsn38873cb010b6"
+
 # change to keywords of interest
 # KEYWORD = "jee main"
 # change this to the website of interest
 
 websites = {'collegedunia.com':"CollegeDunia",
-            'prepp.in':"Prepp",
-            'shiksha.com':"Shiksha",
-            'careers360.com':"Careers360",
-            'collegedekho.com':"collegedekho",
+             'prepp.in':"Prepp",
+              'shiksha.com':"Shiksha",
+              'careers360.com':"Careers360",
+               'collegedekho.com':"collegedekho",
             'jeemains.in': 'jeemains',
             'mbbsneet.in':'mbbsneet',
-            "aglasem.com":"Aglasem",
-            "byjus.com":"Byjus",
-            "fresherslive.com":"fresherslive",
-            "embibe.com":"embibe" ,
-            "leverageedu.com":"leverageedu.com",
-            "buddy4study.com":"buddy4study.com"}
+           "aglasem.com":"Aglasem",
+           "byjus.com":"Byjus",
+           "fresherslive.com":"fresherslive",
+            "embibe.com":"embibe" ,"leverageedu.com":"leverageedu.com","buddy4study.com":"buddy4study.com"}
 
 output_timestamp = datetime.datetime.now().strftime("%Y-%m-%d")
 # print(output_timestamp)
@@ -56,70 +53,82 @@ keyword_file = pd.read_csv(f"data/input/{filename}.csv",encoding='unicode_escape
 
 keywords=keyword_file['Keyword'].tolist()
 
-def get_url(KEYWORD):
 
-    country = "IN"
-    language = "lang_en"
+def get_response(keyword):
+
+    headers = {'Content-Type': 'application/json'}
+    job_params = {
+        'q': keyword,
+        'num':100,
+        'parse':True,
+        'device':'desktop_chrome',
+        'geo':'India',
+        'scraper': 'google_search',
+    }
     
-    data = {
-    "q" : KEYWORD.replace(" ","%20"),
-    "country" : country,
-    "language" : language,
-    "num": 100
-    }
-
-    url = "https://google-search3.p.rapidapi.com/api/v1/search/q="+data.get("q")+"&country="+data.get("country")+"&language="+data.get("language")+"&gl=IN&num=100"
-    return url
-
-def get_response(url):
-
-    headers = {
-    'x-rapidapi-key': "d98dff95c6mshbdce2aebd6a6bd5p13b64ejsn38873cb010b6",
-    'x-rapidapi-host': "google-search3.p.rapidapi.com",
-    'X-Proxy-Location':'IN',
-     'x-user-agent': "desktop",
-    }
-    response = requests.request("GET", url, headers=headers)
-    content = response.text
-    results = json.loads(content)
+    response = requests.post(
+        'https://rt.serpmaster.com/',
+        headers=headers,
+        json=job_params,
+        auth=('nishit', 'r6BEJudux75')
+    )
+    
+    res = response.json()
     return results
 
-def get_rank(pagesource,keyword,WEBSITE):
-    
-    temp_df=pd.DataFrame(columns=('Keyword,Rank,Website,Date,URL').split(','))
-    
-    if pagesource['results']:
-    
-        for rank, result in enumerate(pagesource['results'],start=1):
-           
+
+def get_rank(pagesource, keyword, WEBSITE):
+
+    temp_df = pd.DataFrame(columns=("Keyword,Rank,Website,Date,URL").split(","))
+    found_in_results = False  # keep track if we found the website
+    data = res['results'][0]['content']['results']
+    organic_sr= data['organic']
+    if len(organic_sr)!=0:
+
+        for result in organic_sr:
+
             # title = result['title']
-    
-            link = result['link']
-          
+
+            link = result["url"]
+
             # description  =result['description']
             now = datetime.date.today().strftime("%d-%m-%Y")
-            rank = str(rank)
+            rank = result['pos']
             # print(link)
-            if rank == '1':
+            if rank == "1":
                 print(rank)
-                data= {'Keyword': keyword,'URL':link,'Rank':rank,'Date':now,'Website':'TOP SITE'}
-                temp_df = temp_df.append(data,ignore_index=True)
-             
-    
+                data = {
+                    "Keyword": keyword,
+                    "URL": link,
+                    "Rank": rank,
+                    "Date": now,
+                    "Website": "TOP SITE",
+                }
+                temp_df = temp_df.append(data, ignore_index=True)
+
             for web in WEBSITE:
-    
+
                 if web in link:
-                    # print(web)
-                    # print("Found website at rank: " + str(rank))
+                    print(web)
+                    print("Found website at rank: " + str(rank))
+                    found_in_results = True
                     # data= {'Keyword': keyword,'title':title,'URL':link,'description':description,'Rank':rank}
-                    data= {'Keyword': keyword,'URL':link,'Rank':rank,'Date':now,'Website':web}
-                    temp_df = temp_df.append(data,ignore_index=True)
-                    
-    else :
-        print("empty page resource")                    
+                    data = {
+                        "Keyword": keyword,
+                        "URL": link,
+                        "Rank": rank,
+                        "Date": now,
+                        "Website": web,
+                    }
+                    temp_df = temp_df.append(data, ignore_index=True)
+                    print(temp_df)
+    else:
+        print("empty page resource")
+
+    return temp_df                 
                     
 
-    return temp_df
+
     
 def check_df(size,keyword,i):
     try :
@@ -193,9 +202,8 @@ def run_processs_api(keyword):
         are on google serp page.
 
     """
-    url = get_url(keyword)
-    print(url)
-    results = get_response(url)
+
+    results = get_response(keyword)
     print("result_done")
     temp_df = get_rank(results,keyword,websites)
     print("temp_df done ")
