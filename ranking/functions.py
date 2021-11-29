@@ -93,7 +93,7 @@ def get_rank(pagesource, keyword, WEBSITE):
 
             # description  =result['description']
             now = datetime.date.today().strftime("%d-%m-%Y")
-            rank = result['pos']
+            rank = result['Pos_overall']
             # print(link)
             if rank == "1":
                 print(rank)
