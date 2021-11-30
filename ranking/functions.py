@@ -185,25 +185,33 @@ def run_processs_api(keyword):
     """
 
     job_id = get_job_id(keyword)
+    print("job id:",job_id)
     time.sleep(10)
     google_search_json = get_response(job_id)
-    count = 0
     temp_df = pd.DataFrame(columns=["Keyword","Rank","Website","Date","URL"])
+    count = 0
     while count<10:
-        status_code = google_search_json['results'][0]['status_code']
-        if status_code == 200:
+        try :
+            status_code = google_search_json['results'][0]['status_code']                
             print(status_code)
-            temp_df = get_rank(google_search_json,keyword,websites)
-            print("temp_df done ")
-        else :
-            print("status not 200")
-            time.sleep(10)
-            google_search_json = get_response(job_id)
+            if status_code == 200:
+                print(status_code)
+                temp_df = get_rank(google_search_json,keyword,websites)
+                print("temp_df done ")
+                return temp_df
+            else :
+                print("status not 200")
+                time.sleep(10)
+                google_search_json = get_response(job_id)
+                print("retrying {0} {1}".format(keyword,count))
+                count += 1
+
+        except Exceptions as e:
             count += 1
-    return temp_df 
-    
-    
-    
+            print("retrying {0} {1}".format(keyword,count))
+            print(e)
+    return temp_df
+
 def run_process(keyword):
     global rank_df       
     try :     
