@@ -94,16 +94,12 @@ def get_rank(pagesource, keyword, WEBSITE):
     if len(organic_sr)!=0:
 
         for result in organic_sr:
-
-            # title = result['title']
-
             link = result["url"]
-
             # description  =result['description']
             now = datetime.date.today().strftime("%d-%m-%Y")
             rank = result['pos']
             # print(link)
-            if rank == "1":
+            if rank == 1:
                 print(rank)
                 data = {
                     "Keyword": keyword,
