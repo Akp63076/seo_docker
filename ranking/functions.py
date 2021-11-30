@@ -39,9 +39,7 @@ print(folder_loc)
 try:
     os.mkdir(folder_loc)
     os.mkdir(f"{folder_loc}/result")
-    os.mkdir(f"{folder_loc}/modified")
-
-    
+    os.mkdir(f"{folder_loc}/modified")    
 except FileExistsError as  e :
     pass
 
@@ -53,9 +51,9 @@ keyword_file = pd.read_csv(f"data/input/{filename}.csv",encoding='unicode_escape
 
 keywords=keyword_file['Keyword'].tolist()
 
+rank_df=pd.DataFrame(columns=('Keyword,Rank,Website,Date,URL').split(','))
 
-def get_response(keyword):
-
+def get_job_id(keyword):
     headers = {'Content-Type': 'application/json'}
     job_params = {
         'q': keyword,
@@ -67,21 +65,31 @@ def get_response(keyword):
     }
     
     response = requests.post(
-        'https://rt.serpmaster.com/',
+        'https://api.serpmaster.com/cb',
         headers=headers,
         json=job_params,
         auth=('nishit', 'r6BEJudux75')
     )
+    # // Print the response body
+    # print(response.json())
+    cb_json = response.json()
+    job_id= cb_json['id']
+    print(job_id)
+    return job_id
+
+def get_response(job_id):
+    google_search = requests.get(
+        f'https://api.serpmaster.com/cb/{job_id}/results',
+        auth=('nishit', 'r6BEJudux75'))
     
-    res = response.json()
-    return results
+    google_search_json = google_search.json()
+    return google_search_json
 
 
 def get_rank(pagesource, keyword, WEBSITE):
 
     temp_df = pd.DataFrame(columns=("Keyword,Rank,Website,Date,URL").split(","))
-    found_in_results = False  # keep track if we found the website
-    data = res['results'][0]['content']['results']
+    data = pagesource['results'][0]['content']['results']
     organic_sr= data['organic']
     if len(organic_sr)!=0:
 
@@ -93,7 +101,7 @@ def get_rank(pagesource, keyword, WEBSITE):
 
             # description  =result['description']
             now = datetime.date.today().strftime("%d-%m-%Y")
-            rank = result['pos_overall']
+            rank = result['pos']
             # print(link)
             if rank == "1":
                 print(rank)
@@ -121,9 +129,9 @@ def get_rank(pagesource, keyword, WEBSITE):
                         "Website": web,
                     }
                     temp_df = temp_df.append(data, ignore_index=True)
-                    print(temp_df)
+                    # print(temp_df)
     else:
-        print("empty page resource")
+        print("in function get response : empty page resource")
 
     return temp_df                 
                     
@@ -143,8 +151,6 @@ def check_df(size,keyword,i):
         print("error in check df")
         return False     
         
-rank_df=pd.DataFrame(columns=('Keyword,Rank,Website,Date,URL').split(','))
-
 
 def new_format_gen(rank_df):
     df=rank_df.copy()
@@ -168,8 +174,6 @@ def new_format_gen(rank_df):
     return final_copy
 
 
-
-
 def save_df(rank_df):
     try: 
         print("save_df")
@@ -191,10 +195,8 @@ def run_processs_api(keyword):
     Parameters
     ----------
     keyword : string
-        keyword of which rank need to be scraped.
-        
-    this funtion calls rapidApi, and scrpe serp page
-
+        keyword of which rank need to be scraped.       
+        this funtion calls rapidApi, and scrpe serp page
     Returns
     -------
     temp_df : DataFrame
@@ -203,41 +205,48 @@ def run_processs_api(keyword):
 
     """
 
-    results = get_response(keyword)
-    print("result_done")
-    temp_df = get_rank(results,keyword,websites)
-    print("temp_df done ")
-    return temp_df    
+    job_id = get_job_id(keyword)
+    time.sleep(10)
+    google_search_json = get_response(job_id)
+    count = 0
+    temp_df = pd.DataFrame(columns=["Keyword","Rank","Website","Date","URL"])
+    while count<10:
+        status_code = google_search_json['results'][0]['status_code']
+        if status_code == 200:
+            print(status_code)
+            temp_df = serp_tool.get_rank(google_search_json,keyword,websites)
+            print("temp_df done ")
+        else :
+            print("status not 200")
+            time.sleep(10)
+            google_search_json = serp_tool.get_response(job_id)
+            count += 1
+    return temp_df 
     
     
     
 def run_process(keyword):
-    global rank_df
-    # print(id(rank_df))
-    ty=0
-    while ty<=20:      
-        try :     
-            temp_df = run_processs_api(keyword)
-            print("run_processs_api_process",ty,keyword)            
-            # print("--------------keyword---temp--------------------")
-            if check_df(temp_df.size,keyword,ty):
-                print("df not empty")
-                ty = 20
-                rank_df  = rank_df.append(temp_df,ignore_index=True)
-                save_df(rank_df)
-                print("saved successfully")
-                logging.info("keyword got"+str(temp_df.size)+"lines")
-                return 1
-            else:
-                print("there is an error in check_df")
-                logging.info("there is an error in check_df")
-                ty += 1
+    global rank_df       
+    try :     
+        temp_df = run_processs_api(keyword)
+        print("run_processs_api_process",ty,keyword)            
+        # print("--------------keyword---temp--------------------")
+        if check_df(temp_df.size,keyword,ty):
+            print("df not empty")
+            
+            rank_df  = rank_df.append(temp_df,ignore_index=True)
+            save_df(rank_df)
+            print("saved successfully")
+            logging.info("keyword got"+str(temp_df.size)+"lines")
+            return 1
+        else:
+            print("there is an error in check_df")
+            logging.info("there is an error in check_df")
+    except Exception as e:
 
-        except Exception as e:
-
-            logging.info("in exceptions",e)
-            print("error : ",keyword,"attempt:",ty)
-            ty += 1
+        logging.info("in exceptions",e)
+        print("error : ",keyword,"attempt:",ty)
+        
 
 
     return 0 
