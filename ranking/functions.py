@@ -54,8 +54,7 @@ keyword_file = pd.read_csv(f"data/input/{filename}.csv",encoding='unicode_escape
 keywords=keyword_file['Keyword'].tolist()
 
 
-def get_response(keyword):
-
+def get_job_id(keyword):
     headers = {'Content-Type': 'application/json'}
     job_params = {
         'q': keyword,
@@ -67,21 +66,31 @@ def get_response(keyword):
     }
     
     response = requests.post(
-        'https://rt.serpmaster.com/',
+        'https://api.serpmaster.com/cb',
         headers=headers,
         json=job_params,
         auth=('nishit', 'r6BEJudux75')
     )
+    # // Print the response body
+    # print(response.json())
+    cb_json = response.json()
+    job_id= cb_json['id']
+    print(job_id)
+    return job_id
+
+def get_response(job_id):
+    google_search = requests.get(
+        f'https://api.serpmaster.com/cb/{job_id}/results',
+        auth=('nishit', 'r6BEJudux75'))
     
-    res = response.json()
-    return results
+    google_search_json = google_search.json()
+    return google_search_json
 
 
 def get_rank(pagesource, keyword, WEBSITE):
 
     temp_df = pd.DataFrame(columns=("Keyword,Rank,Website,Date,URL").split(","))
-    found_in_results = False  # keep track if we found the website
-    data = res['results'][0]['content']['results']
+    data = pagesource['results'][0]['content']['results']
     organic_sr= data['organic']
     if len(organic_sr)!=0:
 
@@ -121,9 +130,9 @@ def get_rank(pagesource, keyword, WEBSITE):
                         "Website": web,
                     }
                     temp_df = temp_df.append(data, ignore_index=True)
-                    print(temp_df)
+                    # print(temp_df)
     else:
-        print("empty page resource")
+        print("in function get response : empty page resource")
 
     return temp_df                 
                     
@@ -191,10 +200,8 @@ def run_processs_api(keyword):
     Parameters
     ----------
     keyword : string
-        keyword of which rank need to be scraped.
-        
-    this funtion calls rapidApi, and scrpe serp page
-
+        keyword of which rank need to be scraped.       
+        this funtion calls rapidApi, and scrpe serp page
     Returns
     -------
     temp_df : DataFrame
@@ -203,9 +210,20 @@ def run_processs_api(keyword):
 
     """
 
-    results = get_response(keyword)
-    print("result_done")
-    temp_df = get_rank(results,keyword,websites)
+    job_id = get_job_id(keyword)
+    time.sleep(10)
+    google_search_json = get_response(job_id)
+    count = 0
+    while count<7:
+        status_code = google_search_json['results'][0]['status_code']
+        if status_code != 200:
+            time.sleep(15)
+            google_search_json = get_response(job_id)
+            print(status_code)
+            count += 1
+        else :
+            break
+    temp_df = get_rank(google_search_json,keyword,websites)
     print("temp_df done ")
     return temp_df    
     
