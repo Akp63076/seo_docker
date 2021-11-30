@@ -39,9 +39,7 @@ print(folder_loc)
 try:
     os.mkdir(folder_loc)
     os.mkdir(f"{folder_loc}/result")
-    os.mkdir(f"{folder_loc}/modified")
-
-    
+    os.mkdir(f"{folder_loc}/modified")    
 except FileExistsError as  e :
     pass
 
@@ -53,6 +51,7 @@ keyword_file = pd.read_csv(f"data/input/{filename}.csv",encoding='unicode_escape
 
 keywords=keyword_file['Keyword'].tolist()
 
+rank_df=pd.DataFrame(columns=('Keyword,Rank,Website,Date,URL').split(','))
 
 def get_job_id(keyword):
     headers = {'Content-Type': 'application/json'}
@@ -102,7 +101,7 @@ def get_rank(pagesource, keyword, WEBSITE):
 
             # description  =result['description']
             now = datetime.date.today().strftime("%d-%m-%Y")
-            rank = result['pos_overall']
+            rank = result['pos']
             # print(link)
             if rank == "1":
                 print(rank)
@@ -152,8 +151,6 @@ def check_df(size,keyword,i):
         print("error in check df")
         return False     
         
-rank_df=pd.DataFrame(columns=('Keyword,Rank,Website,Date,URL').split(','))
-
 
 def new_format_gen(rank_df):
     df=rank_df.copy()
@@ -175,8 +172,6 @@ def new_format_gen(rank_df):
     final_copy = final.drop_duplicates()
 
     return final_copy
-
-
 
 
 def save_df(rank_df):
@@ -214,48 +209,44 @@ def run_processs_api(keyword):
     time.sleep(10)
     google_search_json = get_response(job_id)
     count = 0
-    while count<7:
+    temp_df = pd.DataFrame(columns=["Keyword","Rank","Website","Date","URL"])
+    while count<10:
         status_code = google_search_json['results'][0]['status_code']
-        if status_code != 200:
-            time.sleep(15)
-            google_search_json = get_response(job_id)
+        if status_code == 200:
             print(status_code)
-            count += 1
+            temp_df = serp_tool.get_rank(google_search_json,keyword,websites)
+            print("temp_df done ")
         else :
-            break
-    temp_df = get_rank(google_search_json,keyword,websites)
-    print("temp_df done ")
-    return temp_df    
+            print("status not 200")
+            time.sleep(10)
+            google_search_json = serp_tool.get_response(job_id)
+            count += 1
+    return temp_df 
     
     
     
 def run_process(keyword):
-    global rank_df
-    # print(id(rank_df))
-    ty=0
-    while ty<=20:      
-        try :     
-            temp_df = run_processs_api(keyword)
-            print("run_processs_api_process",ty,keyword)            
-            # print("--------------keyword---temp--------------------")
-            if check_df(temp_df.size,keyword,ty):
-                print("df not empty")
-                ty = 20
-                rank_df  = rank_df.append(temp_df,ignore_index=True)
-                save_df(rank_df)
-                print("saved successfully")
-                logging.info("keyword got"+str(temp_df.size)+"lines")
-                return 1
-            else:
-                print("there is an error in check_df")
-                logging.info("there is an error in check_df")
-                ty += 1
+    global rank_df       
+    try :     
+        temp_df = run_processs_api(keyword)
+        print("run_processs_api_process",ty,keyword)            
+        # print("--------------keyword---temp--------------------")
+        if check_df(temp_df.size,keyword,ty):
+            print("df not empty")
+            
+            rank_df  = rank_df.append(temp_df,ignore_index=True)
+            save_df(rank_df)
+            print("saved successfully")
+            logging.info("keyword got"+str(temp_df.size)+"lines")
+            return 1
+        else:
+            print("there is an error in check_df")
+            logging.info("there is an error in check_df")
+    except Exception as e:
 
-        except Exception as e:
-
-            logging.info("in exceptions",e)
-            print("error : ",keyword,"attempt:",ty)
-            ty += 1
+        logging.info("in exceptions",e)
+        print("error : ",keyword,"attempt:",ty)
+        
 
 
     return 0 
