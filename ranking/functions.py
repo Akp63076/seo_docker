@@ -131,23 +131,6 @@ def get_rank(pagesource, keyword, WEBSITE):
 
     return temp_df                 
                     
-
-
-    
-def check_df(size,keyword,i):
-    try :
-
-        if(size==0):
-            logging.info("Got Empty DataFrame",keyword,i)
-            raise Exception("Got Empty DataFrame",keyword,i)            
-        else :
-            return True
-    except Exception as e:
-        print(e)
-        print("error in check df")
-        return False     
-        
-
 def new_format_gen(rank_df):
     df=rank_df.copy()
 
@@ -210,12 +193,12 @@ def run_processs_api(keyword):
         status_code = google_search_json['results'][0]['status_code']
         if status_code == 200:
             print(status_code)
-            temp_df = serp_tool.get_rank(google_search_json,keyword,websites)
+            temp_df = get_rank(google_search_json,keyword,websites)
             print("temp_df done ")
         else :
             print("status not 200")
             time.sleep(10)
-            google_search_json = serp_tool.get_response(job_id)
+            google_search_json = get_response(job_id)
             count += 1
     return temp_df 
     
@@ -227,7 +210,7 @@ def run_process(keyword):
         temp_df = run_processs_api(keyword)
         print("run_processs_api_process",keyword)            
         # print("--------------keyword---temp--------------------")
-        if check_df(temp_df.size,keyword):
+        if temp_df.shape[0]>0:
             print("df not empty")           
             rank_df  = rank_df.append(temp_df,ignore_index=True)
             save_df(rank_df)
@@ -238,12 +221,8 @@ def run_process(keyword):
             print("there is an error in check_df")
             logging.info("there is an error in check_df")
     except Exception as e:
-
         logging.info("in exceptions",e)
-        print("error : ",keyword,"attempt:")
-        
-
-
+        print("error in function run_process : ",keyword)
     return 0 
     
 
