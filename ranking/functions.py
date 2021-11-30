@@ -225,11 +225,10 @@ def run_process(keyword):
     global rank_df       
     try :     
         temp_df = run_processs_api(keyword)
-        print("run_processs_api_process",ty,keyword)            
+        print("run_processs_api_process",keyword)            
         # print("--------------keyword---temp--------------------")
-        if check_df(temp_df.size,keyword,ty):
-            print("df not empty")
-            
+        if check_df(temp_df.size,keyword):
+            print("df not empty")           
             rank_df  = rank_df.append(temp_df,ignore_index=True)
             save_df(rank_df)
             print("saved successfully")
@@ -241,7 +240,7 @@ def run_process(keyword):
     except Exception as e:
 
         logging.info("in exceptions",e)
-        print("error : ",keyword,"attempt:",ty)
+        print("error : ",keyword,"attempt:")
         
 
 
