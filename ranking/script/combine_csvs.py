@@ -30,9 +30,12 @@ def check_combinecsv(all_filenames):
             return True
     return False
 
-def combine_csv(filepath):
+def combine_csv():
+    all_filenames = [f for f in os.listdir(os.path.join(path,d)) if (not f.startswith('.')) if (not f.startswith('combined_csv')) ]
+    filename = f"combined_csv_{d}-{current_data}.csv"
+    filepath = os.path.join(path,d,filename)
     if not check_combinecsv(all_filenames):
-        all_filenames = [f for f in os.listdir(os.path.join(path,d)) if (not f.startswith('.')) if (not f.startswith('combined_csv')) ]
+        
         combined_csv = pd.concat([pd.read_csv(os.path.join(path,d,f),engine ='python',encoding= 'unicode_escape') for f in all_filenames ])
         combined_csv.to_csv( filepath, index=False)
 
@@ -45,7 +48,7 @@ def get_status():
     except Exception as e:
         status_df = pd.DataFrame(columns=['lastindex'])
         status_df.loc[0,'lastindex'] = 0
-        status_df.to_csv('ranking/script/status.csv')
+        status_df.to_csv('ranking/script/status.csv',index=False)
 
         return 0
 
@@ -54,7 +57,7 @@ def update_status(shape):
         print(status_df.loc[0,'lastindex'])
         print(shape)
         status_df.loc[0,'lastindex'] = status_df.loc[0,'lastindex']+shape
-        status_df.to_csv('ranking/script/status.csv')
+        status_df.to_csv('ranking/script/status.csv',index=False)
     
 def upload_csv(filepath):
     print("in upload csv")
@@ -81,15 +84,13 @@ for x in with_20:
     dir_list = [f for f in os.listdir(path) if not f.startswith('.')]
     for d in dir_list:
         print(d)
-        filenames = [f for f in os.listdir(os.path.join(path,d)) if ( f.startswith('combined_csv')) ]
-        for filename in filenames:
-            # filename = f"combined_csv_{d}-{current_data}.csv"
-            filepath = os.path.join(path,d,filename)
-            #will combine all csv to 1
-            # combine_csv(filepath)
+        # combine_csv()
 
-            if d == 'result':
-                upload_csv(filepath)
+        filename = f"combined_csv_{d}-{current_data}.csv"
+        filepath = os.path.join(path,d,filename)
+        #will combine all csv to 1
+        if d == 'result':
+            upload_csv(filepath)
 
        
 

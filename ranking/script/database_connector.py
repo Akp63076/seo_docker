@@ -6,9 +6,9 @@ from config import config
 import pandas as pd 
 print(os.getcwd())
 base_dir = os.getcwd()
+print(base_dir)
 
-
-path = "/Users/collegedunia/Documents/flask_project/seoTool/ranking/script/data.csv"
+path = os.path.join(base_dir,"ranking/script/data.csv")
 df= pd.read_csv(path,encoding = 'unicode_escape')
 
 def copy_from_file(conn,df,table):
@@ -20,7 +20,7 @@ def copy_from_file(conn,df,table):
     # Save the dataframe to disk
     import pandas as pd
     
-    tmp_df = "/Users/collegedunia/Documents/flask_project/seoTool/ranking/script/data-1.csv"
+    tmp_df = os.path.join(base_dir,"ranking/script/data-1.csv")
     
     # df.to_csv(tmp_df,index_label='id', header=False,sep='|')
     # df.to_csv(tmp_df,header=False,sep='|')
