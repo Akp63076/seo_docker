@@ -17,10 +17,10 @@ os.chdir("/home/django_app/seo/ranking/static/ranking")
 # change this to the website of interest
 
 websites = {'collegedunia.com':"CollegeDunia",
-             'prepp.in':"Prepp",
-              'shiksha.com':"Shiksha",
-              'careers360.com':"Careers360",
-               'collegedekho.com':"collegedekho",
+            'prepp.in':"Prepp",
+            'shiksha.com':"Shiksha",
+            'careers360.com':"Careers360",
+            'collegedekho.com':"collegedekho",
             'jeemains.in': 'jeemains',
             'mbbsneet.in':'mbbsneet',
            "aglasem.com":"Aglasem",
