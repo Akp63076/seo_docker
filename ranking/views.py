@@ -7,10 +7,10 @@ from glob import glob
 data_folder = "static/ranking/data"
 # static/ranking/data/2021-11-15/modified/combined_csv_modified.csv
 #/Users/collegedunia/Documents/flask_project/seoTool/ranking/static/ranking/data/2021-11-15/result/Courses-result.csv
-
+#/home/django_app/seo/ranking/static/ranking/data/2021-11-15/result
 date_dir = glob(os.path.join(data_folder,"20*"))
-result_dir = glob(os.path.join(data_folder,"20*","*","combined_csv_result.csv"))
-modified_dir = glob(os.path.join(data_folder,"20*","*","combined_csv_modified.csv"))
+result_dir = glob(os.path.join(data_folder,"20*","result","combined_csv_*.csv"))
+modified_dir = glob(os.path.join(data_folder,"20*","modified","combined_csv_*.csv"))
 print(result_dir)
 print(modified_dir)
 
