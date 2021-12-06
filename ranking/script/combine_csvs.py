@@ -30,7 +30,7 @@ def check_combinecsv(all_filenames):
             return True
     return False
 
-def combine_csv():
+def combine_csv(path,d):
     all_filenames = [f for f in os.listdir(os.path.join(path,d)) if (not f.startswith('.')) if (not f.startswith('combined_csv')) ]
     filename = f"combined_csv_{d}-{current_data}.csv"
     filepath = os.path.join(path,d,filename)
@@ -84,7 +84,7 @@ for x in with_20:
     dir_list = [f for f in os.listdir(path) if not f.startswith('.')]
     for d in dir_list:
         print(d)
-        # combine_csv()
+        combine_csv(path,d)
 
         filename = f"combined_csv_{d}-{current_data}.csv"
         filepath = os.path.join(path,d,filename)
