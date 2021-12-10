@@ -86,7 +86,10 @@ dropdownData = pd.read_csv(
     encoding="unicode_escape",
     low_memory=False,
 )
-dropdownData['country_id'] = dropdownData['country_id'].astype('int')
+print(dropdownData.head())
+dropdownData.dropna(inplace=True)
+print(dropdownData.isnull().sum())
+dropdownData['country_id'] = dropdownData['country_id'].astype('int',errors='ignore')
 dropdownData['new_sub_streamsID'] = dropdownData['new_sub_streamsID'].astype('int')
 dropdownData['head2ID'] = dropdownData['head2ID'].astype('int')
 country_map = dropdownData[['country','country_id']].drop_duplicates().dropna()
