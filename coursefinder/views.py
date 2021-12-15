@@ -302,6 +302,7 @@ def index(request):
         partnered_course=  filtered_data.groupby(['college_id'])['course_partner'].sum().reset_index()
         partnered_colleges = partnered_course[partnered_course['course_partner']!=0]
         patnered_data = partnered_colleges.merge(nonpartner_data,on='college_id', how='left')
+        patnered_data.sort_values(["search_volume"], inplace=True, ascending=False)
         patnered_dict = patnered_data.to_dict("records")
         
         degree = filtered_data[[col for col in ["head_short_form"] for i in range(2)]]
