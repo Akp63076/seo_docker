@@ -157,7 +157,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = (
 )
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "PM3SjP2_DnXM1lvxQJkFYEY3"
 # set django-allauth as the authentication backend
-SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS = ["collegedunia.com"]
+SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS = ["collegedunia.com",'collegedunia.in']
 SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_EMAILS = [
     "mishra34rohini@gmail.com",
     "flcollegedunia@gmail.com",
