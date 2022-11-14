@@ -1,0 +1,10 @@
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+
+    background-color: #ff7900;
+}
+.nav-link{
+    color:black;
+}
+.table-sm>:not(caption)>*>* {
+    text-align: left;
+}

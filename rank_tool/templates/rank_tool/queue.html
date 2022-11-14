@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rank Tool | Queue</title>
+    <link rel = "icon" href ="http://rank.cdboards.in/static/rank_tool/login2/images/0.png" type = "image/x-icon"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">     
+    <link rel="stylesheet" href="{% static 'rank_tool/index.css' %}">
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="{%url 'rank_tool-index' %}">rank_tool</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{%url 'rank_tool-queue' %}">Queue</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'rank_tool-instructions' %}">Instructions</a>
+            </li>
+          </ul>
+          <li class="nav-item navbar-nav">
+            <a class="nav-link" href="/logout/">Logout</a>
+          </li>
+         </div>
+    </nav>
+<div class="container-login100" style="background-image: url('{% static "rank_tool/login2/images/bg-01.jpg" %}' );">
+
+<table class='table'>
+    <thead>
+        <tr>
+            <th class="sticky-header">Index</th>
+            <th class="sticky-header">File Name</th>
+            <th class="sticky-header">User</th>
+            <th class="sticky-header">Email</th>
+            <th class="sticky-header">Progress</th>
+            <th class="sticky-header">Status</th>
+            <th class="sticky-header bottom">Time Uploaded</th>
+            <th class="sticky-header bottom">Time Completed</th>
+
+        </tr>
+    </thead>
+    <tbody>
+            {% for queue in queues %}
+              <tr>
+                <td scope="row">{{forloop.counter}}</td>
+                <td><a href="uploads/{{queue.result}}">{{ queue.file_name }}</a></td>
+                <td>{{ queue.user }}</td>
+                <td>{{ queue.email }}</td>
+                <td>{{queue.current}}/{{queue.total}}</td>	
+                <td>{{ queue.status }}</td>
+                <td>{{ queue.time_created }}</td>
+                <td>{{ queue.time_complete }}</td>
+
+              </tr>
+            {% endfor %}
+    </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

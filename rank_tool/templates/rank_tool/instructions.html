@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rank Tool | Instructions</title>
+    <link rel = "icon" href ="http://rank.cdboards.in/static/rank_tool/login2/images/0.png" type = "image/x-icon"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">     
+    <link rel="stylesheet" href="{% static 'rank_tool/index.css' %}">
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="{%url 'rank_tool-index' %}">rank_tool</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{%url 'rank_tool-queue' %}">Queue</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{%url 'rank_tool-instructions' %}">Instructions</a>
+            </li>
+          </ul>
+          <li class="nav-item navbar-nav">
+            <a class="nav-link" href="/logout/">Logout</a>
+          </li>
+         </div>
+    </nav>
+<div class="container-login100" style="background-image: url('{% static "rank_tool/login2/images/bg-01.jpg" %}' );">
+
+<table class='table' style="width:80%;">
+    <thead>
+        <tr>
+            <th class="sticky-header" style="text-align:center;"><h4>Instructions</h4></th>
+        </tr>
+    </thead>
+    <tbody>
+      <td>
+      <h5>Instructions to upload file</h5><br>
+      <p style="line-height: .8;">· Format of the file to be uploaded should strictly be .csv (comma seperated values UTF-8 format).</p>
+      <p style="line-height: .8;">· The first column of the file should have header "Keywords" followed by the keywords you want to get the ranking for.</p>
+      <p style="line-height: .8;">· Keywords in any other column other than first column won't be ranked.</p>
+      <p style="line-height: .8;">· Once the keywords are ranked you will recieve the files in your mentioned email-id . You need not do anything after clicking send email button. </p>
+      <p style="line-height: .8;">· Once you click on the send email button your file would be line up in a queue which is available on the Queue Page. </p>
+      <p style="line-height: .8;">· Once you click on the send email there's no going back. Upload with caution. </p>
+      <p style="line-height: .8;">· Time uploaded doesn't mean time started, your file will start when previous file is processed.</p>
+      <p style="line-height: .8;">· Please be patient after uploading your file, the tool processes one file at time. </p>
+      <h5>General Information</h5><br>
+      <p style="line-height: .8;">· You will get ranking for the following sites- collegedunia.com , prepp.in , skiksha.com , carrers360.com</p>
+      <p style="line-height: .8;">· The status column on queue page has 4 states-</p>
+      <p style="line-height: .6">   1. In Queue - Your file has succesfully been uploaded and is waiting for other files in queue to complete.</p>
+      <p style="line-height: .6;">   2. In Progess - Your file is being processed.</p>
+      <p style="line-height: .6;">   3. Complete - Your file has been ranked and you will recive the email shortly.</p>
+      <p style="line-height: .6;">   4. Email Sent - Email has been sent to your given email id</p><br>
+      <p style="line-height: .8;">   For any help/suggestions/feedback contact-</p>
+      <p style="line-height: .8;">   data - <a href="mailto:datateam.main@gmail.com">lavish.garg@collegedunia.com</a></p>
+      <p style="line-height: .8;">   Rohini - <a href="mailto:rohini.mishra@collegedunia.com">rohini.mishra@collegedunia.com</a></p>
+
+
+
+
+
+
+
+
+
+
+
+      
+      </td>
+    </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

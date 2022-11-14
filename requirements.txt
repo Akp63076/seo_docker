@@ -5,7 +5,7 @@ attrs==21.2.0
 billiard==3.6.4.0
 cached-property==1.5.2
 cachetools==4.2.4
-celery==5.1.2
+celery==5.2.7
 certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.7
@@ -16,7 +16,7 @@ click-repl==0.2.0
 cryptography==35.0.0
 cycler==0.10.0
 defusedxml==0.7.1
-Django==3.2.8
+Django==4.1.2
 django-allauth==0.45.0
 django-crispy-forms==1.13.0
 google-api-core==2.1.1
@@ -79,3 +79,5 @@ wcwidth==0.2.5
 wsproto==1.0.0
 xmltodict==0.12.0
 zeep==4.1.0
+redis==4.3.4
+django-import_export

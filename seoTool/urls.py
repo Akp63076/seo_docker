@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.urls import include, path
+from django.urls import include, path,re_path
 from users import views as user_views
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 from django.contrib.auth.views import LogoutView
-from django.conf.urls import url
+#from django.conf.urls import url
 
 
 urlpatterns = [
@@ -34,7 +34,9 @@ urlpatterns = [
     path('logout/',auth_views.LogoutView.as_view(template_name='users/logout.html'),name="logout"),
     path("register/",user_views.register,name='register'),
     path("profile/",user_views.profile,name='profile'),
-    url('', include('social_django.urls', namespace='social')),
+    re_path('', include('social_django.urls', namespace='social')),
     path('accounts/', include('allauth.urls')),
+    path('dashboard/', include('dashboard.urls')),
+    path('rank_tool/', include('rank_tool.urls')),
 
 ]

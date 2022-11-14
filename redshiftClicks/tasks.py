@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from typing import Counter
 from celery import Celery, shared_task
-from celery.decorators import task
+#from celery.decorators import task
 from celery.utils.log import get_task_logger
 from django.conf import settings
 from django.core import mail
@@ -69,7 +69,7 @@ def RedshiftSql(user_url, user_time):
 
 
 @shared_task(name="sendRedshiftEmail")
-def sendRedshiftEmail(url, recipient, timeRange):
+def sendRedshiftEmail(url, recipient, timeRange):    
     print(url, recipient, timeRange)
     user_choice = {"url": url, "duration": timeRange}
     print("function has started")
@@ -82,7 +82,7 @@ def sendRedshiftEmail(url, recipient, timeRange):
     email_from = settings.EMAIL_HOST_USER
     subject = "Redshift Data for query url : {0}".format(url)
     recipient_list = [recipient]
-    recipient_list.append("datateam.main@gmail.com")
+    #recipient_list.append("datateam.main@gmail.com")    
     print("sending email")
     email = EmailMessage(subject, message, email_from, recipient_list)
     email.content_subtype = "html"
@@ -101,7 +101,7 @@ def sendRedshiftEmail(url, recipient, timeRange):
         )
         time.sleep(1)
         
-
+    
 
     return {
         "current": 100,

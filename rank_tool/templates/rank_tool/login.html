@@ -1,0 +1,124 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Rank Tool | Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel = "icon" href ="http://rank.cdboards.in/static/rank_tool/login2/images/0.png"type = "image/x-icon"> 
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static "rank_tool/login2/vendor/bootstrap/css/bootstrap.min.css" %}'>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static "rank_tool/login2/fonts/font-awesome-4.7.0/css/font-awesome.min.css" %}'>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static "rank_tool/login2/fonts/iconic/css/material-design-iconic-font.min.css" %}'>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static "rank_tool/login2/vendor/animate/animate.css" %}'>
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href='{% static "rank_tool/login2/vendor/css-hamburgers/hamburgers.min.css" %}'>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static "rank_tool/login2/vendor/animsition/css/animsition.min.css" %}'>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static "rank_tool/login2/vendor/select2/select2.min.css" %}'>
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href='{% static "rank_tool/login2/vendor/daterangepicker/daterangepicker.css" %}'>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static "rank_tool/login2/css/util.css" %}'>
+	<link rel="stylesheet" type="text/css" href='{% static "rank_tool/login2/css/main.css" %}'>
+<!--===============================================================================================-->
+</head>
+<body>	
+
+		<div class="container-login100" style="background-image: url('{% static "rank_tool/login2/images/bg-01.jpg" %}' );">
+
+			<div class="wrap-login100">
+				<!-- <form class="login100-form validate-form"> -->
+					<span class="login100-form-logo">
+						<!-- <i class="zmdi zmdi-landscape"></i> -->
+						<img src='{% static "rank_tool/login2/images/0.png" %}' alt="collegedunia.com">
+					</span>
+					<p><br><br></p>
+					<span class="login100-form-title p-b-34 p-t-27">
+						Log in
+					</span>
+					
+					{% if next %}
+						{% if user.is_authenticated %}
+						<p>Your account doesn't have access to this page. To proceed,
+						please login with an account that has access.</p>
+						{% else %}
+						<p style="color:white">Please login to see this page.</p>
+						<br>
+						{% endif %}
+					{% endif %}	
+    		<form method="post" action="{% url 'login' %}">
+			{% csrf_token %}
+			
+					<div class="wrap-input100 validate-input" data-validate = "Enter username">
+						<input type="text" name="username"  autocapitalize="none" autocomplete="username"  class="input100 textinput textInput" required="" id="id_username" placeholder="Username">
+						<!-- <input class="input100" {{form.username}}> -->
+						<!-- <p>{{form.username}}</p> -->
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<!-- <input class="input100" {{form.password}}> -->
+						<input type="password" name="password" autocomplete="current-password" class="textinput textInput input100" required="" id="id_password" placeholder="Password">
+						<!-- <p>{{form.password}}</p> -->
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+
+					
+					{% if form.errors %}
+					
+						<a class="txt1" href="/login">
+							Your username and password didn't match. Please try again.
+							
+						</a>
+					
+					{% endif %}
+					<a><br></a>
+					 
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Login
+							
+					
+							<input type="submit" value="">
+							<input type="hidden" name="next" value="{{ next }}">
+						</button>
+					</div>
+					<div class="text-center p-t-50">
+						<a class="txt1" href="/password_reset">
+							Forgot Password?
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src='{% static "rank_tool/login2/vendor/jquery/jquery-3.2.1.min.js"%}'></script>
+<!--===============================================================================================-->
+	<script src='{% static "rank_tool/login2/vendor/animsition/js/animsition.min.js"%}'></script>
+<!--===============================================================================================-->
+	<script src='{% static "rank_tool/login2/vendor/bootstrap/js/popper.js"%}'></script>
+	<script src='{% static "rank_tool/login2/vendor/bootstrap/js/bootstrap.min.js"%}'></script>
+<!--===============================================================================================-->
+	<script src='{% static "rank_tool/login2/vendor/select2/select2.min.js"%}'></script>
+<!--===============================================================================================-->
+	<script src='{% static "rank_tool/login2/vendor/daterangepicker/moment.min.js"%}'></script>
+	<script src='{% static "rank_tool/login2/vendor/daterangepicker/daterangepicker.js"%}'></script>
+<!--===============================================================================================-->
+	<script src='{% static "rank_tool/login2/vendor/countdowntime/countdowntime.js"%}'></script>
+<!--===============================================================================================-->
+	<script src='{% static "rank_tool/login2/js/main.js"%}'></script>
+
+</body>
+</html>

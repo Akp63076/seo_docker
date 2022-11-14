@@ -282,3 +282,5 @@ __pycache__
 ranking/.gitignore
 
 /ranking/script/database.inidatabase.ini
+upload/
+warning.log

@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -25,8 +26,7 @@ def index(request):
 
 #route("/start",methods=['POST'])
 def longtask(request):
-    if request.method == 'POST'and  request.is_ajax:
-       
+    if request.method == 'POST':#and  request.is_ajax:        
         # form = Myform(request.POST)
         print(request)
         logger.info(request)
@@ -39,7 +39,7 @@ def longtask(request):
         logger.info(Link,email,Range)
         
         task = sendRedshiftEmail.apply_async(args=[Link,email,Range])
-        request.session['task_id'] =task.id
+        request.session['task_id'] =task.id        
         return JsonResponse({'task_id':task.id},status=202)
 
 

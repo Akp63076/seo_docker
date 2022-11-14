@@ -1,0 +1,394 @@
+{
+    "general": {
+        "search_engine": "google",
+        "query": "vyapam cg",
+        "results_cnt": 1950000,
+        "search_time": 0.32,
+        "language": "en",
+        "mobile": false,
+        "basic_view": false,
+        "search_type": "text",
+        "page_title": "vyapam cg - Google Search",
+        "code_version": "1.26",
+        "timestamp": "2022-09-15T07:10:24.874Z"
+    },
+    "input": {
+        "original_url": "https://www.google.com/search?q=vyapam%20cg&lum_json=1",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:100.0) Gecko/20100101 Firefox/100.0",
+        "request_id": "c_a4a3b5b0-in7uvyaf55"
+    },
+    "organic": [
+        {
+            "link": "https://vyapam.cgstate.gov.in/",
+            "display_link": "https://vyapam.cgstate.gov.in",
+            "title": "CG Vyapam - CG Government",
+            "rank": 1,
+            "global_rank": 1
+        },
+        {
+            "link": "https://cgvyapam.org/",
+            "display_link": "https://cgvyapam.org",
+            "title": "CG VYAPAM: CG GOVERNMENT JOB",
+            "description": "The official website of Chhattisgarh Professional Examination Board is vyapam.cgstate.gov.in. We do not claim to be any government body and we are just a ...",
+            "translate_link": "https://translate.google.com/translate?hl=en&sl=hi&u=https://cgvyapam.org/&prev=search&pto=aue",
+            "extensions": [
+                {
+                    "type": "site_link",
+                    "link": "https://cgvyapam.org/van-rakshak-2021/",
+                    "text": "CG \u0935\u0928 \u0935\u093f\u092d\u093e\u0917 \u092d\u0930\u094d\u0924\u0940 2021...",
+                    "rank": 1
+                },
+                {
+                    "type": "site_link",
+                    "link": "https://cgvyapam.org/wrse22/",
+                    "text": "\u0909\u092a\u0905\u092d\u093f\u092f\u0902\u0924\u093e (\u0938\u093f\u0935\u093f\u0932) \u092d\u0930\u094d\u0924\u0940...",
+                    "rank": 2
+                },
+                {
+                    "type": "site_link",
+                    "link": "https://cgvyapam.org/author/admin/",
+                    "text": "\u090f\u0921\u092e\u093f\u0928",
+                    "rank": 3
+                }
+            ],
+            "rank": 2,
+            "global_rank": 2
+        },
+        {
+            "link": "https://sarkariprep.in/cg-vyapam-recruitment/",
+            "display_link": "https://sarkariprep.in \u203a cg-vyapam-recruitment",
+            "title": "Cg Vyapam Recruitment 2022 | \u091b\u0924\u094d\u0924\u0940\u0938\u0917\u0922\u093c \u0935\u094d\u092f\u093e\u092a\u092e \u092e\u0947\u0902 15000 \u092a\u0926\u094b\u0902 ...",
+            "description": "Cg Vyapam Recruitment 2022 | \u091b\u0924\u094d\u0924\u0940\u0938\u0917\u0922\u093c \u0935\u094d\u092f\u093e\u092a\u092e \u092e\u0947\u0902 15000 \u092a\u0926\u094b\u0902 \u092a\u0930 \u0938\u0940\u0927\u0940 \u092d\u0930\u094d\u0924\u0940. Rudrama Last Updated : Wednesday 14 - 09 - 2022 | ...",
+            "rank": 3,
+            "global_rank": 3
+        },
+        {
+            "link": "https://cgvyapamjob.in/cgvyapam-vyapam-cgstate-gov-in.html",
+            "display_link": "https://cgvyapamjob.in \u203a CGVYAPAM",
+            "title": "Cg.vyapam.cgstate.gov.in 2022, Cg Free Job Alert",
+            "description": "CG VYAPAM New Vacancy 2022 ; Post Date, 20-08-2022 ; Online Start, 20-08-2022 ; Closing Date for online application, 05-09-2022 up to 11:59 PM ; Application mode ...",
+            "extensions": [
+                {
+                    "type": "fact",
+                    "key": "Closing Date for online application",
+                    "value": [
+                        {
+                            "text": "05-09-2022 ..."
+                        }
+                    ],
+                    "rank": 1
+                },
+                {
+                    "type": "fact",
+                    "key": "Application mode",
+                    "value": [
+                        {
+                            "text": "Online"
+                        }
+                    ],
+                    "rank": 2
+                },
+                {
+                    "type": "fact",
+                    "key": "Job Category",
+                    "value": [
+                        {
+                            "text": "Govt Job"
+                        }
+                    ],
+                    "rank": 3
+                },
+                {
+                    "type": "fact",
+                    "key": "Post Date",
+                    "value": [
+                        {
+                            "text": "20-08-2022"
+                        }
+                    ],
+                    "rank": 4
+                },
+                {
+                    "type": "site_link",
+                    "link": "https://cgvyapamjob.in/result",
+                    "text": "Cg Vyapam Job",
+                    "rank": 5
+                },
+                {
+                    "type": "site_link",
+                    "link": "https://cgvyapamjob.in/cg-anganwadi-supervisor-vacancy-mbs-2022-result-download.html",
+                    "text": "CG Anganwadi Supervisor...",
+                    "rank": 6
+                },
+                {
+                    "type": "site_link",
+                    "link": "https://cgvyapamjob.in/cg-bed-counselling-2022.html",
+                    "text": "CG Bed Counselling 2022",
+                    "rank": 7
+                }
+            ],
+            "rank": 4,
+            "global_rank": 7
+        },
+        {
+            "link": "https://timesofindia.indiatimes.com/topic/cg-vyapam",
+            "display_link": "https://timesofindia.indiatimes.com \u203a topic \u203a cg-vyapam",
+            "title": "Latest News, Videos and Photos of Cg Vyapam - Times of India",
+            "description": "cg vyapam News: Latest and Breaking News on cg vyapam. Explore cg vyapam profile at Times of India for photos, videos and latest news of cg vyapam ...",
+            "extensions": [
+                {
+                    "inline": true,
+                    "type": "text",
+                    "text": "26 results",
+                    "rank": 1
+                }
+            ],
+            "rank": 5,
+            "global_rank": 8
+        },
+        {
+            "link": "https://www.bgsbuniversity.org/cg-tet-admit-card-2022/",
+            "display_link": "https://www.bgsbuniversity.org \u203a Admit Card",
+            "title": "CG TET Admit Card 2022 \u0932\u093f\u0902\u0915 \u091c\u093e\u0930\u0940 vyapam.cgstate.gov.in ...",
+            "description": "CG Vyapam will be conducting the CG TET Examination on 18th September 2022. As per the latest news, CGPEB will be releasing the CG TET Admit ...",
+            "extensions": [
+                {
+                    "inline": true,
+                    "type": "text",
+                    "text": "4 hours ago",
+                    "rank": 1
+                }
+            ],
+            "rank": 6,
+            "global_rank": 9
+        },
+        {
+            "link": "https://www.cgvyapam.org.in/",
+            "display_link": "https://www.cgvyapam.org.in",
+            "title": "cg \u0935\u094d\u092f\u093e\u092a\u092e \u092c\u094b\u0930\u094d\u0921-\u091b\u0924\u094d\u0924\u0940\u0938\u0917\u0922\u093c \u092a\u094d\u0930\u094b\u092b\u0947\u0936\u0928\u0932 \u090f\u0917\u094d\u091c\u093e\u092e\u093f\u0928\u0947\u0936\u0928 \u092c\u094b\u0930\u094d\u0921 (cgpeb)",
+            "description": "CG Vyapam is a short name of the Chhattisgarh Professional Examination Board which is also known as CGPEB. This is an official Board of State Government of ...",
+            "rank": 7,
+            "global_rank": 10
+        },
+        {
+            "link": "https://www.fresherslive.com/competitive-exams/cg-vyapam-admit-card-110208",
+            "display_link": "https://www.fresherslive.com \u203a Exams \u203a Admit Card",
+            "title": "CG Vyapam Admit Card 2022 Out @ vyapam.cgstate.gov.in",
+            "description": "CG Vyapam Admit Card 2022: The Chhattisgarh Professional Examination Board Vyapam hasreleasedthe CG Vyapam Admit Card 2022 of the Written ...",
+            "extensions": [
+                {
+                    "inline": true,
+                    "type": "text",
+                    "text": "Sep 3, 2022",
+                    "rank": 1
+                }
+            ],
+            "rank": 8,
+            "global_rank": 11
+        },
+        {
+            "link": "https://www.sctevtorissa.in/cg-tet-admit-card-link-open/",
+            "display_link": "https://www.sctevtorissa.in \u203a Admit Card",
+            "title": "CG TET Admit Card 2022 \u0932\u093f\u0902\u0915 \u091c\u093e\u0930\u0940 -CGTET Exam date roll no",
+            "description": "CG Vyapam TET 2022 Admit Card Call Letter Roll NO. Chhatisgarh Vyapam Teacher Eligibility Test ...",
+            "extensions": [
+                {
+                    "inline": true,
+                    "type": "text",
+                    "text": "Useful Links For CG Vyapam TET Admit Card September 2022",
+                    "rank": 1
+                },
+                {
+                    "type": "fact",
+                    "key": "CG TET Admit Card",
+                    "value": [
+                        {
+                            "text": "13 September 2022 ..."
+                        }
+                    ],
+                    "rank": 2
+                },
+                {
+                    "type": "fact",
+                    "key": "Name of Exam",
+                    "value": [
+                        {
+                            "text": "Chhattisgarh Teacher Eligibility ..."
+                        }
+                    ],
+                    "rank": 3
+                },
+                {
+                    "type": "fact",
+                    "key": "CG TET Exam Date",
+                    "value": [
+                        {
+                            "text": "18th September 2022"
+                        }
+                    ],
+                    "rank": 4
+                },
+                {
+                    "type": "fact",
+                    "key": "Type of Exam",
+                    "value": [
+                        {
+                            "text": "Teacher Eligibility Test"
+                        }
+                    ],
+                    "rank": 5
+                }
+            ],
+            "rank": 9,
+            "global_rank": 12
+        }
+    ],
+    "top_stories": {
+        "items": [
+            {
+                "title": "CG TET Admit Card 2022 released on vyapam.cgstate.gov.in, direct link here",
+                "link": "https://www.timesnownews.com/jobs/cg-tet-admit-card-2022-released-on-vyapam-cgstate-gov-in-direct-link-here-article-94181820",
+                "source": "Times Now",
+                "source_logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAAQCAMAAACm24RqAAAAvVBMVEX///+1ICWDjr2wAAAiQJnPgoQTN5azEBe0GyCyAAwALpMWOZa1HiPNfn8AKpG9PEDv8fh1g7nht7i+RUj69PQAMZT05OTWl5lcb69pebQQQZ736+ttfba0Fhyep8zSiYsATaHEYWPg4+/x2tuRnMY8VaO6MTa3JyzDV1nrzMwAJpGTDToARp7Axt67hJGosdGUHUMAHo7L0ORMYKcvSp7P2+qzutaXrNBCb7FujsDMdXfbo6QAAImZLE1dgbmBxj6rAAAC5ElEQVRIic2WC2/aMBDHj9jYGJtASMxzIYPwSkbXllK2lW3f/2Pt/EigqzShokn9S+Dc5UR+3PnOAfjoKjqXajbNx33V8v6LoObZbna+Bn8r6t2/8QUwe+OaXQPYJ90LcbFec867a8FribSLvk1cxcQp54R0t3PUVhHywBhro5iRNutj75OxdOhk72gYhS6mXS3h+CrA7aXFCQBpdTGxpOGleAJTwk/noLjFO7Ux6D5M6MrkQ1JKZRREkoY9/KLheDkzWgYMLQmjURBgCLMhVAbB+DpAbtMC03WMUgQSCwiZ8ICkQArChzDsxk7IDIM4JUKk6zkUXybyk/mlfUlpuwdQOkC5OD/kSRrAACBi9ID2ikqEW46uAhQtFMckmbXhAaeYp9TyiQxyB5jZSJRqxTAkyqhF+jUg3IcGsOcAJeLAs5FhbxvAEuCuzZZoz7Q+AtDrMmgypVIEdPlygMULOhTaaQywcYBN4qXUBreukyDklwU0Gz7SZ0CGjm96Mpmw7wCL0ALuAdrlAjAmLHvwXN4AmGNh++hRZAod4gCTqZdQpA/JIM/zoigyD2jr9VTWgPoe4MfuM2pXAeoIYLTCArsl0DcBigReeANJ+kQ4wLzvlSpF4uxkrwvIXYmXj6Z27F+AUuM2mMHi5x6OGGz34fsBU+zujegA5ssDZtgVVko1tmt/jf/AZ5CFuK0Wr0p8nOx2u8nvGrB9ZwKWYQC9BezD2wAbBHO2Mb1yBvSDUWHAiaRW5FQD0tL2bdUkkX8A9jUctQV0zXSgzCw4fG4DVCTH20PRqAD7zcxp3cLwl7lVJ0mwxJEFpNLAVGPG9KnX4mDnoLRke+z1O1zpjSU2zsTOazP1DGCteZrOB5Ux2OKgpgdEMHN6haJ+UGv2NEaNRoeQekB6MLdRGCavBXSFE9XZZi+8hWPEO62vFhpE8BQnouLuqHstPOq0Pd6cmD/qtJTmSlbLdV1cvHoveI/+88vCR9cfruFT/Cnc1RkAAAAASUVORK5CYII=",
+                "date": "1 day ago",
+                "image": "data:image/jpeg;base64,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",
+                "image_base64": "data:image/jpeg;base64,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",
+                "rank": 1,
+                "global_rank": 4
+            },
+            {
+                "title": "CG Chhattisgarh TET 2022 Admit Card to Release TODAY at \nvyapam.cgstate.gov.in, Exam on THIS DATE- Check tim...",
+                "link": "https://zeenews.india.com/india/cg-chhattisgarh-tet-2022-admit-card-to-release-today-at-vyapam-cgstate-gov-in-exam-on-this-date-check-time-and-more-here-2509291.html",
+                "source": "Zee News",
+                "source_logo": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIABAAoAMBEQACEQEDEQH/xAAZAAEAAgMAAAAAAAAAAAAAAAAAAwYEBQf/xAAmEAABBAEEAQMFAAAAAAAAAAABAAIDEQQFBiExEkFRYRMVIiNS/8QAGgEBAAIDAQAAAAAAAAAAAAAAAAIDAQUGBP/EACMRAQABAwQDAAMBAAAAAAAAAAABAgMEERIhMQVBwVGBoRP/2gAMAwEAAhEDEQA/ALTvHeOrN1mfSdA8YjjN/bLTS5xqzXlxQHwT37LzXLtW7bS6DA8djzZi9k++u/jN2bujVJJpsXcbWNaxnk3KPi2iO2uANdWeuK5WbVyuZ0qhT5HCx6YivGnv1z/FvfquCz6hfksaIr83HgNoEmz10CVfuhqYs3J00jtNBlwZEkjIZA90Zp9eh9lnVGaaqeZhMiIgICAgICAgICAgICAgICDme89oav8AeMrU9DjbkR5jamiphc26sU/gg0D7ry3bVW7dT7dF47yGP/jTZyONvU8/Pw2Gytv623KkzdxPDWFtMx3Bhc539EtHFD5s3z0pWqK9dalHksrFmmLeNH75+rbHo+BHYZjNDSWkts1bSCOOvQK/bDUzeuT3KbGwMbFcHQR+JEYjH5E00dAWkREI1XKqu5ZKygICAgICAgICAgICAgICAg//2Q==",
+                "date": "2 days ago",
+                "image": "data:image/jpeg;base64,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",
+                "image_base64": "data:image/jpeg;base64,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",
+                "rank": 2,
+                "global_rank": 5
+            },
+            {
+                "title": "Chhattisgarh, CG TET Exam 2022 Admit Card likely soon on \nvyapam.cgstate.gov.in",
+                "link": "https://www.timesnownews.com/jobs/chhattisgarh-cg-tet-exam-2022-admit-card-likely-soon-on-vyapam-cgstate-gov-in-article-94165453",
+                "source": "Times Now",
+                "source_logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAAQCAMAAACm24RqAAAAvVBMVEX///+1ICWDjr2wAAAiQJnPgoQTN5azEBe0GyCyAAwALpMWOZa1HiPNfn8AKpG9PEDv8fh1g7nht7i+RUj69PQAMZT05OTWl5lcb69pebQQQZ736+ttfba0Fhyep8zSiYsATaHEYWPg4+/x2tuRnMY8VaO6MTa3JyzDV1nrzMwAJpGTDToARp7Axt67hJGosdGUHUMAHo7L0ORMYKcvSp7P2+qzutaXrNBCb7FujsDMdXfbo6QAAImZLE1dgbmBxj6rAAAC5ElEQVRIic2WC2/aMBDHj9jYGJtASMxzIYPwSkbXllK2lW3f/2Pt/EigqzShokn9S+Dc5UR+3PnOAfjoKjqXajbNx33V8v6LoObZbna+Bn8r6t2/8QUwe+OaXQPYJ90LcbFec867a8FribSLvk1cxcQp54R0t3PUVhHywBhro5iRNutj75OxdOhk72gYhS6mXS3h+CrA7aXFCQBpdTGxpOGleAJTwk/noLjFO7Ux6D5M6MrkQ1JKZRREkoY9/KLheDkzWgYMLQmjURBgCLMhVAbB+DpAbtMC03WMUgQSCwiZ8ICkQArChzDsxk7IDIM4JUKk6zkUXybyk/mlfUlpuwdQOkC5OD/kSRrAACBi9ID2ikqEW46uAhQtFMckmbXhAaeYp9TyiQxyB5jZSJRqxTAkyqhF+jUg3IcGsOcAJeLAs5FhbxvAEuCuzZZoz7Q+AtDrMmgypVIEdPlygMULOhTaaQywcYBN4qXUBreukyDklwU0Gz7SZ0CGjm96Mpmw7wCL0ALuAdrlAjAmLHvwXN4AmGNh++hRZAod4gCTqZdQpA/JIM/zoigyD2jr9VTWgPoe4MfuM2pXAeoIYLTCArsl0DcBigReeANJ+kQ4wLzvlSpF4uxkrwvIXYmXj6Z27F+AUuM2mMHi5x6OGGz34fsBU+zujegA5ssDZtgVVko1tmt/jf/AZ5CFuK0Wr0p8nOx2u8nvGrB9ZwKWYQC9BezD2wAbBHO2Mb1yBvSDUWHAiaRW5FQD0tL2bdUkkX8A9jUctQV0zXSgzCw4fG4DVCTH20PRqAD7zcxp3cLwl7lVJ0mwxJEFpNLAVGPG9KnX4mDnoLRke+z1O1zpjSU2zsTOazP1DGCteZrOB5Ux2OKgpgdEMHN6haJ+UGv2NEaNRoeQekB6MLdRGCavBXSFE9XZZi+8hWPEO62vFhpE8BQnouLuqHstPOq0Pd6cmD/qtJTmSlbLdV1cvHoveI/+88vCR9cfruFT/Cnc1RkAAAAASUVORK5CYII=",
+                "date": "2 days ago",
+                "image": "data:image/jpeg;base64,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",
+                "image_base64": "data:image/jpeg;base64,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",
+                "rank": 3,
+                "global_rank": 6
+            }
+        ]
+    },
+    "pagination": {
+        "current_page": 1,
+        "next_page_link": "https://www.google.com/search?q=vyapam+cg&gl=us&hl=en&ei=388iY9-uLvyn5NoPrI6cyAM&start=10&sa=N&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ8NMDegQIARBM",
+        "next_page_start": 10,
+        "next_page": 2,
+        "pages": [
+            {
+                "page": 2,
+                "link": "https://www.google.com/search?q=vyapam+cg&gl=us&hl=en&ei=388iY9-uLvyn5NoPrI6cyAM&start=10&sa=N&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ8tMDegQIARA6",
+                "start": 10
+            },
+            {
+                "page": 3,
+                "link": "https://www.google.com/search?q=vyapam+cg&gl=us&hl=en&ei=388iY9-uLvyn5NoPrI6cyAM&start=20&sa=N&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ8tMDegQIARA8",
+                "start": 20
+            },
+            {
+                "page": 4,
+                "link": "https://www.google.com/search?q=vyapam+cg&gl=us&hl=en&ei=388iY9-uLvyn5NoPrI6cyAM&start=30&sa=N&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ8tMDegQIARA-",
+                "start": 30
+            },
+            {
+                "page": 5,
+                "link": "https://www.google.com/search?q=vyapam+cg&gl=us&hl=en&ei=388iY9-uLvyn5NoPrI6cyAM&start=40&sa=N&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ8tMDegQIARBA",
+                "start": 40
+            },
+            {
+                "page": 6,
+                "link": "https://www.google.com/search?q=vyapam+cg&gl=us&hl=en&ei=388iY9-uLvyn5NoPrI6cyAM&start=50&sa=N&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ8tMDegQIARBC",
+                "start": 50
+            },
+            {
+                "page": 7,
+                "link": "https://www.google.com/search?q=vyapam+cg&gl=us&hl=en&ei=388iY9-uLvyn5NoPrI6cyAM&start=60&sa=N&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ8tMDegQIARBE",
+                "start": 60
+            },
+            {
+                "page": 8,
+                "link": "https://www.google.com/search?q=vyapam+cg&gl=us&hl=en&ei=388iY9-uLvyn5NoPrI6cyAM&start=70&sa=N&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ8tMDegQIARBG",
+                "start": 70
+            },
+            {
+                "page": 9,
+                "link": "https://www.google.com/search?q=vyapam+cg&gl=us&hl=en&ei=388iY9-uLvyn5NoPrI6cyAM&start=80&sa=N&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ8tMDegQIARBI",
+                "start": 80
+            },
+            {
+                "page": 10,
+                "link": "https://www.google.com/search?q=vyapam+cg&gl=us&hl=en&ei=388iY9-uLvyn5NoPrI6cyAM&start=90&sa=N&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ8tMDegQIARBK",
+                "start": 90
+            }
+        ]
+    },
+    "related": [
+        {
+            "list_group": false,
+            "link": "https://www.google.com/search?gl=us&hl=en&q=CG+PSC&sa=X&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ1QJ6BAgoEAE",
+            "text": "cg psc",
+            "rank": 1,
+            "global_rank": 13
+        },
+        {
+            "list_group": false,
+            "link": "https://www.google.com/search?gl=us&hl=en&q=Www+Vyapam+nic+in+2022&sa=X&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ1QJ6BAgxEAE",
+            "text": "www.vyapam.nic.in 2022",
+            "rank": 2,
+            "global_rank": 14
+        },
+        {
+            "list_group": false,
+            "link": "https://www.google.com/search?gl=us&hl=en&q=Vyapam+cgstate+Govt+in+2022-23&sa=X&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ1QJ6BAgyEAE",
+            "text": "vyapam cgstate govt in 2022-23",
+            "rank": 3,
+            "global_rank": 15
+        },
+        {
+            "list_group": false,
+            "link": "https://www.google.com/search?gl=us&hl=en&q=Www+cgvyapam+cgstate+gov+in+2022+Syllabus&sa=X&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ1QJ6BAg0EAE",
+            "text": "www.cgvyapam.cgstate.gov.in 2022 syllabus",
+            "rank": 4,
+            "global_rank": 16
+        },
+        {
+            "list_group": false,
+            "link": "https://www.google.com/search?gl=us&hl=en&q=CG+Vyapam+Result&sa=X&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ1QJ6BAg1EAE",
+            "text": "cg vyapam result",
+            "rank": 5,
+            "global_rank": 17
+        },
+        {
+            "list_group": false,
+            "link": "https://www.google.com/search?gl=us&hl=en&q=CG+Vyapam+Result+2022&sa=X&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ1QJ6BAg2EAE",
+            "text": "cg vyapam result 2022",
+            "rank": 6,
+            "global_rank": 18
+        },
+        {
+            "list_group": false,
+            "link": "https://www.google.com/search?gl=us&hl=en&q=CG+Vyapam+Online+Form&sa=X&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ1QJ6BAg3EAE",
+            "text": "cg vyapam online form",
+            "rank": 7,
+            "global_rank": 19
+        },
+        {
+            "list_group": false,
+            "link": "https://www.google.com/search?gl=us&hl=en&q=ADEO+Vyapam+cgstate+gov+in&sa=X&ved=2ahUKEwifmqCDn5b6AhX8E1kFHSwHBzkQ1QJ6BAg5EAE",
+            "text": "adeo vyapam cgstate gov in",
+            "rank": 8,
+            "global_rank": 20
+        }
+    ]
+}

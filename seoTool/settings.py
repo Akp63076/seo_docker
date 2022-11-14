@@ -25,9 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "q0g%b^s^fx4sj@qpd876-b4*$bj#zz0uthtnl#w+ew4m$-37eh"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["165.232.184.253", "127.0.0.1", "sacp.cdboards.in"]
+
 
 
 # Application definition
@@ -45,6 +46,11 @@ INSTALLED_APPS = [
     "web_analytics.apps.WebAnalyticsConfig",
     "ranking.apps.RankingConfig",
     "users.apps.UsersConfig",
+    'dashboard',
+    'rank_tool',
+    'import_export',
+    'django_celery_beat',
+    'django_celery_results',
     "crispy_forms",
     "allauth",
     "allauth.account",
@@ -99,6 +105,7 @@ DATABASES = {
         "HOST": "165.232.184.253",
         "PORT": "5432",
     }
+    
 }
 
 
@@ -154,8 +161,11 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 # GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {'approval_prompt': 'force'}
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = (
     "734398090554-u1v8jio864e6aclaoe210vjl2i9rvhu7.apps.googleusercontent.com"
+    #"56839959209-5huoubkun5t6j34sp8v79dgo46q8pj5a.apps.googleusercontent.com"
 )
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "PM3SjP2_DnXM1lvxQJkFYEY3"
+#"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",
+
 # set django-allauth as the authentication backend
 SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS = ["collegedunia.com",'collegedunia.in']
 SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_EMAILS = [
@@ -199,8 +209,8 @@ SOCIALACCOUNT_PROVIDERS = {
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "rohini.mishra@collegedunia.com"
-EMAIL_HOST_PASSWORD = "Rm@123456"
+EMAIL_HOST_USER = "aashish.pandey@collegedunia.com" #"rohini.mishra@collegedunia.com"
+EMAIL_HOST_PASSWORD = "Ap@123456"
 EMAIL_PORT = 587
 
 BROKER_URL = "redis://localhost:6379"
@@ -218,20 +228,37 @@ import os
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    'formatters': {
+        'file': {
+            'format': '%(asctime)s %(pathname)s %(lineno)d  %(name)-5s %(levelname)-5s %(message)s'
+               },
+        },
     "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
+        # "console": {
+        #     "class": "logging.StreamHandler",
+        # },
+         'file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename':'warning.log',
+            
         },
     },
-    "root": {
-        "handlers": ["console"],
-        "level": "WARNING",
-    },
+    # "root": {
+    #     "handlers": ["console"],
+    #     "level": "WARNING",
+    # },
     "loggers": {
-        "django": {
-            "handlers": ["console"],
-            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
-            "propagate": False,
+        # "django": {
+        #     "handlers": ["console"],
+        #     "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+        #     "propagate": False,
+        # },
+        'django': {
+            'handlers': ['file'], #notice how file variable is called in handler which has been defined above
+            'level': 'WARNING',
+            'propagate': True,
         },
     },
 }
