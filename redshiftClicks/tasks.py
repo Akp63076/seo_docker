@@ -82,7 +82,7 @@ def sendRedshiftEmail(url, recipient, timeRange):
     email_from = settings.EMAIL_HOST_USER
     subject = "Redshift Data for query url : {0}".format(url)
     recipient_list = [recipient]
-    #recipient_list.append("datateam.main@gmail.com")    
+    recipient_list.append("datateam.main@gmail.com")    
     print("sending email")
     email = EmailMessage(subject, message, email_from, recipient_list)
     email.content_subtype = "html"

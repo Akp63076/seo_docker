@@ -148,7 +148,7 @@ def send_mail(path,filenames,folder,freq):
                             'nishit.kumar@collegedunia.com','krati.rathore@collegedunia.com']
     else:
         receiver_email = ['binoy.p@collegedunia.com','rohini.mishra@collegedunia.com','deepika.kunwar@collegedunia.com',\
-                            'nishit.kumar@collegedunia.com']
+                            'nishit.kumar@collegedunia.com','aashish.pandey@collegedunia.com']
 
     message = MIMEMultipart("alternative")
     message["Subject"] = "Google Ranking of Keywords"

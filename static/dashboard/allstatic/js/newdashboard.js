@@ -4,7 +4,8 @@ $(function() {
       autoUpdateInput: false,
       locale: {
           cancelLabel: 'Clear'
-      }
+      },
+      autoApply: true
   }); 
   $('input[name="daterange1"]').on('apply.daterangepicker', function(ev, picker) {
       $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
@@ -20,7 +21,8 @@ $(function() {
       autoUpdateInput: false,
       locale: {
           cancelLabel: 'Clear'
-      }
+      },
+      autoApply: true
   });
   $('input[name="daterange2"]').on('apply.daterangepicker', function(ev, picker) {
       $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
@@ -119,14 +121,46 @@ $(document).ready(function () {
   });
 
   // filters
-  function showfilters() {
-var x = document.getElementById("hiddenfilters");
-if (x.style.display === "none") {
-  x.style.display = "block";
-} else {
-  x.style.display = "none";
+
+
+// function showfilters() {
+// var x = document.getElementById("hiddenfilters");
+// if (x.style.display === "none") {
+//   x.style.display = "block";
+//   sessionStorage.setItem('clicked', true);
+// }
+//    else {
+//   x.style.display = "none";
+//   sessionStorage.setItem('clicked', false);
+// }
+// }
+
+
+// window.onload = function () {
+  
+//   var data = sessionStorage.getItem('clicked');
+//   if (data == 'true') {
+//     x.style.display = "block";
+//   }
+// };
+function showfilters() {
+  document.getElementById('hiddenfilters').style.display = "block";
+  let searchParams = new URLSearchParams(window.location.search);     
+  localStorage.setItem('clicked', true);      
 }
+
+function closeFilters(){
+  document.getElementById('hiddenfilters').style.display = "none";
+  localStorage.removeItem('clicked');
 }
+
+// window.onload = function() {
+//   var show = localStorage.getItem('clicked');
+//   console.log(show)
+//   if(clicked === true){
+//        document.getElementById('hiddenfilters').style.display = "block";
+//   }
+// }
 
 //search filter  
 function keywordSearch() {
@@ -210,6 +244,56 @@ if (window.history.replaceState) {
     location.href = url;
 }
 }
+function graphDateRange(id){
+  var x = document.getElementById(id);
+      let searchParams = new URLSearchParams(window.location.search);
+         if (searchParams.has("date_range") === true){
+              searchParams.delete("date_range");
+              
+         }
+         searchParams.append("date_range", x.getAttribute('data-value'));
+       
+     
+         if (window.history.replaceState) {
+             const url = window.location.protocol 
+                         + "//" + window.location.host 
+                         + window.location.pathname 
+                         + "?" 
+                         + searchParams.toString();
+     
+             window.history.replaceState({
+                 path: url
+             }, "", url)
+             location.href = url;
+            }   
+}
+function closeGraph(){
+  let searchParams = new URLSearchParams(window.location.search);
+         if (searchParams.has("key") === true){
+          searchParams.delete("key");
+          if(searchParams.has("id") === true){
+            searchParams.delete("id");
+          }
+          
+            if (window.history.replaceState) {
+              const url = window.location.protocol 
+                          + "//" + window.location.host 
+                          + window.location.pathname 
+                          + "?" 
+                          + searchParams.toString();
+
+              window.history.replaceState({
+                  path: url
+              }, "", url)
+              location.href = url;
+            }
+        }
+}
+function getOption() {
+  selectElement = document.querySelector('#time-range');
+  output = selectElement.options[selectElement.selectedIndex].value;
+  document.querySelector('.output').textContent = output;
+}
 function frequencyTwo() {
 var x = document.getElementById("timerange2");
 
@@ -265,25 +349,94 @@ var x = document.getElementById(id).checked;
 
 let searchParams = new URLSearchParams(window.location.search);
 if(x == false){
-searchParams.delete("category1");
-
+  let value = searchParams.get("category1");
+  value = value.split(',');
+  let index = value.indexOf(y.value); 
+  if(index != -1){
+    value.splice(index,1);
+  }
+  value = value.join(',');
+  searchParams.set('category1', value);
 }
 else{
-searchParams.append("category1", y.value);
+if(searchParams.has("category1")){
+  let value = searchParams.get("category1");
+  searchParams.set('category1', `${value},${y.value}`)
+} else{
+  searchParams.append('category1', `${y.value}`)
+}
 }
 if (window.history.replaceState) {
    const url = window.location.protocol 
                + "//" + window.location.host 
                + window.location.pathname 
                + "?" 
-               + searchParams.toString();
+               + searchParams.toString(); 
 
    window.history.replaceState({
        path: url
    }, "", url)
 
 }
+}  
+// keeps the checkbox checked 
+var i = new URLSearchParams(window.location.search);
+var types = i.get('category1');
+if(types){
+  types = types.split(",");
+  
+  document.querySelectorAll(".category1").forEach((elem)=>{
+    if(types.includes(elem.value)){
+        elem.setAttribute("checked", true)
+    }
+  })
 }
+
+
+var categorytwoValue = i.get('category2');
+if(categorytwoValue){
+  categorytwoValue = categorytwoValue.split(",");
+  
+  document.querySelectorAll(".category2").forEach((elem)=>{
+    if(categorytwoValue.includes(elem.value)){
+        elem.setAttribute("checked", true)
+    }
+  })
+}
+
+var competitorValue = i.get('competitor');
+if(competitorValue){
+  competitorValue = competitorValue.split(",");
+  
+  document.querySelectorAll(".competitor").forEach((elem)=>{
+    if(competitorValue.includes(elem.value)){
+        elem.setAttribute("checked", true)
+    }
+  })
+}
+
+var tagsValue = i.get('tags');
+if(tagsValue){
+  document.querySelector('#pt_filter_tags').value = tagsValue;
+}
+var trackingUrlValue = i.get('tracking_url');
+if(trackingUrlValue){
+  document.querySelector('#pt_filter_trackingUrl').value = trackingUrlValue;
+}
+
+var svLowValue = i.get('low');
+if(svLowValue){
+  document.querySelector('#pt_filter_svlow').value = svLowValue;
+}
+var svHighValue = i.get('high');
+if(svHighValue){
+  document.querySelector('#pt_filter_svhigh').value = svHighValue;
+}
+var DateRangeTwoValue = i.get('daterange2');
+if(DateRangeTwoValue){
+  document.querySelector('#pt_filter_daterange2').value = DateRangeTwoValue;
+}
+ 
 //upper table  apply button for checkbox filter
 function applyfilters(){
 var url = window.location.href
@@ -295,14 +448,27 @@ var y = document.getElementById(id);
 var x = document.getElementById(id).checked; 
 
 let searchParams = new URLSearchParams(window.location.search);
-if (searchParams.has("category2") === true){
-  searchParams.delete("category2");
-}
+// if (searchParams.has("category2") === true){
+//   searchParams.delete("category2");
+// }
 if(x == false){
-searchParams.delete("category2");
+  let value = searchParams.get("category2");
+  value = value.split(',');
+  let index = value.indexOf(y.value); 
+  if(index != -1){
+    value.splice(index,1);
+  }
+  value = value.join(',');
+  searchParams.set('category2', value);
 }
 else{
-  searchParams.append("category2", y.value);
+// searchParams.append("category1", y.value);
+if(searchParams.has("category2")){
+  let value = searchParams.get("category2");
+  searchParams.set('category2', `${value},${y.value}`)
+} else{
+  searchParams.append('category2', `${y.value}`)
+}
 }
  if (window.history.replaceState) {
      const url = window.location.protocol 
@@ -321,14 +487,27 @@ var y = document.getElementById(id);
 var x = document.getElementById(id).checked; 
 
 let searchParams = new URLSearchParams(window.location.search);
-if (searchParams.has("competitor") === true){
-  searchParams.delete("competitor");
-}
+// if (searchParams.has("competitor") === true){
+//   searchParams.delete("competitor");
+// }
 if(x == false){
-searchParams.delete("competitor");
+  let value = searchParams.get("competitor");
+  value = value.split(',');
+  let index = value.indexOf(y.value); 
+  if(index != -1){
+    value.splice(index,1);
+  }
+  value = value.join(',');
+  searchParams.set('competitor', value);
 }
 else{
-  searchParams.append("competitor", y.value);
+// searchParams.append("category1", y.value);
+if(searchParams.has("competitor")){
+  let value = searchParams.get("competitor");
+  searchParams.set('competitor', `${value},${y.value}`)
+} else{
+  searchParams.append('competitor', `${y.value}`)
+}
 }
  if (window.history.replaceState) {
      const url = window.location.protocol 
@@ -361,6 +540,7 @@ if (searchParams.has("tracking_url") === true){
 }
 searchParams.append("tracking_url", b.value);
 
+
 if (searchParams.has("low") === true){
   searchParams.delete("low");
 }
@@ -379,7 +559,7 @@ searchParams.append("daterange2", e.value);
 if (window.history.replaceState) {
   const url = window.location.protocol 
               + "//" + window.location.host 
-              + window.location.pathname 
+              + window.location.pathname  
               + "?" 
               + searchParams.toString();
 
@@ -435,25 +615,12 @@ var x = document.getElementById( id);
              location.href = url;
             }   
      }
-function removePage(){
-
-  let searchParams = new URLSearchParams(window.location.search);
-  if (searchParams.has("page") === true){
-       searchParams.delete("page");
-  } 
-  if (window.history.replaceState) {
-    const url = window.location.protocol 
-                + "//" + window.location.host 
-                + window.location.pathname 
-                + "?" 
-                + searchParams.toString();
-
-    window.history.replaceState({
-        path: url
-    }, "", url)
-    location.href = url;
-   }   
-  }
+     function removePage(){
+      let searchParams = new URLSearchParams(window.location.search);
+      if (searchParams.has("page") === true){
+           searchParams.delete("page");
+      } 
+      }
 // clear filters
 
 function clearFilters() {
@@ -481,27 +648,186 @@ function clearFilters() {
           location.href = url;
          }   
   }
-
-  function graphDateRange(id){
-    var x = document.getElementById(id);
-    let searchParams = new URLSearchParams(window.location.search);
-    if (searchParams.has("date_range") === true){
-         searchParams.delete("date_range");
-         
-    }
-    searchParams.append("date_range", x.getAttribute('data-value'));
+function clearCategory() {
+   let searchParams = new URLSearchParams(window.location.search);
   
+          searchParams.delete("category1");
 
-    if (window.history.replaceState) {
-        const url = window.location.protocol 
-                    + "//" + window.location.host 
-                    + window.location.pathname 
-                    + "?" 
-                    + searchParams.toString();
+      if (window.history.replaceState) {
+          const url = window.location.protocol 
+                      + "//" + window.location.host 
+                      + window.location.pathname 
+                      + "?" 
+                      + searchParams.toString();
+  
+          window.history.replaceState({
+              path: url
+          }, "", url)
+          location.href = url;
+         }   
+  }
+function cleardateRangeOne() {
+   let searchParams = new URLSearchParams(window.location.search);
+  
+          searchParams.delete("daterange1");
 
-        window.history.replaceState({
-            path: url
-        }, "", url)
-        location.href = url;
-       }   
+      if (window.history.replaceState) {
+          const url = window.location.protocol 
+                      + "//" + window.location.host 
+                      + window.location.pathname 
+                      + "?" 
+                      + searchParams.toString();
+  
+          window.history.replaceState({
+              path: url
+          }, "", url)
+          location.href = url;
+         }   
+  }
+// // check if filter applied
+
+  
+  $(document).ready(function(){
+    if ($("#appliedFilters").html().length > 0) {
+      $('#appliedFilterscontainer').show();
+    }       
+    else{
+      $('#appliedFilterscontainer').hide();
+    }     
+
+    if ($("#kpt-tags").html().length > 0) {
+      $('#kpt-appliedFiltersTags').show();
+    }       
+    else{
+      $('#kpt-appliedFiltersTags').hide();
+    }     
+
+    if ($("#kpt-url").html().length > 0) {
+      $('#kpt-appliedFiltersUrl').show();
+    }       
+    else{
+      $('#kpt-appliedFiltersUrl').hide();
+    }     
+
+    if ($("#kpt-sv").html().length > 0) {
+      $('#kpt-appliedFiltersSv').show();
+    }       
+    else{
+      $('#kpt-appliedFiltersSv').hide();
+    }     
+
+    if ($("#kpt-categoreis").html().length > 0) {
+      $('#kpt-appliedFiltersCategories').show();
+    }       
+    else{
+      $('#kpt-appliedFiltersCategories').hide();
+    }     
+
+    if ($("#kpt-competitor").html().length > 0) {
+      $('#kpt-appliedFiltersComp').show();
+    }       
+    else{
+      $('#kpt-appliedFiltersComp').hide();
+    }     
+
+    if ($("#kpt-daterange").html().length > 0) {
+      $('#kpt-appliedFiltersDate').show();
+    }       
+    else{
+      $('#kpt-appliedFiltersDate').hide();
+    }       
+
+    // document.querySelectorAll(".kpt-appliedFilters").forEach((elem)=>{
+    //   if (elem.innerHTML.length > 0){
+    //     $('.kpt-filter').show();
+    //   }
+    //   else{
+    //     $('.kpt-filter').hide();
+    //   }
+    // })
+  });
+    // $("#wrapper").children().each(function(){
+    //     if($(this).css('display') !== 'none')
+    //     {
+    //         $('#kpt-filterhead').show();
+    //     }
+    //     else{
+    //         $('#kpt-filterhead').hide();
+    //     }
+    // });
+
+
+// show applied filters
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const timeRange = urlParams.get('time-range')
+const timeRangeTwo = urlParams.get('time-range2')
+const dateRangeOne = urlParams.get('daterange1')
+const dateRangeTwo = urlParams.get('daterange2')
+const category1 = urlParams.getAll('category1')
+const category2 = urlParams.getAll('category2')
+const tags = urlParams.getAll('tags')
+const trackingUrl = urlParams.getAll('tracking_url')
+const searchVolumeLow = urlParams.get('low')
+const searchVolumeHigh = urlParams.get('high')
+const competitor = urlParams.getAll('competitor')
+const brand = urlParams.get('brand')
+
+if(timeRange){
+  document.getElementById("showfrequency").innerHTML = timeRange
+}
+if(timeRangeTwo){
+  document.getElementById("showfrequency2").innerHTML = timeRangeTwo
+}
+if(dateRangeOne){
+  document.getElementById("daterange1").value = dateRangeOne
+}
+if(dateRangeTwo){
+  document.getElementById("kpt-daterange").innerHTML = dateRangeTwo
+}
+if(category1){
+  document.getElementById("appliedFilters").innerHTML = category1
+}
+if(category2){
+  document.getElementById("kpt-categoreis").innerHTML = category2
+}
+if(tags){
+  document.getElementById("kpt-tags").innerHTML = tags
+}
+if(trackingUrl){
+  document.getElementById("kpt-url").innerHTML = trackingUrl
+}
+if(searchVolumeLow || searchVolumeHigh){
+  document.getElementById("kpt-sv").innerHTML = "Min : " + searchVolumeLow + " - " + "Max : " + searchVolumeHigh
+} 
+if(competitor){
+  document.getElementById("kpt-competitor").innerHTML = competitor
+}
+
+if(brand){
+  document.getElementById("show-brand").innerHTML = brand
+}
+
+function selectBrands(){
+  var x = document.getElementById("selectBrand");
+  
+  let searchParams = new URLSearchParams(window.location.search);
+  if (searchParams.has("brand") === true){
+      searchParams.delete("brand");
+  }
+  searchParams.append("brand", x.value);
+  
+  if (window.history.replaceState) {
+      const url = window.location.protocol 
+                  + "//" + window.location.host 
+                  + window.location.pathname 
+                  + "?" 
+                  + searchParams.toString();
+  
+      window.history.replaceState({
+          path: url
+      }, "", url)
+      location.href = url;
+  }
   }

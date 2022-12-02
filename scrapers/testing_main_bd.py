@@ -1,6 +1,6 @@
 import os
 from re import X
-os.chdir("/home/data/uploads")
+os.chdir("/home/ranking_data/uploads")
 import datetime
 import sys
 from time import sleep,time
@@ -16,7 +16,7 @@ import logging
 
 output_timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
 
-logging.basicConfig( filename=f'/home/data/uploads/log/process-{output_timestamp}.log',
+logging.basicConfig( filename=f'/home/ranking_data/uploads/log/process-{output_timestamp}.log',
                     format='%(asctime)s %(levelname)s %(threadName)-10s %(message)s',
                      level=logging.INFO)
 logger = logging.getLogger(__name__)

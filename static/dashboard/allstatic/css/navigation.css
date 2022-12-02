@@ -69,13 +69,9 @@ a {
         margin: 20px;
         font-size: 20px;
       }
-      .dropdown {
-        margin: 20px;
-        font-size: 20px;
-      }
-      .dropdown img {
-        margin: 0 5px;
-        filter: brightness(0);
+      #brand{
+        border:none;
+        font-weight: bold;
       }
       .headericon i {
         padding: 10px;

@@ -33,19 +33,31 @@ from dashboard.models import description_table, domain_table, keyword_table, key
 @login_required
 def dashboard1(request):  
     if request.method=='GET':
+        brand=request.GET.getlist('brand')
+        if  brand== None or brand=='':
+            brand='collegedunia'
         category1=request.GET.getlist('category1')              ### Category Filter for table 1 & 2
-        if len(category1) == 0:
-            category1=F('category')  
-
+        if len(category1) != 0:
+             category1=list(map(lambda x: x.title().strip(),category1[0].split(',')))
+        else:
+            category1=F('category')        
         search1=request.GET.get('low')                       ### Search Volume Range  Filter
         search2=request.GET.get('high')
-        if search1 != None and search1 !='' and search2 != None and search2 !='':
-            search_range=[search1,search2]
+        if search1 == None or  search1=='':
+            l=0           
         else:
-            search_range=[0,1000000000]
+            l=search1            
+        if  search2== None or search2=='':
+            h=10000000
+        else:
+            h=search2
+        search_range=[l,h]
+
             
         category2=request.GET.getlist('category2')                      ### Category Filter for table 3 
-        if len(category2) == 0:
+        if len(category2) != 0:
+             category2=list(map(lambda x: x.title().strip(),category2[0].split(',')))
+        else:
             category2=F('category')
         tags=request.GET.get('tags')                              ### Tags  Filter
         if tags != None and tags !='':                               
@@ -59,8 +71,12 @@ def dashboard1(request):
         else:
             tracking_url=F('req_url')
         competitors=request.GET.getlist('competitor')                ### Competitor filter 
-        if len(competitors)==0:                             
+        if len(competitors) != 0:
+             competitors=list(map(lambda x: x.strip(),competitors[0].split(',')))
+        else:                                   
             competitors=['shiksha','careers360']
+        print("competitor is ", competitors)
+    
         
 
         time_range1=request.GET.get('time-range')                      ### Track_period  Filter for table 1 and 2
@@ -92,22 +108,26 @@ def dashboard1(request):
             date_range2=[datetime.now() - timedelta(days=120),datetime.now()]
         else:            
             date_range2=[datetime.now() - timedelta(days=3),datetime.now()]
-    keydata=keyword_table.objects.all()
+    keydata=keyword_table.objects.prefetch_related()
     key_count=keydata.count()
-    category_filter=keydata.values_list('category').distinct()
+    category_filter1=keydata.filter(keyword_frequency_table__frequency__frequency=frequency1).values_list('category').distinct()
+    category_filter2=keydata.filter(keyword_frequency_table__frequency__frequency=frequency2).values_list('category').distinct()
+   
     competitor=domain_table.objects.values_list('domain')
     competitor_count=competitor.count()
     try:
         dash1_data1=keyword_table.objects.prefetch_related().filter(
-            description_table__desc_id__contains=frequency1,description_table__domain__domain__in=['collegedunia','shiksha'],keyword_frequency_table__frequency__frequency=frequency1,
+            description_table__desc_id__contains=frequency1,description_table__domain__domain__in=['collegedunia','prepp','shiksha'],keyword_frequency_table__frequency__frequency=frequency1,
         description_table__date__range=date_range1,category__in=category1).values(
             'category','description_table__date','description_table__domain__domain').annotate(
-                Below_1k=models.Count(models.Case(models.When(search_volume__lte= 1000, then='description_table__url')),distinct=True),
-        Below_10k=models.Count(models.Case(models.When(search_volume__gte= 1001,search_volume__lte = 10000, then='description_table__url')),distinct=True),
-        Below_100k=models.Count(models.Case(models.When(search_volume__gte= 10001,search_volume__lte = 100000, then='description_table__url')),distinct=True),
-        Above_100k=models.Count(models.Case(models.When(search_volume__gte= 100001, then='description_table__url')),distinct=True))
-        tbl1=pd.DataFrame(dash1_data1).pivot_table(index=['description_table__date','description_table__domain__domain'],columns='category',values=['Below_1k','Below_10k','Below_100k','Above_100k']).swaplevel(0,1,1).sort_index(1).T.rename_axis(columns={'description_table__domain__domain':None,'description_table__date':None})
-        dash1_data1=tbl1.to_html(classes='search_volume_wise',bold_rows=False,border=None,table_id = 'weeklyranking',na_rep='0')
+                Below_1k=models.Count(models.Case(models.When(search_volume__lte= 1000, then='keyword')),distinct=True),
+        Below_10k=models.Count(models.Case(models.When(search_volume__gte= 1001,search_volume__lte = 10000, then='keyword')),distinct=True),
+        Below_100k=models.Count(models.Case(models.When(search_volume__gte= 10001,search_volume__lte = 100000, then='keyword')),distinct=True),
+        Above_100k=models.Count(models.Case(models.When(search_volume__gte= 100001, then='keyword')),distinct=True))
+        df=pd.DataFrame(dash1_data1)
+        #df['category']=df['category'].str.strip()
+        tbl1=df.pivot_table(index=['description_table__date','description_table__domain__domain'],columns='category',values=['Below_1k','Below_10k','Below_100k','Above_100k']).swaplevel(0,1,1).sort_index(1).T.rename_axis(columns={'description_table__domain__domain':None,'description_table__date':None})
+        dash1_data1=tbl1.rename(columns={'collegedunia':'CD'}).to_html(classes='search_volume_wise',bold_rows=False,border=None,table_id = 'weeklyranking',na_rep='0')
         request.session['tbl1']=tbl1.reset_index().to_json()
     except Exception as err:
         logger.error(err)
@@ -117,9 +137,13 @@ def dashboard1(request):
 
         dash2_data1=keyword_table.objects.prefetch_related().filter(description_table__date__range=date_range1,
         description_table__desc_id__contains=frequency1,keyword_frequency_table__frequency__frequency=frequency1,category__in=category1).values('category','keyword_tag_table__tag__tag').annotate(
-            total_key=models.Count('keyword',distinct=True), cd_prepp=models.Count(models.Case(models.When(
-                description_table__domain__domain__in=['collegedunia','prepp'],description_table__pos=1, then='keyword')),distinct=True)).values('category','keyword_tag_table__tag__tag','total_key','cd_prepp','description_table__date').order_by('category')
-        tbl2=pd.DataFrame(dash2_data1).rename(columns={'keyword_tag_table__tag__tag':'Tag','category':'Category','description_table__date':'date','total_key':'Total Key','cd_prepp':'CD/Prepp'}).pivot_table(index=['Category','Tag'],columns='date',values=['Total Key','CD/Prepp']).rename_axis(columns={'date': None}).swaplevel(0,1,1).sort_index(axis=1)
+            total_key=models.Count('keyword',distinct=True), CD=models.Count(models.Case(models.When(
+                description_table__domain__domain__in=['collegedunia'],description_table__pos=1, then='keyword')),distinct=True),
+                Prepp=models.Count(models.Case(models.When(
+                description_table__domain__domain__in=['prepp'],description_table__pos=1, then='keyword')),distinct=True)).values('category','keyword_tag_table__tag__tag','total_key','CD','Prepp','description_table__date').order_by('category')
+        df=pd.DataFrame(dash2_data1)
+        #df['category']=df['category'].str.strip()
+        tbl2=df.rename(columns={'keyword_tag_table__tag__tag':'Tag','category':'Category','description_table__date':'date','total_key':'Total Key'}).pivot_table(index=['Category','Tag'],columns='date',values=['Total Key','CD','Prepp']).rename_axis(columns={'date': None}).swaplevel(0,1,1).sort_index(1)
         dash2_data1=tbl2.to_html(classes='top_rank_wise',bold_rows=False,border=None,table_id = 'topranking',na_rep='--')
         request.session['tbl2']=tbl2.reset_index().to_json()
     except Exception as err:
@@ -130,23 +154,24 @@ def dashboard1(request):
             try:
                 dash3_data1=keyword_table.objects.prefetch_related().filter(description_table__desc_id__contains=frequency2,keyword_frequency_table__frequency__frequency=frequency2,description_table__domain__domain__in=['collegedunia','prepp'],
                 description_table__date__range=date_range2,search_volume__range=search_range,keyword_tag_table__tag__tag__in=tags,category__in=category2,req_url__in=tracking_url).values(
-                'keyword','search_volume','category','keyword_tag_table__tag__tag','req_url','description_table__url','description_table__date','description_table__pos').order_by('keyword','-description_table__date')
-       
+                'keyword','search_volume','category','keyword_tag_table__tag__tag','req_url','description_table__url','description_table__date','description_table__pos').distinct()#.order_by('keyword','-description_table__date')
+                
+                """"  top competitor filter for latest date   """
                 df=pd.DataFrame(dash3_data1)
                 data=description_table.objects.select_related('keyword','domain').filter(date__range=date_range2).values_list('keyword__keyword',
                 'date','domain__domain','pos').order_by('keyword__keyword','-date','pos').distinct('keyword__keyword')
                 df=(((pd.DataFrame(data).rename(columns={0:'keyword',2:'Top Ranker'}).set_index('keyword').loc[:,'Top Ranker']).to_frame().join(df.set_index('keyword'),how='right'))).reset_index().rename(columns={'keyword':'Keyword','category':'Category','search_volume':'Search Volume','req_url':'Tracking URL','keyword_tag_table__tag__tag':'Tag','description_table__url':'Ranking URL','description_table__date':'Date','description_table__pos':'pos'})              
                 data=df.pivot_table( index=['Keyword','Search Volume','Category','Tag','Tracking URL','Ranking URL','Top Ranker'] ,columns=['Date'],values=['pos']).rename_axis(columns={'Date': None})
                 
-
-                topcomp=description_table.objects.select_related('keyword','domain').filter(desc_id__contains=frequency2,date__in=dash3_data1.values_list('description_table__date').order_by('-description_table__date')[0],domain__domain__in=competitors).values('keyword__keyword','date','domain__domain','pos').order_by('keyword__keyword','-date')
+                """ competitor filter for per keyword latest date """
+                topcomp=description_table.objects.select_related('keyword','domain').filter(desc_id__contains=frequency2,domain__domain__in=competitors,date__in=dash3_data1.values_list('description_table__date').order_by('-description_table__date')[0]).values('keyword__keyword','date','domain__domain','pos').order_by('keyword__keyword','-date')
                 topcomp=pd.DataFrame(topcomp)
                 
                 topcomp=topcomp.pivot_table(index=['keyword__keyword'],columns=['domain__domain'],values=['pos']).rename_axis(columns={'domain__domain':None}).reset_index().rename(columns={'keyword__keyword':'Keyword'})           
                 dash3_data1=pd.merge(data.reset_index(),topcomp,how='left')
                                 
                 dash3_data1=dash3_data1.iloc[dash3_data1.isnull().sum(1).sort_values(ascending=True).index] 
-                
+                """  Tags listing for per keyword multiple tags """
                 tag_data=dash3_data1.groupby(['Keyword','Ranking URL']).apply(lambda x: ' , '.join(x.Tag)).reset_index().rename(columns={})
                 df=pd.merge(dash3_data1,tag_data[[0,'Keyword']],on='Keyword',how='left')
                 df[('Tag', '')]=df[0]
@@ -173,7 +198,7 @@ def dashboard1(request):
                 else:
                     date_data=None
                     pos_data=None                  
-                return render(request,'dashboard/newdashboard.html',{'key_count':key_count,'competitor_count':competitor_count,'dash1_data1':dash1_data1,'dash2_data1':dash2_data1,'dataframe':summary,'category':category_filter,'competitor':competitor,'date_data':date_data,'pos_data':pos_data})
+                return render(request,'dashboard/newdashboard.html',{'key_count':key_count,'competitor_count':competitor_count,'dash1_data1':dash1_data1,'dash2_data1':dash2_data1,'dataframe':summary,'category1':category_filter1,'category2':category_filter2,'competitor':competitor,'date_data':date_data,'pos_data':pos_data})
                     
    
    

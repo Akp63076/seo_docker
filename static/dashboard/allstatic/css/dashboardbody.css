@@ -2,8 +2,10 @@
   margin: 20px 20px 0 120px;
 }
 
+
 .info-span{
   width: 50%;
+  margin: 10px;
 }
 .dash1-export{
   width: 50%;
@@ -16,6 +18,7 @@
   width:100%;
   display: flex;
   align-items: center;
+  
 }
 .device-info span {
   margin: 10px 20px 10px 0;
@@ -34,17 +37,17 @@
 }
 .checkbox-dropdown {
   width: 160px;
-  border: 1px solid rgb(230, 230, 230);
-  border-radius: 4px;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
   padding: 10px;
   margin: 0 10px;
   background: white;
   position: relative;
   user-select: none;
 }
-#checkbox-dropdown2 {
-  margin: 0 20px;
-}
+/* #checkbox-dropdown2 {
+  margin: 0 20px ;
+} */
 /* Display CSS arrow to the right of the dropdown text */
 .checkbox-dropdown:after {
   content: "";
@@ -105,7 +108,12 @@
   background-color: #666666;
   color: white; 
 } */
-
+#showfrequency{
+  color: var(--first-color);
+}
+select{
+  cursor: pointer;
+}
 /* filter dropdown ends */
 .weekly-ranking-table .form-select {
   width: auto;
@@ -193,16 +201,17 @@ display: none;
     color: #666666;
   }
   input{
-    border: 0;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
     padding: 10px 6px;
-    border-radius: 5px;
+    
   }
   .hidden-filters .col {
     width: 25%;
   }
   #fliter-checkbox{
-    border: 0;
-    border-radius: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
     /* width: 80%; */
     margin: 0;
   }
@@ -243,11 +252,49 @@ display: none;
     color: #666666;
     font-size: 16px !important;
     margin: 0;
+    width: 75%;
     font-weight: bold;
     padding: 20px 10px;
     background-color: white;
     border-radius: 5px;
+    word-wrap: break-word;
 }
+#appliedFilters
+{
+  color: var(--first-color);
+}.uppertables .clearButton{
+  width: 25%;
+  display: contents;
+}
+#clearfilterbtn{
+background-color: transparent !important;
+color: red;
+border:none !important;
+font-size: 25px;
+outline: none !important;
+}
+
+#clearfilterbtn:hover {
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 2s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: 1;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+ 
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+
 .weeklyranking,.topranker{
   width: 50%;
   height: auto;
@@ -367,6 +414,9 @@ background-color: #e1e1e8;
 .topranker br {
   display: none;
 }
+.kpt-appliedFilters{
+  color: var(--first-color);
+}
 caption{
   caption-side: top;
   display: flex;
@@ -381,7 +431,59 @@ justify-content: space-between;
 align-items: center;
 margin-top: 10px;
 }
+
 .graphrow a{
   cursor: pointer;
-  color: var(--first-color);
+}
+
+#closeFilters{
+  width: fit-content;
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  font-weight: bold;
+}
+#closeFilters:hover{
+  font-size: 25px;
+  font-weight: bold;
+  color: red;
+  
+}
+#appliedFilterscontainer{
+  width: 98%;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.filters-part{
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 0 10px;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;  
+}
+.kpt-filters{
+  padding: 0px 20px 10px 0;
+  word-break: break-word;
+}
+.kpt-filterhead{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+
+}
+.kpt-filter{
+  margin: 20px 30px;
+  padding: 30px 20px;
+  background-color: var(--bg-color);
+}
+#closeGraph{
+  width: fit-content;
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  font-weight: bold;
 }

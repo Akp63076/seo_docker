@@ -49,7 +49,7 @@ def database_update(input_path, output_path):
                                         update_keyword_table(glob(rel_path+"/data*.csv")[0],conn)
                                         update_keyword_frequency_table(glob(rel_path+"/data*.csv")[0],conn,frequency)
                                         update_tag_table(glob(rel_path+"/data*.csv")[0],conn)
-                                        update_domain_table('/home/data/domain.csv', conn)
+                                        update_domain_table('/home/ranking_data/domain.csv', conn)
 
                                         update_description_table(glob(rel_path+"/result*.csv")[0], conn,frequency)
 
@@ -75,14 +75,16 @@ def update_keyword_table(path, conn):
     
     try:
         
-        data=pd.read_csv(path,usecols=['Keyword','search_volume','category',"tracking_url"]  ,on_bad_lines='skip').drop_duplicates(keep='first')
+        data=pd.read_csv(path,usecols=['Keyword','search_volume','category',"tracking_url"]  ,on_bad_lines='skip',skipinitialspace = True).drop_duplicates(keep='first')
         data.columns=data.columns.str.lower()        
         df = data[data["keyword"].str.contains("site:https") == False]
         #df = data[data["sv"].str.contains("-") == False]
         df["search_volume"]=df["search_volume"].replace({'-':0,})
         df["search_volume"]=df["search_volume"].fillna(0)
+        df['category']=df['category'].str.title()
+        df['category']=df['category'].str.strip()
         df["search_volume"]=df.search_volume.str.split(',').str.join('').astype(int,errors='ignore')
-        df["category"]=df["category"].replace({nan:'undefined',"":'undefined'})
+        df["category"]=df["category"].replace({nan:'undefined',"":'undefined',None:'undefined' })
         df['search_volume'] = pd.to_numeric(df['search_volume'],errors='ignore')
         if df.empty != True:
             df1=df.assign(with_year=False)
@@ -107,7 +109,7 @@ def update_keyword_table(path, conn):
         logger.error(e)
  
 def update_keyword_frequency_table(path,conn,frequency):
-    data=pd.read_csv( path ,usecols=['Keyword'] ,on_bad_lines='skip').drop_duplicates(keep='first')
+    data=pd.read_csv( path ,usecols=['Keyword'] ,on_bad_lines='skip',skipinitialspace = True).drop_duplicates(keep='first')
     data.columns=data.columns.str.lower()
     data['frequency']=frequency
     data1=dict(conn.execute("select frequency, id from dashboard_frequency_table ").fetchall())
@@ -121,13 +123,14 @@ def update_keyword_frequency_table(path,conn,frequency):
 def update_tag_table(path,conn):
     try:
        
-        data=pd.read_csv( path ,usecols=['Keyword','tag'] ,on_bad_lines='skip')
+        data=pd.read_csv( path ,usecols=['Keyword','tag'] ,on_bad_lines='skip',skipinitialspace = True)
         data.columns=data.columns.str.lower()
-        data['tag']=data['tag'].replace({nan:'undefined',"":'undefined'})
+        data['tag']=data['tag'].replace({nan:'undefined',"":'undefined',None:'undefined'})
         data['tag']=data['tag'].str.split(',')
         data=data.explode('tag')
         data_type={'tag':sqlalchemy.String}
         data['tag']=data['tag'].str.title()
+        data['tag']=data['tag'].str.strip()
         df=data[['tag']].fillna("undefined").drop_duplicates(keep='first')
         unique_upload(df,'dashboard_tag_table',conn,data_type=data_type)
     except Exception as e :
@@ -153,7 +156,7 @@ def update_tag_table(path,conn):
 def update_rel_search_table(path,conn):
     try:
 
-        data1 = pd.read_csv(path, on_bad_lines='skip')[
+        data1 = pd.read_csv(path, on_bad_lines='skip',skipinitialspace = True)[
             ['keyword', 'rel_searches']].dropna().drop_duplicates(keep='first')
         if data1.empty != True:
             data1.rename(columns={'rel_searches': 'rel_search'}, inplace=True)
@@ -185,7 +188,7 @@ def update_rel_search_table(path,conn):
 def update_domain_table(path, conn):
     try:
 
-        df = pd.read_csv(path, on_bad_lines='skip')[
+        df = pd.read_csv(path, on_bad_lines='skip',skipinitialspace = True)[
             ['domain']].dropna().drop_duplicates(keep='first')
         if df.empty != True:
            
@@ -201,7 +204,7 @@ def update_rel_question_table(path, conn):
 
         # [['related_questions','sitelinks']]
         data1 = pd.read_csv(path, engine='python',  encoding='latin-1',
-                            on_bad_lines='skip').drop_duplicates(keep='first')
+                            on_bad_lines='skip',skipinitialspace = True).drop_duplicates(keep='first')
         if data1.empty != True:
             df1 = data1[['question', 'pos', 'answer', 'domain']].dropna()
             df = data1[['source']].dropna()
@@ -242,7 +245,7 @@ def update_rel_question_table(path, conn):
 def update_description_table(path, conn,frequency):
     try:
         data1 = pd.read_csv(path, usecols=['keyword', 'pos', 'url',  'title', 'url_shown', 'pos_overall',
-                            'domain', 'desc', 'date'], on_bad_lines='skip').drop_duplicates(keep='first')
+                            'domain', 'desc', 'date'], on_bad_lines='skip',skipinitialspace = True).drop_duplicates(keep='first')
         if data1.empty != True:
             data1.insert(0, 'desc_id', value=(
                 data1['keyword']+data1['date']+data1['domain']+data1['pos'].astype(str)+frequency))
@@ -277,7 +280,7 @@ def update_question_table(path, conn):
     try:
 
         data1 = pd.read_csv(path, engine='python', encoding='latin-1',
-                            on_bad_lines='skip').drop_duplicates(keep='first')
+                            on_bad_lines='skip',skipinitialspace = True).drop_duplicates(keep='first')
         if data1.empty != True:
             data1.insert(0, 'desc_id', value=(
                 data1['keyword']+data1['date']+data1['domain']+data1['pos'].astype(str)))
@@ -304,7 +307,7 @@ def update_sitelink_table(path, conn):
     try:
 
         data1 = pd.read_csv(path, engine='python', encoding='latin-1',
-                            on_bad_lines='skip').drop_duplicates(keep='first')
+                            on_bad_lines='skip',skipinitialspace = True).drop_duplicates(keep='first')
         if data1.empty != True:
             data1.insert(0, 'desc_id', value=(
                 data1['keyword']+data1['date']+data1['domain']+data1['pos'].astype(str)))
