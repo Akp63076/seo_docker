@@ -209,8 +209,8 @@ SOCIALACCOUNT_PROVIDERS = {
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "aashish.pandey@collegedunia.com" #"rohini.mishra@collegedunia.com"
-EMAIL_HOST_PASSWORD = "Ap@123456"
+EMAIL_HOST_USER = "rohini.mishra@collegedunia.com" #"aashish.pandey@collegedunia.com" 
+EMAIL_HOST_PASSWORD = "Rm@123456"
 EMAIL_PORT = 587
 
 BROKER_URL = "redis://localhost:6379"

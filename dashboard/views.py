@@ -33,7 +33,8 @@ from dashboard.models import description_table, domain_table, keyword_table, key
 @login_required
 def dashboard1(request):  
     if request.method=='GET':
-        brand=request.GET.getlist('brand')
+        """Filter Specification part """
+        brand=request.GET.get('brand')
         if  brand== None or brand=='':
             brand='collegedunia'
         category1=request.GET.getlist('category1')              ### Category Filter for table 1 & 2
@@ -93,7 +94,7 @@ def dashboard1(request):
         elif frequency1=='monthly':
             date_range1=[datetime.now() - timedelta(days=60),datetime.now()]            
         else:
-            date_range1=[datetime.now() - timedelta(days=1),datetime.now()]             
+            date_range1=[datetime.now() - timedelta(days=3),datetime.now()]             
         time_range2=request.GET.get('time-range2')                      ### Track_period  Filter for table 3
         if time_range2!= None and time_range2 !='':
            frequency2=time_range2
@@ -107,7 +108,8 @@ def dashboard1(request):
         elif frequency2=='monthly':            
             date_range2=[datetime.now() - timedelta(days=120),datetime.now()]
         else:            
-            date_range2=[datetime.now() - timedelta(days=3),datetime.now()]
+            date_range2=[datetime.now() - timedelta(days=5),datetime.now()]
+
     keydata=keyword_table.objects.prefetch_related()
     key_count=keydata.count()
     category_filter1=keydata.filter(keyword_frequency_table__frequency__frequency=frequency1).values_list('category').distinct()
@@ -115,35 +117,35 @@ def dashboard1(request):
    
     competitor=domain_table.objects.values_list('domain')
     competitor_count=competitor.count()
+    """keyword grouping and count of number  based on category and search volume """
     try:
         dash1_data1=keyword_table.objects.prefetch_related().filter(
-            description_table__desc_id__contains=frequency1,description_table__domain__domain__in=['collegedunia','prepp','shiksha'],keyword_frequency_table__frequency__frequency=frequency1,
+            description_table__desc_id__contains=frequency1,description_table__domain__domain__in=[brand,'shiksha'],keyword_frequency_table__frequency__frequency=frequency1,
         description_table__date__range=date_range1,category__in=category1).values(
             'category','description_table__date','description_table__domain__domain').annotate(
                 Below_1k=models.Count(models.Case(models.When(search_volume__lte= 1000, then='keyword')),distinct=True),
         Below_10k=models.Count(models.Case(models.When(search_volume__gte= 1001,search_volume__lte = 10000, then='keyword')),distinct=True),
         Below_100k=models.Count(models.Case(models.When(search_volume__gte= 10001,search_volume__lte = 100000, then='keyword')),distinct=True),
         Above_100k=models.Count(models.Case(models.When(search_volume__gte= 100001, then='keyword')),distinct=True))
-        df=pd.DataFrame(dash1_data1)
+        df=pd.DataFrame(dash1_data1).rename(columns={'Below_1k':"SV [0 to 1k]",'Below_10k':"SV (1k to 10k]",'Below_100k':"SV (10k to 100k]",'Above_100k':'SV (100k]'})
         #df['category']=df['category'].str.strip()
-        tbl1=df.pivot_table(index=['description_table__date','description_table__domain__domain'],columns='category',values=['Below_1k','Below_10k','Below_100k','Above_100k']).swaplevel(0,1,1).sort_index(1).T.rename_axis(columns={'description_table__domain__domain':None,'description_table__date':None})
-        dash1_data1=tbl1.rename(columns={'collegedunia':'CD'}).to_html(classes='search_volume_wise',bold_rows=False,border=None,table_id = 'weeklyranking',na_rep='0')
+        tbl1=df.pivot_table(index=['description_table__date','description_table__domain__domain'],columns='category',values=["SV [0 to 1k]","SV (1k to 10k]","SV (10k to 100k]",'SV (100k]']).swaplevel(0,1,1).sort_index(1).T.rename_axis(columns={'description_table__domain__domain':None,'description_table__date':None})
+        dash1_data1=tbl1.to_html(classes='search_volume_wise',bold_rows=False,border=None,table_id = 'weeklyranking',na_rep='0')
         request.session['tbl1']=tbl1.reset_index().to_json()
     except Exception as err:
         logger.error(err)
         dash1_data1=None
     
+    """keyword grouping and count  number of top page in total pages  based on category and Tags  """
     try:
 
         dash2_data1=keyword_table.objects.prefetch_related().filter(description_table__date__range=date_range1,
         description_table__desc_id__contains=frequency1,keyword_frequency_table__frequency__frequency=frequency1,category__in=category1).values('category','keyword_tag_table__tag__tag').annotate(
-            total_key=models.Count('keyword',distinct=True), CD=models.Count(models.Case(models.When(
-                description_table__domain__domain__in=['collegedunia'],description_table__pos=1, then='keyword')),distinct=True),
-                Prepp=models.Count(models.Case(models.When(
-                description_table__domain__domain__in=['prepp'],description_table__pos=1, then='keyword')),distinct=True)).values('category','keyword_tag_table__tag__tag','total_key','CD','Prepp','description_table__date').order_by('category')
+            total_key=models.Count('keyword',distinct=True), brand_name=models.Count(models.Case(models.When(
+                description_table__domain__domain__in=[brand],description_table__pos=1, then='keyword')),distinct=True)).values('category','keyword_tag_table__tag__tag','total_key','brand_name','description_table__date').order_by('category')
         df=pd.DataFrame(dash2_data1)
         #df['category']=df['category'].str.strip()
-        tbl2=df.rename(columns={'keyword_tag_table__tag__tag':'Tag','category':'Category','description_table__date':'date','total_key':'Total Key'}).pivot_table(index=['Category','Tag'],columns='date',values=['Total Key','CD','Prepp']).rename_axis(columns={'date': None}).swaplevel(0,1,1).sort_index(1)
+        tbl2=df.rename(columns={'keyword_tag_table__tag__tag':'Tag','category':'Category','description_table__date':'date','total_key':'Total Key','brand_name':brand}).pivot_table(index=['Category','Tag'],columns='date',values=['Total Key',brand]).rename_axis(columns={'date': None}).swaplevel(0,1,1).sort_index(1)
         dash2_data1=tbl2.to_html(classes='top_rank_wise',bold_rows=False,border=None,table_id = 'topranking',na_rep='--')
         request.session['tbl2']=tbl2.reset_index().to_json()
     except Exception as err:
@@ -151,8 +153,9 @@ def dashboard1(request):
         dash2_data1=None    
     
     finally:
+            """ showing ranking data and top campetitor and ranking of specified competitor  """
             try:
-                dash3_data1=keyword_table.objects.prefetch_related().filter(description_table__desc_id__contains=frequency2,keyword_frequency_table__frequency__frequency=frequency2,description_table__domain__domain__in=['collegedunia','prepp'],
+                dash3_data1=keyword_table.objects.prefetch_related().filter(description_table__desc_id__contains=frequency2,keyword_frequency_table__frequency__frequency=frequency2,description_table__domain__domain__in=[brand],
                 description_table__date__range=date_range2,search_volume__range=search_range,keyword_tag_table__tag__tag__in=tags,category__in=category2,req_url__in=tracking_url).values(
                 'keyword','search_volume','category','keyword_tag_table__tag__tag','req_url','description_table__url','description_table__date','description_table__pos').distinct()#.order_by('keyword','-description_table__date')
                 
@@ -210,7 +213,10 @@ def trend(request):
         date_range=request.GET.get('date_range')
         if date_range ==None or date_range =='':
             date_range=30
-        data=description_table.objects.select_related('keyword','domain').filter(keyword__keyword=key,domain__domain='collegedunia',date__gte=datetime.now() - timedelta(days=int(date_range))).values_list('date','pos')
+        brand=request.GET.get('brand')
+        if  brand== None or brand=='':
+            brand='collegedunia'
+        data=description_table.objects.select_related('keyword','domain').filter(keyword__keyword=key,domain__domain=brand,date__gte=datetime.now() - timedelta(days=int(date_range))).values_list('date','pos')
     date_data=[]
     pos_data=[]
     for i in data:
