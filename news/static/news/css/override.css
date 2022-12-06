@@ -1,0 +1,269 @@
+.card-title {
+    text-align: center;
+    vertical-align: middle;
+    align-self: auto;
+}
+
+.numbers {
+    margin: 0 auto;
+    width: 100%
+}
+
+.stats {
+    text-align: center;
+}
+
+.card-category {
+    text-align: center;
+}
+
+.stats {
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+a {
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.card {
+    min-height: 13.5em;
+    max-height: 13.5em;
+}
+
+p .card-title {
+    max-height: min-content ;
+    vertical-align: middle;
+
+}
+
+.max-lines {
+    display: block;/* or inline-block */
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 4.8em;
+    line-height: 1.6em;
+  }
+
+.dropdown-toggle {
+    margin: 0 auto;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.btn {
+    margin: 0 auto;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    border-radius: 0px;
+}
+
+#home{
+    text-align: center;
+
+}
+
+.exams {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    max-height: 30px;
+
+}
+
+#exam_id {
+    padding-top: 0px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+
+}
+
+#exam {
+    vertical-align:middle;
+    text-align:center;
+}
+
+hr {
+    margin: 2px;
+}
+
+#get_id {
+    padding-top: 15px;
+    vertical-align: middle;
+}
+
+.card-stats .card-body .numbers {
+    font-size: 1.5em;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+#search-text {
+    max-height: 35px;
+    border-radius: 12px;
+}
+
+.btn-text {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.card:hover{
+    transition: .5s ease;
+}
+
+.card:hover .save-card{
+    transition: 1s ease;
+    opacity: 1;
+}
+/* 
+.sidebar {
+    background-color:#E9E2D0;
+}
+
+.active {
+    background-color:#E9E2D0;
+} */
+
+#dropdownMenuButton {
+    margin-bottom: 5px;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    overflow: auto;
+  }
+
+.example::-webkit-scrollbar {
+    display: none;
+}
+
+.save-card {
+    align-self: flex-end;
+    opacity: 0;
+    position: absolute;
+}
+
+#hovered-menu {
+    transition: 0.5s ease;
+    border-radius: 12px;
+    padding-left: 11px;
+    padding-right: 11px;
+}
+
+.card-body {
+    opacity:1;
+}
+
+.card-footer {
+    opacity: 1;
+}
+
+.wrap-login100 {
+    max-height: 638px;
+    min-height: 638px;
+}
+
+.done {
+    background-color:#E9E8E6;
+}
+
+.input-group-append {
+    height: calc(1.5em + .75rem + 2px);
+    margin-right: 20px
+}
+
+#cd-logo {
+    text-align: center;
+}
+
+.Search-button {
+    border-width: 0px;
+    background: transparent;
+}
+
+#navigation-bar {
+    display: flex;
+}
+
+#next-button {
+    max-height: 35px;
+    border-radius: 12px;
+    max-width: fit-content;
+    text-align: right;
+    margin-left: auto;
+    margin-right: 15%;
+}
+
+#previous-button {
+    max-height: 35px;
+    border-radius: 12px;
+    max-width: fit-content;
+    margin-left: 15%
+}
+
+.main-panel>.content {
+    padding-bottom: 0px;
+    margin-top: 75px;
+}
+
+.card {
+    margin-top: 10px;
+}
+
+
+.pagination {
+    padding-bottom: 7px;
+    padding-top: 7px;
+    background-color: gainsboro;
+}
+
+.pagination-dates-inactive {
+    margin: auto;
+    font-weight: 600;
+    font-size: 0.8571em;
+    line-height: 1.35em;
+}
+
+.pagination-dates-inactive > a {
+    color: #6c757d;
+}
+
+.pagination-dates-active {
+    font-weight: 600;
+    font-size: 0.8571em;
+    line-height: 1.35em;
+    margin: auto;
+}
+
+.pagination-dates-active > a {
+    color: #ef8157;
+}
+
+
+@media only screen and (max-device-width: 480px) {
+
+    .card-stats .card-footer {
+    padding: 5px 15px 8px;
+    }
+
+    .mb-1, .my-1 {
+        margin-bottom: 0rem!important;
+    }
+
+    .card-stats .card-body .numbers {
+        font-size: 1.4em;
+    }
+
+    .pagination {
+        display: none;
+    }
+}

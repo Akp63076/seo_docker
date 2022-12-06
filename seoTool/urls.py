@@ -39,4 +39,6 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     #path('rank_tool/', include('rank_tool.urls')),
 
+    path('news/', include("news.urls")),
+
 ]
