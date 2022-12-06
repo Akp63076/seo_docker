@@ -15,14 +15,14 @@ def loginUser(request):
         user = authenticate(email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('dashboard', pk=1)
+            return redirect('notification-dashboard', pk=1)
         else:
             print("Wrong Credentials")
             return render(request, "login.html")
     else:
         print("final else block working")
         if request.user.is_authenticated:
-            return redirect('dashboard', pk=1)
+            return redirect('notification-dashboard', pk=1)
 
         else:
             return render(request, "login.html")
