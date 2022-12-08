@@ -76,7 +76,7 @@ def dashboard1(request):
              competitors=list(map(lambda x: x.strip(),competitors[0].split(',')))
         else:                                   
             competitors=['shiksha','careers360']
-        print("competitor is ", competitors)
+       
     
         
 
@@ -90,7 +90,7 @@ def dashboard1(request):
         if daterange1 != None and daterange1 !='':
             date_range1=[datetime.strptime(d.strip(),"%d/%m/%Y").strftime("%Y-%m-%d") for d in daterange1.split('-')]            
         elif frequency1=='weekly':
-            date_range1=[datetime.now() - timedelta(days=14),datetime.now()]            
+            date_range1=[datetime.now() - timedelta(days=60),datetime.now()]            
         elif frequency1=='monthly':
             date_range1=[datetime.now() - timedelta(days=60),datetime.now()]            
         else:
@@ -164,15 +164,28 @@ def dashboard1(request):
                 data=description_table.objects.select_related('keyword','domain').filter(date__range=date_range2).values_list('keyword__keyword',
                 'date','domain__domain','pos').order_by('keyword__keyword','-date','pos').distinct('keyword__keyword')
                 df=(((pd.DataFrame(data).rename(columns={0:'keyword',2:'Top Ranker'}).set_index('keyword').loc[:,'Top Ranker']).to_frame().join(df.set_index('keyword'),how='right'))).reset_index().rename(columns={'keyword':'Keyword','category':'Category','search_volume':'Search Volume','req_url':'Tracking URL','keyword_tag_table__tag__tag':'Tag','description_table__url':'Ranking URL','description_table__date':'Date','description_table__pos':'pos'})              
-                data=df.pivot_table( index=['Keyword','Search Volume','Category','Tag','Tracking URL','Ranking URL','Top Ranker'] ,columns=['Date'],values=['pos']).rename_axis(columns={'Date': None})
+                data=df.pivot_table( index=['Keyword','Search Volume','Category','Tag','Tracking URL','Ranking URL','Top Ranker'] ,columns=['Date'],values=['pos']).rename_axis(columns={'Date': None}).sort_index(1,ascending=False).reset_index()
                 
                 """ competitor filter for per keyword latest date """
                 topcomp=description_table.objects.select_related('keyword','domain').filter(desc_id__contains=frequency2,domain__domain__in=competitors,date__in=dash3_data1.values_list('description_table__date').order_by('-description_table__date')[0]).values('keyword__keyword','date','domain__domain','pos').order_by('keyword__keyword','-date')
-                topcomp=pd.DataFrame(topcomp)
+                topcomp=pd.DataFrame(topcomp)            
+                
+                new_cols1=data.iloc[:,:7]
+                new_cols2=data.iloc[:,7:]
+                new_cols2[('Keyword','')]=new_cols1[('Keyword','')]
                 
                 topcomp=topcomp.pivot_table(index=['keyword__keyword'],columns=['domain__domain'],values=['pos']).rename_axis(columns={'domain__domain':None}).reset_index().rename(columns={'keyword__keyword':'Keyword'})           
-                dash3_data1=pd.merge(data.reset_index(),topcomp,how='left')
-                                
+                # dash3_data1=pd.merge(data,topcomp,how='left')
+                df2=pd.merge(new_cols1,topcomp,how='left')
+                dash3_data1=pd.merge(df2,new_cols2,how='left')
+                
+
+                #dash3_data1.column=dash3_data1.columns.columns[-1::-1]
+                
+            except Exception as e :                     
+                logger.error(e)
+                
+            try: 
                 dash3_data1=dash3_data1.iloc[dash3_data1.isnull().sum(1).sort_values(ascending=True).index] 
                 """  Tags listing for per keyword multiple tags """
                 tag_data=dash3_data1.groupby(['Keyword','Ranking URL']).apply(lambda x: ' , '.join(x.Tag)).reset_index().rename(columns={})
@@ -244,8 +257,7 @@ def export_dash(request):
             del request.session['tbl1']
             del request.session['tbl2']
     except Exception as e  :
-        logger.error(e)
-        print(" please refresh pages or select filters again ")
+        logger.error(e)        
         return redirect('../')
     else:
         return response
