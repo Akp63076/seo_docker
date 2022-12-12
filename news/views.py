@@ -9,6 +9,9 @@ from .dataInserter import insertNewsData
 
 # Create your views here.
 def loginUser(request):
+    """
+    This function is for authenticating users to access data
+    """
     if request.method == "POST":
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -29,8 +32,11 @@ def loginUser(request):
 
     
 def dashboard(request, pk):
+    """
+    This function for notification dashboard
+    """
     # insertNewsData()
-    print(pk)
+    # print(pk)
     if request.user.is_anonymous:
         return redirect('login')
     else:
@@ -52,11 +58,17 @@ def dashboard(request, pk):
 
 
 def logoutUser(request):
+    """
+    This function is for logging out user
+    """
     logout(request)
     return redirect("login")
 
 
 def searchDashboard(request):
+    """
+    This function is for providing search functionality in dashboard
+    """
     if request.user.is_anonymous:
         return redirect('login')
     else:
@@ -83,7 +95,10 @@ def searchDashboard(request):
     
 
 def filteredDashboard(request, pk, website):
-    print(pk, website)
+    """
+    This function is for showing filtered data on dashboard for a specific source
+    """
+    # print(pk, website)
     if request.user.is_anonymous:
         return redirect('login')
     else:
