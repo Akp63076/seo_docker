@@ -3,6 +3,9 @@ from .models import News
 
 
 def insertNewsData():
+    """
+    This function is for inserting news notification data from csv into database
+    """
     print("insertion going on")
     df = pd.read_csv('news/test.csv')
 
