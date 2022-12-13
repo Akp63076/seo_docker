@@ -1,0 +1,457 @@
+{% extends 'cd_ranking/navigation.html' %} 
+
+
+{% block body %}
+
+<h2 style="margin:10px;">Ranking Overview <b style="color: #666666">brands</b></h2>
+<div class="device-info">
+  <div class="info-span">
+  <span><i class="bi bi-phone"></i> Mobile</span>
+  <span>India</span>
+  <span>KeyWord : {{key_count}} <i class="bi bi-plus-circle"></i> </span>
+  <span>Competitors : {{competitor_count}} <i class="bi bi-plus-circle"></i> </span>
+  <span>Update: 1h ago</span>
+  <span id="page-refresh" onclick="location.reload()"
+    > <i class="bi bi-arrow-clockwise"></i> Refresh</span>
+    <span>
+    </div>
+      <form class="dash1-export" id="dashExport" action="export_dash/" method="get">  
+       <input type="hidden" name="export" value="1">
+       <button type="submit"  id="kp-export-btn">
+         <i class="bi bi-upload"></i> Export 
+       </button> 
+      </form>
+    </span>
+</div>
+
+<hr />
+<div class="filter-dropdown">
+  <div class="filters-part">
+
+    <form action=""  name="filters" method="get" id="filterform" style="
+    display: flex;
+    ">
+    {% comment %} <div class="checkbox-dropdown" style="pointer-events: none;opacity: 0.7;">
+      Brands
+      <ul class="checkbox-dropdown-list">
+        <li>
+          <label>
+            <input type="checkbox" value="cd" name="brand" />
+            CollegeDunia</label
+            >
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" value="prepp" name="brand" />
+              Prepp</label
+              >
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" value="shiksha" name="brand" />
+                Shiksha</label
+                >
+              </li>
+              <li>
+                <label>
+                  <input type="checkbox" value="cd2" name="brand" /> CD2</label
+                  >
+                </li>
+              </ul>
+            </div> {% endcomment %}
+            
+            <div id="checkbox-dropdown2" class="checkbox-dropdown">
+              Categoreis
+              <ul class="checkbox-dropdown-list">
+                {% for i in category1 %}
+                <li>
+                  <label>
+                    {% comment %} <input type="hidden" id="filterhiddenvalue{{i.0|cut:" "}}" name="" value="{{ i.0 }}">  {% endcomment %}
+                    
+                    <input type="checkbox" value="{{ i.0 }}" name="category1" class="category1" id="category1{{ i.0 |cut:" "}}" onclick="formappend(this.id)" />
+                    
+                    {{ i.0 }}
+                  </label>
+                </li>      
+                {% endfor %}     
+                
+              </ul>
+            </div>
+            
+            <button type="button" class="btn btn-primary" onclick="applyfilters()">Apply</button>
+            
+          </form> 
+          
+          <form action="" method="get" >
+            <select class="form-select time-range" id="time-range"
+            aria-label="Default select example" onchange="frequency()" data-bs-toggle="tooltip" data-bs-placement="top" title="Frequency is set to DAILY by default" >
+            <option id="showfrequency" value="" disabled selected hidden>Daily</option>
+            <option value="daily">Daily</option>
+            <option value="weekly" >Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="">Clear</option>
+            
+          </select>
+        </form>
+        
+      </div>
+
+<form action="" id="date-range"  >
+  <input type="text" id="daterange1" name="daterange1"  value="" placeholder="Enter Date Range" />
+  <button type="button" id="applyBtn" class="btn btn-primary" onclick="dateRange()">Apply</button>
+  <button type="button" id="applyBtn" class="btn btn-danger" style="margin-right:10px;" onclick="cleardateRangeOne()"><i class="bi bi-trash-fill"></i></button>
+</form>
+  <!-- filter-dropdown ends -->
+</div>
+<span id="message"></span>
+
+
+<div class="weeklyranking-head" id="appliedFilterscontainer">
+  <h6 style="padding: 10px;">Category filter: <span id="appliedFilters"></span></h6>
+  <div class="clearButton">
+    <button type="button" id="clearfilterbtn" onclick="clearCategory()" ><i class="bi bi-trash-fill"></i></button>
+  </div>
+</div>
+<section class="uppertables">
+  <div class="weeklyranking">
+   
+    <div class="weeklyranking-head">
+      <h3>Category Search Volume</h3>
+
+    </div>
+    {% if dash1_data1 == None  %}
+    <h4 style='color:red;'> Filtered Data is Not Availabe <h4>
+      {% else %}
+          <div style="background-color:white; ">{{dash1_data1|safe}}</div>
+    {% endif %}
+  </div>
+  <div class="topranker">
+    <h3>Number of top pages under categoreis</h3>
+    {% if dash2_data1 == None  %}
+    <h4 style='color:red;'> Filtered Data is Not Availabe <h4>
+      {% else %}
+          <div style="background-color:white; ">{{dash2_data1|safe}}</div><br><br>
+    {% endif %}
+  </div>
+</section>
+
+
+
+<div class="keyword-position-table">
+  <div class="kpt-header">
+    <div class="" style="display:flex;justify-content:space-between;align-items:center;">
+      <span>Keyword Position</span>
+      <input id="keyword-search" onkeyup="keywordSearch()" type="text" placeholder="Search" />
+      <button id="showfilters" onclick="showfilters()"><i class="bi bi-filter"></i> Filters</button>
+      <form action="" method="get" >
+        <select class="form-select time-range" name="time-range2"
+        aria-label="Default select example" onchange="frequencyTwo()" id="timerange2">
+          <option id="showfrequency2" value="" disabled selected hidden>Daily</option>
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+          <option value="">Clear</option>
+          
+        </select>
+      </form>
+    </div>
+    
+    <div >
+      <button  id="kp-export-btn"  onclick="window.location.href='export_dash/?export=2';">
+        <i class="bi bi-upload"></i>
+       Export
+      </button>
+   
+    </div>
+  </div>
+
+ 
+  <div class="hiddenfilters" id="hiddenfilters">
+    <div class="row" style="justify-content: flex-end;">
+      <button id="closeFilters" onclick="closeFilters()"><i class="bi bi-x-circle"></i></button>
+    </div>
+    <form>
+      <div class="row">
+        {% comment %} <div class="col">
+          <label for="Url">URL</label><br>
+          <input type="text" placeholder="Enter the url" id="pt_filter_url" />
+        </div> {% endcomment %}
+
+        <div class="col">
+          <label for="tags">Tags</label><br>
+          <input type="text" placeholder="Select the tags" name="tags" id="pt_filter_tags" />
+        </div>
+        <div class="col">
+          <label for="tracking_url">Trackings Url</label><br>
+          <input type="text" placeholder="Enter the url" name="tracking_url" id="pt_filter_trackingUrl"/>
+        </div>
+        <div class="col">
+          <label for="search_volume">Search Volume</label><br>
+          <input type="number" min="0" step="1" style="width: 40%" name="low" id="pt_filter_svlow" placeholder="Min(0)" />
+          <input type="number" min="0" step="1" style="width: 40%" name="high" id="pt_filter_svhigh"  placeholder="Max(1 Cr)"/>
+          
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col">
+          <label for="categoreis">Categoreis</label><br>
+          <div id="fliter-checkbox" class="checkbox-dropdown">
+            Categoreis
+            <ul class="checkbox-dropdown-list",name=category>              
+              {% for i in category2 %}
+              <li>
+                <label>
+                  <input type="checkbox" value="{{ i.0 }}" name="category2" class="category2" id="category2{{ i.0 |cut:" "}}" onclick="ptCheckboxAppendOne(this.id)" /> {{ i.0 }}
+                </label>
+              </li>      
+              {% endfor %}     
+              
+            </ul>
+          </div>
+        </div>
+
+        <div class="col">
+          <label for="competitors">Competitors</label><br>
+          <div class="checkbox-dropdown" id="fliter-checkbox">
+            competitors
+            <ul class="checkbox-dropdown-list">
+              {% for i in competitor %}
+              <li>
+                <label>
+                  <input type="checkbox" value={{ i.0 }} name="competitor" class="competitor" id="competitor{{ i.0 |cut:" "}}" onclick="ptCheckboxAppendTwo(this.id)"/> {{i.0}}
+                </label>
+              </li>      
+              {% endfor %}   
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <label for="date-range">Date Range</label><br>
+          <input type="text" name="daterange2" default=null id="pt_filter_daterange2" placeholder="Select a date range"/>
+          {% comment %} <input type="date" name="date1" id="" >
+          <input type="date" name="date2" id="" > {% endcomment %}
+
+          <!-- <input type="date" placeholder="Enter the url"> -->
+        </div>
+        {% comment %} <div class="col">
+          <label for="Url">URL</label><br>
+          <input type="text" placeholder="Enter the url" />
+        </div> {% endcomment %}
+      </div>
+      <div class="row" id="form-submit-btn">
+        <input type="hidden" name="export" value="2">
+        <button onclick="clearFilters()">Clear</button>
+        <button type="button" id="form-submit" href="#form-submit" onclick="positionTableFilter()" >Apply</button>
+      </div>
+    </form>
+  </div>
+  <div class="kpt-filter">
+    <center>
+
+      <div class="kpt-filterhead">
+        <span>Filter Applied : </span> 
+        <div class="clearButton">
+          <button type="button" id="clearfilterbtn" style="padding: 0;" onclick="clearFilters()" ><i class="bi bi-trash-fill"></i></button>
+        </div>
+      </div>
+    </center>
+    <div class="wrapper" id="wrapper">
+      <div class="kpt-filters" id="kpt-appliedFiltersTags" ><span>Tags : <br><span class="kpt-appliedFilters" id="kpt-tags"></span></span></div>
+      <div class="kpt-filters" id="kpt-appliedFiltersUrl"><span>Tracking URL : <br><span class="kpt-appliedFilters" id="kpt-url"></span></span></div>
+      <div class="kpt-filters" id="kpt-appliedFiltersSv"><span>Search Volume : <br><span class="kpt-appliedFilters" id="kpt-sv"></span></span></div>
+      <div class="kpt-filters" id="kpt-appliedFiltersCategories"><span>Category : <br><span class="kpt-appliedFilters" id="kpt-categoreis"></span></span></div>
+      <div class="kpt-filters" id="kpt-appliedFiltersComp"><span>Competitors : <br><span class="kpt-appliedFilters" id="kpt-competitor"></span></span></div>
+      <div class="kpt-filters" id="kpt-appliedFiltersDate"><span>Date Range : <br><span class="kpt-appliedFilters" id="kpt-daterange"></span></span></div>
+      
+    </div>
+  </div>
+   <!-- POSITION  TABLE -->
+
+  <table style="background-color:white; " class="positiontable" id="positiontable">
+    
+    {% if dataframe == None  %}
+    <h4 style='color:red;'> Filtered Data is Not Availabe <h4>
+      {% else %} 
+              {% for k,v in dataframe.0.items %}
+              <th>{% if k.0 == 'pos' %} {{k.1}} {% else %}{{ k.0 }} {% endif %}</th>
+              {% endfor  %}
+            {% for dt in dataframe  %}
+            
+            <tr class="datarow">{% for k,v in dt.items %}<td> {% if k.0 == 'Keyword' %}
+              <input type="checkbox" value="{{v}}" id="key{{forloop.parentloop.counter}}">
+
+              <a href="#space" style="text-decoration: none" onclick="trendgraph(this.id); graphrow(this.id);"  id="{{forloop.parentloop.counter}}" > 
+
+              <i class="bi bi-bar-chart-line-fill"></i> 
+
+              </a> &emsp; &emsp;{{v}} {% else %}{{ v }}{% endif %}</td>{% endfor %}</tr>
+ 
+              <tr id="graphrow{{forloop.counter}}" colspan="100" class="graphrow" style="display:none;">
+                <td>
+                 {% comment %} href="?key={{request.GET.key}}&date_range=7" {% endcomment %}
+                 <div class="" style="display:flex;justify-content:space-between;align-items:center;">
+                    <div>Filter by date range: &emsp;&emsp; 
+                      <a data-value="7" id="weeklygraph" onclick="graphDateRange(this.id)" style="text-decoration: none" > last week </a>
+                      &emsp;&emsp;
+                      <a data-value="30" id="monthlygraph" onclick="graphDateRange(this.id)" style="text-decoration: none" > last month </a>
+                      &emsp;&emsp;
+                      <a data-value="60" id="sixmonthgraph" onclick="graphDateRange(this.id)" style="text-decoration: none" > 6 month </a></div>
+                      <div class=""><button id="closeGraph" onclick="closeGraph();"><i class="bi bi-x-circle"></i></button></div>
+                    </div>
+                
+                    <center><h1> <b>Position: </b>{{ request.GET.key }}  </h1></center> 
+                   <div class="row container" >
+                          
+                          <div class="container" style="width: 70%; height: 70%; ">
+                            <canvas  id="line-chart{{forloop.counter}}"></canvas>
+                            
+                          </div>
+                       
+                    </div>
+                
+
+                </td>
+              </tr>
+
+            {% endfor %}
+            
+    {% endif %}
+  </table>
+
+ 
+  <!-- PAGINATION -->
+  <div class="pagination"> 
+    <nav aria-label="Page navigation example">
+      {% if dataframe.has_other_pages %}
+      <ul class="pagination">
+        {% if dataframe.has_previous %}
+        <li class="page-item">
+          {% comment %} href="?page=1" {% endcomment %}
+          <a class="page-link"  onclick="removePage()" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">begin</span>
+          </a>
+        </li>   {% endif %}
+        
+        {% for n in dataframe.paginator.page_range %}
+          {% if dataframe.number == n %}
+            <li class="page-item active">
+              <span class="page-link">{{ n }}<span class="sr-only"></span></span>
+            </li>
+          {% elif n > dataframe.number|add:'-3' and n < dataframe.number|add:'3' %}
+            <li class="page-item"><a class="page-link"  data-value="{{n}}" id="page{{n}}" onclick="pagination(this.id)">{{ n }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% comment %} href="?page={{ n }}" {% endcomment %}
+        {% if dataframe.has_next %}
+          <li class="page-item">
+            <a class="page-link" data-value="{{ dataframe.paginator.num_pages }}" id="page{{ dataframe.paginator.num_pages }}" onclick="pagination(this.id)"   aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">end</span>
+            </a>
+          </li>
+          {% endif %} </ul>
+      {% endif %}
+    </nav>
+    <form action="" method="get">
+      <select class="form-select time-range" name="row-counter" id="row-counter" aria-label="Default select example"  onchange="rowCounter(this.id);"
+      >
+        <option selected value="10">10</option>
+        <option value="25">25</option>
+        <option value="100">100</option>
+        
+      </select>
+    </form>
+  </div>
+</div>
+
+
+<div class="space" id="space">
+
+</div>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+<script type="text/javascript">
+
+
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+    var scrollpos = localStorage.getItem('scrollpos');
+    if (scrollpos) window.scrollTo(0, scrollpos);
+
+    var clicked = localStorage.getItem('clicked');
+    if(clicked === 'true') document.getElementById('hiddenfilters').style.display = "block";
+});
+
+window.onbeforeunload = function(e) {
+    localStorage.setItem('scrollpos', window.scrollY);
+};
+ 
+
+  var colorArray = [
+  '#dd0453', '#fdfd05', '#66E64D', '#0660e7', '#9900B3',
+  '#d07201', '#14b300','#06d2a6','#f8061a','#c45850',
+  '#66664D', '#d6d6d7', '#76008f', '#4DB3FF', '#1AB399',
+  '#ec92d1', '#33991A', '#ba8383', '#B3B31A', '#00E680',
+  '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+  '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF']; 
+  
+  const Params = new Proxy(new URLSearchParams(window.location.search), {
+  get: (searchParams, prop) => searchParams.get(prop),
+  });
+  
+  let id = Params.id;
+  new Chart(document.getElementById("line-chart"+id), {
+  type: 'line',
+  data: {
+  labels:  {{ date_data|safe }},
+  
+  datasets: [{
+  label: " Trend of keyword ",
+  backgroundColor: colorArray,
+  data: {{ pos_data |safe }}
+  }]
+  },
+  options: {
+  title: {
+  display: true,
+  text: 'Trend of keyword '
+  }
+  }
+  });
+</script>
+{% endblock body %}
+{% block chart %}
+
+{% endblock chart %}
+
+ 
+
+  {% comment %} var y = document.getElementByName("category1");
+    var x = document.getElementByName("brand");
+ 
+    let searchParams = new URLSearchParams(window.location.search);
+       if (searchParams.has("category1") === true){
+           searchParams.delete("category1");
+       }
+ 
+       searchParams.append("category1", y.value);
+   
+       if (window.history.replaceState) {
+           const url = window.location.protocol 
+                       + "//" + window.location.host 
+                       + window.location.pathname 
+                       + "?" 
+                       + searchParams.toString();
+   
+           window.history.replaceState({
+               path: url
+           }, "", url)
+           location.href = url;
+       } {% endcomment %}

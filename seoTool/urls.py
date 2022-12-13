@@ -36,9 +36,9 @@ urlpatterns = [
     path("profile/",user_views.profile,name='profile'),
     re_path('', include('social_django.urls', namespace='social')),
     path('accounts/', include('allauth.urls')),
-    path('dashboard/', include('dashboard.urls')),
+    path('cd_ranking/', include('cd_ranking.urls')),
     #path('rank_tool/', include('rank_tool.urls')),
 
-    path('news/', include("news.urls")),
+    path('cd_notification/', include("cd_notification.urls")),
 
 ]

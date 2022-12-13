@@ -10,7 +10,7 @@ import datetime
 import pandas as pd   
 from time import sleep
 from celery import  shared_task
-from scrapers import testing_brightdata
+from cd_ranking.scrapers import testing_brightdata
 import json
 
 

@@ -1,0 +1,144 @@
+<div class="sidebar" data-color="white" data-active-color="danger">
+    <div class="logo">
+        <div class="logo-image-big simple-text logo-normal" id="cd-logo">
+            <img src="https://images.static-collegedunia.com/public/asset/img/cd_logo.png">
+        </div>
+    </div>
+    <div class="sidebar-wrapper example">
+        <ul class="nav">
+            <!-- <% if(active_page=="Home" || active_page=='') { %>
+            <li class="active">
+                <% } else { %>
+            <li class='disabled'>
+                <% } %> -->
+            <!-- <a href="/cd_notification/dashboard">
+                    <p id='home'>Home</p>
+                </a> -->
+            </li>
+            <li>
+                <div class="dropdown">
+                    <!-- <a href='/cd_notification/news-websites'> -->
+                    <!-- <button class="btn btn-secondary" type="button" id="dropdownMenuButton">
+                            News Websites
+                        </button> -->
+                    <p class="btn btn-secondary" type="button" id="dropdownMenuButton">
+                        News Websites
+                    </p>
+                    </a>
+                </div>
+            </li>
+
+
+            <!-- <% if(active_page==newswebsites[i].mainhead) { %> -->
+            {% for website in newsWebsites %}
+
+
+            <!-- <li class='exams disabled'> -->
+            {% if website in currentPath%}
+            <li class='exams active'>
+                <a href="/cd_notification/news-websites/{{website}}/1/" class='exam_page' id='exam_id'>
+                    <p id="exam">
+                        {{website}}
+                    </p>
+                </a>
+            </li>
+            {% else %}
+            <li class='exams disabled'>
+                <a href="/cd_notification/news-websites/{{website}}/1/" class='exam_page' id='exam_id'>
+                    <p id="exam">
+                        {{website}}
+                    </p>
+                </a>
+            </li>
+            {% endif %}
+
+            {% endfor %}
+
+
+            <!-- <% for(i=0; i<newswebsites.length;i++) { %>
+            <% if(active_page==newswebsites[i].mainhead) { %> -->
+            <!-- <li class='exams active'>
+                <% } else { %>
+            <li class='exams disabled'>
+                <% } %>
+                <a href="/cd_notification/news-websites/<%=newswebsites[i].mainhead%>" class='exam_page' id='exam_id'>
+                    <p id='exam'>
+                        <%= newswebsites[i].mainhead %>
+                        (<%= newswebsites[i].pending %>/<%= newswebsites[i].total %>)
+                    </p>
+                </a>
+            </li>
+            <% } %> -->
+            <!-- Development -->
+            <!-- <li>
+                <div class="dropdown">
+                    <a href='/cd_notification/study-abroad'>
+                        <button class="btn btn-secondary" type="button" id="dropdownMenuButton">
+                            Study Abroad
+                        </button>
+                    </a>
+                </div>
+            </li>
+            <% for(i=0; i<studyabroadheads.length;i++) { %>
+            <% if(active_page==studyabroadheads[i].mainhead) { %>
+            <li class='exams active'>
+                <% } else { %>
+            <li class='exams disabled'>
+                <% } %>
+                <a href="/cd_notification/study-abroad/<%=studyabroadheads[i].mainhead%>" class='exam_page' id='exam_id'>
+                    <p id='exam'>
+                        <%= studyabroadheads[i].mainhead %>
+                        (<%= studyabroadheads[i].pending %>/<%= studyabroadheads[i].total %>)
+                    </p>
+                </a>
+            </li>
+            <% } %> -->
+            <!-- Development -->
+            <!-- <li>
+                <div class="dropdown">
+                    <a href='/cd_notification/exams'>
+                        <button class="btn btn-secondary" type="button" id="dropdownMenuButton">
+                            Exams
+                        </button>
+                    </a>
+                </div>
+            </li>
+            <% for(i=0; i<exams.length;i++) { %>
+            <% if(active_page==exams[i].mainhead) { %>
+            <li class='exams active'>
+                <% } else { %>
+            <li class='exams disabled'>
+                <% } %>
+                <a href="/cd_notification/exams/<%=exams[i].mainhead%>" class='exam_page' id='exam_id'>
+                    <p id='exam'>
+                        <%= exams[i].mainhead %> (<%= exams[i].pending %>/<%= exams[i].total %>)
+                    </p>
+                </a>
+            </li>
+            <% } %>
+            <li>
+                <div class="dropdown">
+                    <a href='/cd_notification/university'>
+                        <button class="btn btn-secondary" type="button" id="dropdownMenuButton">
+                            University Results
+                        </button>
+                    </a>
+                </div>
+            </li>
+            <% for(i=0; i<universityheads.length;i++) { %>
+            <% if(active_page==universityheads[i].mainhead) { %>
+            <li class='exams active'>
+                <% } else { %>
+            <li class='exams disabled'>
+                <% } %>
+                <a href="/cd_notification/university/<%=universityheads[i].mainhead%>" class='exam_page' id='exam_id'>
+                    <p id='exam'>
+                        <%= universityheads[i].mainhead %>
+                        (<%= universityheads[i].pending %>/<%= universityheads[i].total %>)
+                    </p>
+                </a>
+            </li>
+            <% } %> -->
+        </ul>
+    </div>
+</div>
