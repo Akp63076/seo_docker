@@ -21,7 +21,7 @@ pd.options.mode.chained_assignment = None
 
 @shared_task()
 def database_update(input_path, output_path): 
-    """ function  is used for update to database by  csv files and insert record on all tables 
+    """ This function  is used for update to database by  csv files and insert record on all tables 
     it takes 2 arguments 
     input_path= data directry path , output_path=destination directory path after updation of database """   
     input_path = input_path+"/"

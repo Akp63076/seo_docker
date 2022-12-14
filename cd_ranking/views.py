@@ -34,7 +34,7 @@ from cd_ranking.models import description_table, domain_table, keyword_table, ke
 def dashboard1(request): 
    
     if request.method=='GET':
-        """Filter Specification part """
+        """Filter Specification part for dashboard """
         brand=request.GET.get('brand')
         if  brand== None or brand=='':
             brand='collegedunia'
