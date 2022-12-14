@@ -31,16 +31,20 @@ def new_format(rank_df):
     collegedunia.columns  = ['Keyword','CollegeDunia Rank','CollegeDunia URL']
     collegedekho = df[df['URL'].str.contains('collegedekho')]
     collegedekho.columns  = ['Keyword','collegedekho Rank','collegedekho URL']
-    dfs = [on_top,collegedunia,shiksha,careers360,collegedekho]
-    dfs = [df.set_index('Keyword') for df in dfs]
-    final = dfs[0].join(dfs[1:])
+    byjus = df[df['URL'].str.contains('byjus')]
+    byjus.columns  = ['Keyword','byjus Rank','byjus URL']
+    dfs = [on_top,collegedunia,shiksha,careers360,collegedekho,byjus]
+    dfs = [df.set_index('Keyword') for df in dfs] 
+    final=pd.concat(dfs, axis=1)   
+    # final = dfs[0].join(dfs[1:])
+    print(final)
     final_copy = final.drop_duplicates()
     final_copy=final_copy[['Rank', 'URL', 'Date', 'Website', 
-                          'CollegeDunia Rank','Shiksha Rank','Careers360 Rank','collegedekho Rank',
-                          'CollegeDunia URL', 'Shiksha URL',  'Careers360 URL','collegedekho URL']]
+                          'CollegeDunia Rank','Shiksha Rank','Careers360 Rank','collegedekho Rank','byjus Rank',
+                          'CollegeDunia URL', 'Shiksha URL',  'Careers360 URL','collegedekho URL','byjus URL']]
     final_copy.columns=['Rank', 'Top URL', 'Date', 'Website', 
-                         'CollegeDunia Rank','Shiksha Rank','Careers360 Rank','collegedekho Rank',
-                        'CollegeDunia URL', 'Shiksha URL',  'Careers360 URL','collegedekho URL']
+                         'CollegeDunia Rank','Shiksha Rank','Careers360 Rank','collegedekho Rank','byjus Rank',
+                        'CollegeDunia URL', 'Shiksha URL',  'Careers360 URL','collegedekho URL','byjus URL']
     
     return final_copy    
 
@@ -71,6 +75,7 @@ def send_feedback_email_task(fileid):
     # chrome_options.add_experimental_option("excludeSwitches", ['enable-automation'])
     path = os.getcwd()+'/uploads/'+file_path    
     df=pd.read_csv(path,encoding='unicode_escape')
+    df.columns= df.columns.str.title()
     user_path=file_path.split("/")[0]
     unique_file_path=file_path.split("/")[1]
     path2 = os.getcwd()+'/uploads/results/'+user_path
@@ -156,6 +161,7 @@ def send_feedback_email_task(fileid):
 
     rank_df.to_csv(path2)
     new_format(rank_df).to_csv(path3)
+    print("modified file created")
     fileobject.status="Complete"
     fileobject.time_complete=datetime.datetime.now()
     fileobject.save()

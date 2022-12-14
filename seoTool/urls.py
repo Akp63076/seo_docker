@@ -37,7 +37,7 @@ urlpatterns = [
     re_path('', include('social_django.urls', namespace='social')),
     path('accounts/', include('allauth.urls')),
     path('cd_ranking/', include('cd_ranking.urls')),
-    #path('rank_tool/', include('rank_tool.urls')),
+    path('rank_tool/', include('rank_tool.urls')),
 
     path('cd_notification/', include("cd_notification.urls")),
 

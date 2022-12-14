@@ -18,7 +18,7 @@ app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 app.conf.beat_schedule = {
     'update-database-at-every-monday': {
         'task': 'cd_ranking.tasks.database_update',
-        'schedule':crontab(minute="*/5"),
+        'schedule':crontab(hour=5,minute=55),
        'args':["/home/ranking_data/uploads","/home/ranking_data/uploaded"]
             
                                         },

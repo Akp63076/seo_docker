@@ -20,11 +20,14 @@ pd.options.mode.chained_assignment = None
 
 
 @shared_task()
-def database_update(input_path, output_path):
-    """connection string """
+def database_update(input_path, output_path): 
+    """ function  is used for update to database by  csv files and insert record on all tables 
+    it takes 2 arguments 
+    input_path= data directry path , output_path=destination directory path after updation of database """   
     input_path = input_path+"/"
+    """Database connection string """
     conn = sqlalchemy.create_engine(
-        "postgresql://{user}:{pw}@165.232.184.253:5432/{db}".format(user="analyst", pw="12345", db="postgres"))
+        "postgresql://{user}:{pw}@localhost/{db}".format(user="analyst", pw="12345", db="postgres"))
     try:
         for brand in os.listdir(input_path):
             if brand in ['collegedunia','left']:
@@ -72,7 +75,9 @@ def database_update(input_path, output_path):
 
 
 def update_keyword_table(path, conn):
-    
+    """function is used for updated to tag in tag_table  and  mapping keyword with tag and storing in keyword_tag_table table 
+    it takes 2 arguments 
+    path= csv file path, conn =  database connection string  """
     try:
         
         data=pd.read_csv(path,usecols=['Keyword','search_volume','category',"tracking_url"]  ,on_bad_lines='skip',skipinitialspace = True).drop_duplicates(keep='first')
@@ -108,19 +113,38 @@ def update_keyword_table(path, conn):
     except Exception as e:
         logger.error(e)
  
-def update_keyword_frequency_table(path,conn,frequency):
-    data=pd.read_csv( path ,usecols=['Keyword'] ,on_bad_lines='skip',skipinitialspace = True).drop_duplicates(keep='first')
-    data.columns=data.columns.str.lower()
-    data['frequency']=frequency
-    data1=dict(conn.execute("select frequency, id from cd_ranking_frequency_table ").fetchall())
-    data2=dict(conn.execute("select keyword, id from cd_ranking_keyword_table ").fetchall())
-    data["frequency"]=data['frequency'].map(data1)
-    data["keyword"]=data['keyword'].map(data2)
-    df=data.dropna()
-    df.rename(columns={'keyword':'keyword_id','frequency':'frequency_id'},inplace=True)
-    unique_upload(df,'cd_ranking_keyword_frequency_table',conn)
+def update_keyword_frequency_table(conn,frequency):
+    """function is used for updated ranking of urls with repect to keyword at specific date  and storing in description_table 
+    it takes 3 arguments 
+    path= csv file path, conn =  database connection string ,frequency=ranking frequency (daily ,weekly,monthly,temporary) """
+    try:
 
+        df = pd.DataFrame()
+        df["frequency"]=[frequency]
+        if df.empty != True:
+           
+            data_type = {'domain': sqlalchemy.String}
+            unique_upload(df, 'cd_ranking_frequency_table',
+                          conn, data_type=data_type)
+    except Exception as e:
+        logger.error(e)
+    try:
+        data=pd.read_csv( path ,usecols=['Keyword'] ,on_bad_lines='skip',skipinitialspace = True).drop_duplicates(keep='first')
+        data.columns=data.columns.str.lower()
+        data['frequency']=frequency
+        data1=dict(conn.execute("select frequency, id from cd_ranking_frequency_table ").fetchall())
+        data2=dict(conn.execute("select keyword, id from cd_ranking_keyword_table ").fetchall())
+        data["frequency"]=data['frequency'].map(data1)
+        data["keyword"]=data['keyword'].map(data2)
+        df=data.dropna()
+        df.rename(columns={'keyword':'keyword_id','frequency':'frequency_id'},inplace=True)
+        unique_upload(df,'cd_ranking_keyword_frequency_table',conn)
+    except Exception as e:
+        logger.error(e)
 def update_tag_table(path,conn):
+    """function is used for updated to tag in tag_table  and  mapping keyword with tag and storing in keyword_tag_table table 
+    it takes 2 arguments 
+    path= csv file path, conn =  database connection string  """
     try:
        
         data=pd.read_csv( path ,usecols=['Keyword','tag'] ,on_bad_lines='skip',skipinitialspace = True)
@@ -154,6 +178,9 @@ def update_tag_table(path,conn):
     except Exception as e :
             logger.error(e)
 def update_rel_search_table(path,conn):
+    """function is used for updated to  related_search about keyword rel_search_table 
+    it takes 2 arguments 
+    path= csv file path, conn =  database connection string  """
     try:
 
         data1 = pd.read_csv(path, on_bad_lines='skip',skipinitialspace = True)[
@@ -186,6 +213,9 @@ def update_rel_search_table(path,conn):
 
 
 def update_domain_table(path, conn):
+    """function is used for updated to domain in domain_table 
+    it takes 2 arguments 
+    path= csv file path, conn =  database connection string  """
     try:
 
         df = pd.read_csv(path, on_bad_lines='skip',skipinitialspace = True)[
@@ -200,6 +230,9 @@ def update_domain_table(path, conn):
 
 
 def update_rel_question_table(path, conn):
+    """function is used for updated to related_question with respect to keyword and storing in related_question_table
+    it takes 2 arguments 
+    path= csv file path, conn =  database connection string  """
     try:
 
         # [['related_questions','sitelinks']]
@@ -243,6 +276,9 @@ def update_rel_question_table(path, conn):
 
 
 def update_description_table(path, conn,frequency):
+    """function is used for updated ranking of urls with repect to keyword at specific date  and storing in description_table 
+    it takes 3 arguments 
+    path= csv file path, conn =  database connection string ,frequency=ranking frequency (daily ,weekly,monthly,temporary) """
     try:
         data1 = pd.read_csv(path, usecols=['keyword', 'pos', 'url',  'title', 'url_shown', 'pos_overall',
                             'domain', 'desc', 'date'], on_bad_lines='skip',skipinitialspace = True).drop_duplicates(keep='first')
@@ -277,6 +313,9 @@ def update_description_table(path, conn,frequency):
 
 
 def update_question_table(path, conn):
+    """function is used for updated question along with url and keyword and store in question_table
+    it takes 2 arguments 
+    path= csv file path, conn =  database connection string   """
     try:
 
         data1 = pd.read_csv(path, engine='python', encoding='latin-1',
@@ -304,6 +343,10 @@ def update_question_table(path, conn):
 
 
 def update_sitelink_table(path, conn):
+    """function is used for updated sitelinks  along with url and keyword and store in sitelink_table 
+    it takes 2 arguments 
+    path= csv file path, conn =  database connection string  """
+    
     try:
 
         data1 = pd.read_csv(path, engine='python', encoding='latin-1',
@@ -334,7 +377,9 @@ def update_sitelink_table(path, conn):
 
 
 def unique_upload(df, target_table, conn, query_string='', data_type=''):
-
+    """function is used for insert only  unique data in given table by the given dataframe 
+    it takes 5 arguments 
+    df=given dataframe , target_table = table name at which you want perform opreation,query_string = query which want to perform on target table by default its empty in empty case it perform uniaue insertion ,data_types= it is a dectionary of mapped with dtaframe column and sqlalchemy data types"""
     try:
 
         df.to_sql('myTempTable', con=conn, schema='public', index=True,
@@ -365,4 +410,3 @@ def unique_upload(df, target_table, conn, query_string='', data_type=''):
 def scrapper():
     from scrapper.main_for_bd import  main
     main()
-
