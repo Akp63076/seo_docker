@@ -31,7 +31,8 @@ from cd_ranking.models import description_table, domain_table, keyword_table, ke
 
 
 @login_required
-def dashboard1(request):  
+def dashboard1(request): 
+   
     if request.method=='GET':
         """Filter Specification part """
         brand=request.GET.get('brand')

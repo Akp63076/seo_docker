@@ -25,7 +25,7 @@ def database_update(input_path, output_path):
     it takes 2 arguments 
     input_path= data directry path , output_path=destination directory path after updation of database """   
     input_path = input_path+"/"
-    """Database connection string """
+   
     conn = sqlalchemy.create_engine(
         "postgresql://{user}:{pw}@localhost/{db}".format(user="analyst", pw="12345", db="postgres"))
     try:
@@ -75,7 +75,7 @@ def database_update(input_path, output_path):
 
 
 def update_keyword_table(path, conn):
-    """function is used for updated to tag in tag_table  and  mapping keyword with tag and storing in keyword_tag_table table 
+    """function is used for updated keyword_table 
     it takes 2 arguments 
     path= csv file path, conn =  database connection string  """
     try:
@@ -113,8 +113,8 @@ def update_keyword_table(path, conn):
     except Exception as e:
         logger.error(e)
  
-def update_keyword_frequency_table(conn,frequency):
-    """function is used for updated ranking of urls with repect to keyword at specific date  and storing in description_table 
+def update_keyword_frequency_table(path , conn,frequency):
+    """function is used for updated frequency_table and mapping keyword with frequency and storing in keyword_frequency_table  
     it takes 3 arguments 
     path= csv file path, conn =  database connection string ,frequency=ranking frequency (daily ,weekly,monthly,temporary) """
     try:
