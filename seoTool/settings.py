@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "redshiftClicks.apps.RedshiftclicksConfig",
     "coursefinder.apps.CoursefinderConfig",
     "web_analytics.apps.WebAnalyticsConfig",
-    "ranking.apps.RankingConfig",
+    # "ranking.apps.RankingConfig",
     "users.apps.UsersConfig",
     'cd_ranking',
     'rank_tool',
@@ -103,7 +103,7 @@ DATABASES = {
         "NAME": "postgres",
         "USER": "analyst",
         "PASSWORD": "12345",
-        "HOST": "165.232.184.253",
+        "HOST": "localhost",
         "PORT": "5432",
     }
     

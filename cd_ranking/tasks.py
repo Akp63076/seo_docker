@@ -27,7 +27,7 @@ def database_update(input_path, output_path):
     input_path = input_path+"/"
     """Database connection string """
     conn = sqlalchemy.create_engine(
-        "postgresql://{user}:{pw}@165.232.184.253/{db}".format(user="analyst", pw="12345", db="postgres"))
+        "postgresql://{user}:{pw}@localhost/{db}".format(user="analyst", pw="12345", db="postgres"))
     try:
         for brand in os.listdir(input_path):
             if brand in ['collegedunia','left']:
