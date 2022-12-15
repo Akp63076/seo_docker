@@ -24,7 +24,7 @@ app.conf.beat_schedule = {
                                         },
 
     'update-news-database-at-every-monday': {
-        'task': 'news.dataInserter.insertNewsData',
+        'task': 'cd_notification.dataInserter.insertNewsData',
         'schedule':crontab(minute="*/5"),
     #    'args':["/home/ranking_data/uploads","/home/ranking_data/uploaded"]
             

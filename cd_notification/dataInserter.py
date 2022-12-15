@@ -7,7 +7,7 @@ from celery import shared_task
 def insertNewsData():
     scrapping()
     print("insertion going on")
-    df = pd.read_csv('news/scrappers/cd_main.csv')
+    df = pd.read_csv('cd_notification/scrappers/cd_main.csv')
 
     df = df.drop_duplicates(['source', 'title', 'date'])
 
