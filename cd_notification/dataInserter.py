@@ -39,7 +39,7 @@ def insertNewsData():
             reportedAt = "N/A"
             print(e)
         
-        # print(source , headline,  link, reportedAt)
+        print(source , headline,  link, reportedAt)
 
         # if reportedAt == "N/A":
         #     News.objects.create(source=source, headline=headline,
