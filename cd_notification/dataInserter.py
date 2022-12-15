@@ -1,13 +1,13 @@
 import pandas as pd
 from .models import News
+from .scrappers.testScrapper import scrapping
+from celery import shared_task
 
-
+@shared_task()
 def insertNewsData():
-    """
-    This function is for inserting news notification data from csv into database
-    """
+    scrapping()
     print("insertion going on")
-    df = pd.read_csv('news/test.csv')
+    df = pd.read_csv('news/scrappers/cd_main.csv')
 
     df = df.drop_duplicates(['source', 'title', 'date'])
 
@@ -34,16 +34,16 @@ def insertNewsData():
             print(e)
         
         try:
-            reportedAt = df.iloc[i, 5]
+            reportedAt = df.iloc[i, 3]
         except Exception as e:
             reportedAt = "N/A"
             print(e)
         
-        print(source , headline,  link, reportedAt)
+        # print(source , headline,  link, reportedAt)
 
-        if reportedAt == "N/A":
-            News.objects.create(source=source, headline=headline,
-                            link=link)
-        else:
-            News.objects.create(source=source, headline=headline,
-                            link=link, reportedAt=reportedAt)
+        # if reportedAt == "N/A":
+        #     News.objects.create(source=source, headline=headline,
+        #                     link=link)
+        # else:
+        #     News.objects.create(source=source, headline=headline,
+        #                     link=link, reportedAt=reportedAt)
