@@ -27,7 +27,7 @@ SECRET_KEY = "q0g%b^s^fx4sj@qpd876-b4*$bj#zz0uthtnl#w+ew4m$-37eh"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["165.232.184.253", "127.0.0.1", "sacp.cdboards.in"]
+ALLOWED_HOSTS = ["165.232.184.253", "127.0.0.1", "sacp.cdboards.in",'178.18.255.188']
 
 
 

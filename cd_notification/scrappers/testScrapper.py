@@ -5,7 +5,8 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from datetime import datetime
 import csv
-from backports.zoneinfo import ZoneInfo
+# from backports.zoneinfo import ZoneInfo
+import pytz
 import requests
 import os
 import urllib3
@@ -17,7 +18,8 @@ success = []
 failure = []
 
 # load_dotenv()
-now = datetime.now(tz=ZoneInfo('Asia/Kolkata'))
+# now = datetime.now(tz=ZoneInfo('Asia/Kolkata'))
+now=datetime.now(pytz.timezone('Asia/Kolkata'))
 print (now.strftime("%Y-%m-%d %H:%M:%S"))
 
 # options=Options()

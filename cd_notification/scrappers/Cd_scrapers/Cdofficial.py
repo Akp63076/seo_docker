@@ -6,7 +6,7 @@ from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-import pymysql
+#import pymysql
 import os
 import re
 import csv
