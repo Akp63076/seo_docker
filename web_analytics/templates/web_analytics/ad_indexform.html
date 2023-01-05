@@ -2,28 +2,28 @@
 {% load static %}
 
 {% block navbar %}
-   {% include "redshiftClicks/navbar.html" %}
+   {% include "web_analytics/navbar.html" %}
 {% endblock navbar %}
 
 {% block content %}
 <div class = "outerbox">
     <div class="row" id="form-content">
         <div class="inner-container">
-            <div class="row align-items-center justify-content-center" style="text-align:center;"><h1>Keyword planner</h1></div>
+            <div class="row align-items-center justify-content-center" ><h1 style="padding: 0 !important;">Keyword planner</h1></div>
                 <br>
                 <form class="form-horizontal" name="myForm" method="POST" id="searchForm">
                     {% csrf_token %}
                     <br>
                     <div class="form-group">
                         {{ form.keyword.errors }}
-                        <label class="control-label col-sm-2" for="name">Query keyword</label>
-                        <div class="col-sm-8">
+                        <label class="control-label " for="name">Query keyword</label><br>
+                        <div class="planner_textarea">
                             {{ form.keyword}}
                         </div>
                     </div>
                 
                     <div class="form-group">        
-                            <div class="col-sm-offset-2 col-sm-10">
+                            <div class="">
                             <button type="submit" 
                             class="btn btn-success" 
                             id="analytics"

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+   
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'web_analytics/1.1/navbar.css' %}">
+    
+
+    
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+       
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href=""><img src="{% static '/coursefinder/images/logo.jpg' %}" width="40px" alt=""></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="{% url 'redshiftClicks-index' %}">RedShift-data</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'web_analytics-index' %}">Analytics</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'web_analytics-kwplanner' %}">keyword-planner</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'cd_ranking' %}">CD_Ranking</a>
+            </li>
+            {% comment %} <li class="nav-item">
+              <a class="nav-link" href="{% url 'rank_tool-index'  %}">Rank Tool</a>
+            </li> {% endcomment %}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}">Hi {{user}}</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            
+            {% else %}
+            <!--<li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span>Register</a></li>-->
+            <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            {% endif %}
+        </ul>
+        </div>
+      </div>
+    </nav>
+    {% comment %} {% block navbar %}
+    {% include "redshiftClicks/navbar.html" %}
+    {% endblock navbar %} {% endcomment %}
+
+    <div class="body-container" id="bodycontent">
+      {% block body %} {% endblock body %}
+      <!-- body container end  -->
+    </div>
+    <!-- ===== IONICONS ===== -->
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+  
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+   
+    {% load static %}
+    
+  </body>
+</html>

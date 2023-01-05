@@ -12,13 +12,20 @@ ul {
 }
 #form-content{
  
-              border-style: groove;
-              border-radius: 25px;
-              margin: 20px;
-              padding: 20px;
+              /* border-style: groove;
+              border-radius: 25px; */
+              margin: 0px;
+              padding: 20px 0;
   
 }
-
+.planner_textarea textarea{
+  padding: 10px;
+  border:0;
+  border-radius: 5px;
+  outline: none !important;
+  box-shadow: 0 0 50px #ccc;
+  margin: 20px 0;
+}
 #includedContent{
   border-style: groove;
   border-radius: 15px;
@@ -50,6 +57,11 @@ th {
   text-align: left;
   background-color: #000000;
   color: white;
+}
+.btn-success{
+  background-color: #007bff !important;
+  border: none !important;
+  width: 100px;
 }
 /* .site-header {
   position: -webkit-sticky;

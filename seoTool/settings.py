@@ -27,6 +27,7 @@ SECRET_KEY = "q0g%b^s^fx4sj@qpd876-b4*$bj#zz0uthtnl#w+ew4m$-37eh"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = ["165.232.184.253", "127.0.0.1", "sacp.cdboards.in",'178.18.255.188']
 
 
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
     "social_django",
     "cd_notification",
+    "rest_framework"
 ]
 
 MIDDLEWARE = [
@@ -103,9 +105,17 @@ DATABASES = {
         "NAME": "postgres",
         "USER": "analyst",
         "PASSWORD": "12345",
-        "HOST": "localhost",
+        "HOST": "165.232.184.253",
         "PORT": "5432",
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'HOST': os.environ.get('DB_HOST'),
+    #     'NAME': os.environ.get('DB_NAME'),
+    #     'USER': os.environ.get('DB_USER'),
+    #     'PASSWORD': os.environ.get('DB_PASS'),
+    # }
     
     
 }
@@ -215,8 +225,8 @@ EMAIL_HOST_USER = "rohini.mishra@collegedunia.com" #"aashish.pandey@collegedunia
 EMAIL_HOST_PASSWORD = "Rm@123456"
 EMAIL_PORT = 587
 
-BROKER_URL = "redis://localhost:6379"
-CELERY_RESULT_BACKEND = "redis://localhost:6379"
+BROKER_URL = "redis://redis:6379"
+CELERY_RESULT_BACKEND = "redis://redis:6379"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"

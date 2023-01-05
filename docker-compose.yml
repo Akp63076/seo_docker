@@ -1,0 +1,39 @@
+services:
+
+  
+
+  
+  web:
+    build: .
+    command: gunicorn seoTool.wsgi:application --bind 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      -  /home/ranking_data:/home/ranking_data
+      
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    command: redis-server
+
+  celery:
+    restart: always
+    build:
+      context: .
+    command: celery -A seoTool worker -l info
+    volumes:
+      -  /home/ranking_data:/home/ranking_data
+    depends_on:
+      - redis
+      - web
+  
+  celery-beat:
+    build: .
+    command: celery -A seoTool beat -l info
+    volumes:
+      -  /home/ranking_data:/home/ranking_data    
+    depends_on:
+      - redis
+

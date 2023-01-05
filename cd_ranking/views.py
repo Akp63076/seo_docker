@@ -1,11 +1,12 @@
 # from ast import keyword
+import json
 # from django.core.cache import caches
 # from tkinter import Frame
 # from tkinter.tix import Select
 # from django.db.models import Subquery,FloatField
 from django.db.models.functions import Cast
-
-
+from rest_framework.views import APIView
+from rest_framework.response import Response
 # from multiprocessing.sharedctypes import Value
 from django.db.models import Q,F
 #from asyncio.log import logger
@@ -28,7 +29,8 @@ from cd_ranking.models import description_table, domain_table, keyword_table, ke
 # Create your views here.
 
 
-
+def test(request):
+    return render(request, 'cd_ranking/test.html')
 
 @login_required
 def dashboard1(request): 
@@ -61,9 +63,11 @@ def dashboard1(request):
              category2=list(map(lambda x: x.title().strip(),category2[0].split(',')))
         else:
             category2=F('category')
-        tags=request.GET.get('tags')                              ### Tags  Filter
+        tags=request.GET.get('tags')
+                                 ### Tags  Filter
         if tags != None and tags !='':                               
             tags=list(map(lambda x: x.title().strip(),tags.split(',')))
+            print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",tags)    
         else:
             tags=F('keyword_tag_table__tag__tag')
         
@@ -95,7 +99,7 @@ def dashboard1(request):
         elif frequency1=='monthly':
             date_range1=[datetime.now() - timedelta(days=60),datetime.now()]            
         else:
-            date_range1=[datetime.now() - timedelta(days=3),datetime.now()]             
+            date_range1=[datetime.now() - timedelta(days=60),datetime.now()]             
         time_range2=request.GET.get('time-range2')                      ### Track_period  Filter for table 3
         if time_range2!= None and time_range2 !='':
            frequency2=time_range2
@@ -105,11 +109,11 @@ def dashboard1(request):
         if daterange2 != None and daterange2 !='':
             date_range2=[datetime.strptime(d.strip(),"%d/%m/%Y").strftime("%Y-%m-%d") for d in daterange2.split('-')]    
         elif frequency2=='weekly':            
-            date_range2=[datetime.now() - timedelta(days=28),datetime.now()]
+            date_range2=[datetime.now() - timedelta(days=60),datetime.now()]
         elif frequency2=='monthly':            
-            date_range2=[datetime.now() - timedelta(days=120),datetime.now()]
+            date_range2=[datetime.now() - timedelta(days=60),datetime.now()]
         else:            
-            date_range2=[datetime.now() - timedelta(days=5),datetime.now()]
+            date_range2=[datetime.now() - timedelta(days=60),datetime.now()]
 
     keydata=keyword_table.objects.prefetch_related()
     key_count=keydata.count()
@@ -189,7 +193,7 @@ def dashboard1(request):
             try: 
                 dash3_data1=dash3_data1.iloc[dash3_data1.isnull().sum(1).sort_values(ascending=True).index] 
                 """  Tags listing for per keyword multiple tags """
-                tag_data=dash3_data1.groupby(['Keyword','Ranking URL']).apply(lambda x: ' , '.join(x.Tag)).reset_index().rename(columns={})
+                tag_data=dash3_data1.drop_duplicates(subset=[('Keyword',''),('Ranking URL',''),('Category',''),('Tag','')]).groupby(['Keyword','Ranking URL']).apply(lambda x: ' , '.join(x.Tag)).reset_index().rename(columns={})
                 df=pd.merge(dash3_data1,tag_data[[0,'Keyword']],on='Keyword',how='left')
                 df[('Tag', '')]=df[0]
                 dash3_data1=df.drop([0,'Keyword'],axis=1).drop_duplicates(keep='first')
@@ -200,7 +204,6 @@ def dashboard1(request):
                 paginator = Paginator(dash3_data1, row) #row Show  contacts per page. 
                 page_number = request.GET.get('page')
                 summary = paginator.get_page(page_number)
-            except Exception as e :                     
                 logger.error(e)
                 
 
@@ -269,4 +272,18 @@ def export_dash(request):
 #                 'date','domain__domain','pos').order_by('keyword__keyword','-date','pos').distinct('keyword__keyword')
                
 #  topcomp=description_table.objects.select_related('keyword','domain').filter(desc_id__contains=frequency2,keyword__keyword__in=dash3_data1.values_list('keyword'),date__in=dash3_data1.values_list('description_table__date').order_by('-description_table__date')[0],domain__domain__in=competitors).values('keyword__keyword','date','domain__domain','pos').order_by('keyword__keyword','-date')
-             
+class Test(APIView):
+    def category(self,request):
+
+        print(dir(request))
+        response_data=keyword_table.objects.prefetch_related().filter(category=args).values(
+        'category','keyword_tag_table__tag__tag')#.distinct()#.order_by('keyword','-description_table__date')
+        return (dict(response_data))
+def category_tag_filter(request,frequency):
+    cateegory_tag_filter=keyword_table.objects.prefetch_related().filter(keyword_frequency_table__frequency__frequency=frequency).values('category','keyword_tag_table__tag__tag')
+    df=pd.DataFrame(cateegory_tag_filter).rename(columns={'keyword_tag_table__tag__tag':'tag'}).drop_duplicates(subset=['category','tag']).sort_values('category').reset_index(drop=True)
+    df=df.groupby(['category']).apply(lambda x: list(x.tag))    
+    df=pd.DataFrame(df).reset_index().set_index('category').rename(columns={0:'tag'})
+    df=df.to_dict(orient='index')
+    
+    return HttpResponse(json.dumps(df))

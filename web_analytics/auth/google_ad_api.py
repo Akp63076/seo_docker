@@ -18,15 +18,18 @@
  
 import argparse
 import sys
-import pandas as pd 
+import time
+from time import sleep
+
+import pandas as pd
 from google.ads.googleads.client import GoogleAdsClient
 from google.ads.googleads.errors import GoogleAdsException
- 
+
 # Location IDs are listed here:
 # https://developers.google.com/google-ads/api/reference/data/geotargets
 # and they can also be retrieved using the GeoTargetConstantService as shown
 # here: https://developers.google.com/google-ads/api/docs/targeting/location-targeting
-_DEFAULT_LOCATION_IDS = ["20456"]  # location ID for new delhi
+_DEFAULT_LOCATION_IDS = ["2356"]  # location ID for new delhi
 # A language criterion ID. For example, specify 1000 for English. For more
 # information on determining this value, see the below link:
 # https://developers.google.com/google-ads/api/reference/data/codes-formats#expandable-7
@@ -98,7 +101,7 @@ def main(
      
     list_keywords = []
     for idea in keyword_ideas:
-        competition_value = idea.keyword_idea_metrics.competition.name
+        competition_value = idea.keyword_idea_metrics.competition
         list_keywords.append(idea)
      
     return list_keywords
@@ -126,73 +129,17 @@ def _map_locations_ids_to_resource_names(client, location_ids):
     return [build_resource_name(location_id) for location_id in location_ids]
  
  
-if __name__ == "__main__":
+def bulkKeywordPlanner(keywords):
     # GoogleAdsClient will read the google-ads.yaml configuration file in the
     # home directory if none is specified.
-    googleads_client = GoogleAdsClient.load_from_storage("/home/seo/web_analytics/auth/google-ads.yaml")
- 
-    parser = argparse.ArgumentParser(
-        description="Generates keyword ideas from a list of seed keywords."
-    )
- 
-    # The following argument(s) should be provided to run the example.
-    parser.add_argument(
-        "-c",
-        "--customer_id",
-        type=str,
-        required=True,
-        help="The Google Ads customer ID.",
-    )
-    parser.add_argument(
-        "-k",
-        "--keyword_texts",
-        nargs="+",
-        type=str,
-        required=False,
-        default=[],
-        help="Space-delimited list of starter keywords",
-    )
-    # To determine the appropriate location IDs, see:
-    # https://developers.google.com/google-ads/api/reference/data/geotargets
-    parser.add_argument(
-        "-l",
-        "--location_ids",
-        nargs="+",
-        type=str,
-        required=False,
-        default="20456",
-        help="Space-delimited list of location criteria IDs",
-    )
-    # To determine the appropriate language ID, see:
-    # https://developers.google.com/google-ads/api/reference/data/codes-formats#expandable-7
-    parser.add_argument(
-        "-i",
-        "--language_id",
-        type=str,
-        required=False,
-        default=_DEFAULT_LANGUAGE_ID,
-        help="The language criterion ID.",
-    )
-    # Optional: Specify a URL string related to your business to generate ideas.
-    parser.add_argument(
-        "-p",
-        "--page_url",
-        type=str,
-        required=False,
-        help="A URL string related to your business",
-    )
- 
-    args = parser.parse_args()
+    googleads_client = GoogleAdsClient.load_from_storage("web_analytics/auth/google-ads.yaml")  
  
     try:
-      list_keywords =  main(
-            googleads_client,
-            args.customer_id,
-            args.location_ids,
-            args.language_id,
-            args.keyword_texts,
-            args.page_url,
-        )
+            list_keywords =  main(
+                    googleads_client,
+                "3061188621", ["2356"], "1000", keywords, None
+                )
+    
     except GoogleAdsException as ex:
         print(
             f'Request with ID "{ex.request_id}" failed with status '
@@ -204,10 +151,71 @@ if __name__ == "__main__":
                 for field_path_element in error.location.field_path_elements:
                     print(f"\t\tOn field: {field_path_element.field_name}")
         sys.exit(1)
-for i in range(1,len(list_keywords)+1):
+    # for i in range(1,len(list_keywords)+1):
+    #             #  print(list_keywords)
+    #           print(i)
+    list_to_excel = []
+    for x in range(len(list_keywords)):
+        list_months = []
+        list_searches = []
+        list_annotations = []
+        for y in list_keywords[x].keyword_idea_metrics.monthly_search_volumes:
+            list_months.append(str(y.month)[12::] + " - " + str(y.year)) 
+            list_searches.append(y.monthly_searches)
+            
+        for y in list_keywords[x].keyword_annotations.concepts:
+            list_annotations.append(y.concept_group.name)
+            
+            
+        list_to_excel.append([list_keywords[x].text, list_keywords[x].keyword_idea_metrics.avg_monthly_searches, str(list_keywords[x].keyword_idea_metrics.competition)[28::], list_keywords[x].keyword_idea_metrics.competition_index, ])
 
-#  print(list_keywords)
- print(i)
+        # list_searches, list_months, list_annotations
+    #     final_list = []
+    #     for x in list_to_excel:
+    #         final_list.append(x) 
+    #         return final_list
+    #     list1 = final_list
+    # list1.append(final_list)
+        bulkidea_df=pd.DataFrame(list_to_excel, columns = ["Keyword", "Average_Searches", "Competition_Level", "Competition_Index",])
+        bulkidea_df['Regarding'] = pd.Series([keywords[0] for x in range(len(bulkidea_df.index))])
+    
+    return bulkidea_df    
+        
+# bulkKeywordPlanner(['neet','jee'])
+
+def loopplanner(keywords):
+    new_list=[] 
+    df=pd.DataFrame()
+    for i in keywords:
+        new_list.append([i])
+    print(new_list)
+    count = 0 
+    frames =[]
+    for i in new_list:
+        if count == new_list.index(i):
+            globals()['df'+ str(count)] = bulkKeywordPlanner(i)
+            frames.append(globals()['df'+ str(count)])
+        count +=1
+    if count == 1:
+        result = df0
+        result = result[result.Keyword.isin(keywords) == False]
+        print(result)
+        return result
+    if count > 1:
+        result = pd.concat(frames)
+        # shape = result.shape
+        # print("shape = {}".format(shape))
+        # print(result)
+        result = result[result.Keyword.isin(keywords) == False]
+        return result
+
+# loopplanner()
+
+
+# for i in range(1,len(list_keywords)+1):
+
+# #  print(list_keywords)
+#  print(i)
 # list_keywords = main(client, "306-118-8621", ["2840"], "1000", ["mortgage"], None)
 # list_to_excel = []
 # for x in range(len(list_keywords)):

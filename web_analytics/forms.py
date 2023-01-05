@@ -22,7 +22,7 @@ class Myform(forms.Form):
 class AdForm(forms.Form):
     keyword = forms.CharField(
         label='keyword',
-                    widget=forms.Textarea(attrs={'placeholder': '10 keywords at a time \njee main\njee advanced\njee main 2021',
+                    widget=forms.Textarea(attrs={'placeholder': '20 keywords at a time \njee main\njee advanced\njee main 2021',
                     # 'class':"form-control"  ,    
                     'id':"form-linkID" ,
                     'rows':10, 'cols':100 } 

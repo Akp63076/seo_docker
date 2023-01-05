@@ -7,6 +7,7 @@ from web_analytics.auth.google_analytics import  main_analytics_func as method1
 from web_analytics.auth.google_analytics import events_analytics_func as method2
 from web_analytics.auth.search_analytics import gsc_function as method3
 from web_analytics.auth.adwords import kwvolume,kwIdeas
+from web_analytics.auth.google_ad_api import loopplanner
 from multiprocessing import Process, Queue
 from django.conf import settings
 import logging
@@ -170,12 +171,19 @@ def KwplannerOperation(keywordlist):
     ideasdf = ideasdf.round(2)
     ideas_dict = ideasdf.to_dict("records")
     
+    bulkideasdf = loopplanner(keywordlist)
+    print(type(bulkideasdf))
+    bulkideasdf = bulkideasdf.sort_values(by=['Average_Searches'],ascending=False)
+    bulkideasdf = bulkideasdf.round(2)
+    bulk_ideas_dict = bulkideasdf.to_dict("records")
+
+
     both_df = kwdf.append(ideasdf)
     both_df.to_csv(completePath,index=False)
     
     
 
-    return {"kwsv" :kw_dict,"kwideas" : ideas_dict,"path":completePath}
+    return {"kwsv" :kw_dict,"kwideas" : ideas_dict,"path":completePath,"bulkkwideas": bulk_ideas_dict}
 
 def onPageseo():
     pass

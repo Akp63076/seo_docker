@@ -414,11 +414,21 @@ if(competitorValue){
     }
   })
 }
-
-var tagsValue = i.get('tags');
-if(tagsValue){
-  document.querySelector('#pt_filter_tags').value = tagsValue;
+var tagValue = i.get('tags');
+if(tagValue){
+  tagValue = tagValue.split(",");
+  
+  document.querySelectorAll(".tags").forEach((elem)=>{
+    if(tagValue.includes(elem.value)){
+        elem.setAttribute("checked", true)
+    }
+  })
 }
+
+// var tagsValue = i.get('tags');
+// if(tagsValue){
+//   document.querySelector('#pt_filter_tags').value = tagsValue;
+// }
 var trackingUrlValue = i.get('tracking_url');
 if(trackingUrlValue){
   document.querySelector('#pt_filter_trackingUrl').value = trackingUrlValue;
@@ -521,6 +531,45 @@ if(searchParams.has("competitor")){
      }, "", url)
 }
 }
+function ptCheckboxAppendThree(id){
+var y = document.getElementById(id);
+var x = document.getElementById(id).checked; 
+
+let searchParams = new URLSearchParams(window.location.search);
+// if (searchParams.has("competitor") === true){
+//   searchParams.delete("competitor");
+// }
+if(x == false){
+  let value = searchParams.get("tags");
+  value = value.split(',');
+  let index = value.indexOf(y.value); 
+  if(index != -1){
+    value.splice(index,1);
+  }
+  value = value.join(',');
+  searchParams.set('tags', value);
+}
+else{
+// searchParams.append("category1", y.value);
+if(searchParams.has("tags")){
+  let value = searchParams.get("tags");
+  searchParams.set('tags', `${value},${y.value}`)
+} else{
+  searchParams.append('tags', `${y.value}`)
+}
+}
+ if (window.history.replaceState) {
+     const url = window.location.protocol 
+                 + "//" + window.location.host 
+                 + window.location.pathname 
+                 + "?" 
+                 + searchParams.toString();
+
+     window.history.replaceState({
+         path: url
+     }, "", url)
+}
+}
 
 function positionTableFilter(){
 var a = document.getElementById("pt_filter_tags");
@@ -530,10 +579,10 @@ var d = document.getElementById("pt_filter_svhigh");
 var e = document.getElementById("pt_filter_daterange2");
 let searchParams = new URLSearchParams(window.location.search);
 
-if (searchParams.has("tags") === true){
-  searchParams.delete("tags");
-}
-searchParams.append("tags", a.value);
+// if (searchParams.has("tags") === true){
+//   searchParams.delete("tags");
+// }
+// searchParams.append("tags", a.value);
 
 if (searchParams.has("tracking_url") === true){
   searchParams.delete("tracking_url");
@@ -620,6 +669,18 @@ var x = document.getElementById( id);
       if (searchParams.has("page") === true){
            searchParams.delete("page");
       } 
+      if (window.history.replaceState) {
+        const url = window.location.protocol 
+                    + "//" + window.location.host 
+                    + window.location.pathname 
+                    + "?" 
+                    + searchParams.toString();
+
+        window.history.replaceState({
+            path: url
+        }, "", url)
+        location.href = url;
+       }   
       }
 // clear filters
 
@@ -773,6 +834,7 @@ const searchVolumeLow = urlParams.get('low')
 const searchVolumeHigh = urlParams.get('high')
 const competitor = urlParams.getAll('competitor')
 const brand = urlParams.get('brand')
+const rowCount = urlParams.get('row-counter')
 
 if(timeRange){
   document.getElementById("showfrequency").innerHTML = timeRange
@@ -808,6 +870,9 @@ if(competitor){
 if(brand){
   document.getElementById("show-brand").innerHTML = brand
 }
+if(rowCount){
+  document.getElementById("showRowCounter").innerHTML = rowCount
+}
 
 function selectBrands(){
   var x = document.getElementById("selectBrand");
@@ -831,3 +896,100 @@ function selectBrands(){
       location.href = url;
   }
   }
+  function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("fliter-checkbox5");
+    a = div.getElementsByTagName("label");
+    for (i = 0; i < a.length; i++) {
+      txtValue = a[i].textContent || a[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = "";
+      } else {
+        a[i].style.display = "none";
+      }
+    }
+  }
+
+  function getCategory(id) {
+    var elem = document.getElementById(id);
+    var val = elem.getAttribute('value');
+    var elemcheck = elem.checked;
+    let searchParams = new URLSearchParams(window.location.search);
+     if (searchParams.has("time-range2") === true)
+     {
+      var params = searchParams.get("time-range2");
+          if(params === 'daily'){
+              var jsonLink = "daily";
+          } else if(params === 'weekly'){
+                var jsonLink = "weekly";
+          } else if(params === 'monthly'){
+              var jsonLink = "monthly";
+          } 
+          }
+          else{
+            var jsonLink = "daily";
+          }
+    // console.log(typeof val);
+    
+    $.getJSON('http://127.0.0.1:8000//cd_ranking/category_tag/' + jsonLink , function (json) {
+      var tags = "";
+      console.log(json)
+      console.log(json[val]["tag"]);
+      for (j = 0; j < Object.keys(json[val]["tag"]).length; j++) {
+        console.log(json[val]["tag"][j]);
+        var add = json[val]["tag"][j];
+        var addid = json[val]["tag"][j].replace(/ /g,'');
+        tags += '<li class="'+ id +'">' + '<label>' +  '<input type="checkbox" onclick="ptCheckboxAppendThree(this.id)" value="'+ add +'" id="tags'+ addid +'" name="'+ add +'" />' + json[val]["tag"][j] + '</label>' + '</li>';
+      }
+      if(elemcheck == true){
+
+          $("#testing").append(tags);
+      }else{
+        var unchecked = document.querySelectorAll('.' +  id);
+        unchecked.forEach( id => {
+        id.remove();
+        });
+      }
+      
+    });
+       
+  }
+
+  $(document).ready(function(){
+    var allElem = document.querySelectorAll(".category2");
+    
+    console.log(allElem);
+    // for(j=0; j>allElem.length; j++){
+     
+      for (let i = 0; i < allElem.length; i++) {
+        if(allElem[i].checked === true){
+          var val = allElem[i].getAttribute('value');
+          var id = allElem[i].getAttribute('id');
+          console.log(val);
+          $.getJSON("http://127.0.0.1:8000//cd_ranking/category_tag/", function (json) {
+        var tags = "";
+        console.log(json)
+        console.log(json[val]["tag"]);
+        
+        for (j = 0; j < Object.keys(json[val]["tag"]).length; j++) {
+          console.log(json[val]["tag"][j]);
+          var add = json[val]["tag"][j];
+          var addid = json[val]["tag"][j].replace(/ /g,'');
+          tags += '<li class="'+ id +'">' + '<label>' +  '<input type="checkbox" class="tags" onclick="ptCheckboxAppendThree(this.id)" value="'+ add +'" id="tags'+ addid +'" name="'+ add +'" />' + json[val]["tag"][j] + '</label>' + '</li>';
+        }
+        if(allElem[i].checked == true){
+  
+            $("#testing").append(tags);
+        }else{ 
+          var unchecked = document.querySelectorAll('.' +  id);
+          unchecked.forEach( id => {
+          id.remove();
+          });
+        }
+        
+          });
+        }
+      }
+    });

@@ -172,43 +172,55 @@
     </div>
     <form>
       <div class="row">
-        {% comment %} <div class="col">
-          <label for="Url">URL</label><br>
-          <input type="text" placeholder="Enter the url" id="pt_filter_url" />
-        </div> {% endcomment %}
-
-        <div class="col">
-          <label for="tags">Tags</label><br>
-          <input type="text" placeholder="Select the tags" name="tags" id="pt_filter_tags" />
-        </div>
-        <div class="col">
-          <label for="tracking_url">Trackings Url</label><br>
-          <input type="text" placeholder="Enter the url" name="tracking_url" id="pt_filter_trackingUrl"/>
-        </div>
-        <div class="col">
-          <label for="search_volume">Search Volume</label><br>
-          <input type="number" min="0" step="1" style="width: 40%" name="low" id="pt_filter_svlow" placeholder="Min(0)" />
-          <input type="number" min="0" step="1" style="width: 40%" name="high" id="pt_filter_svhigh"  placeholder="Max(1 Cr)"/>
-          
-        </div>
-      </div>
-      <br />
-      <div class="row">
         <div class="col">
           <label for="categoreis">Categoreis</label><br>
           <div id="fliter-checkbox" class="checkbox-dropdown">
             Categoreis
-            <ul class="checkbox-dropdown-list",name=category>              
+            <ul class="checkbox-dropdown-list",name=category>  
+              <input type="text" placeholder="Search.." id="searchInput" onkeyup="filterFunction()" />            
               {% for i in category2 %}
               <li>
                 <label>
-                  <input type="checkbox" value="{{ i.0 }}" name="category2" class="category2" id="category2{{ i.0 |cut:" "}}" onclick="ptCheckboxAppendOne(this.id)" /> {{ i.0 }}
+                  <input type="checkbox" value="{{ i.0 }}" name="category2" class="category2" id="category2{{ i.0 |cut:" "}}" onclick="ptCheckboxAppendOne(this.id) ; getCategory(this.id);" /> {{ i.0 }}
                 </label>
               </li>      
               {% endfor %}     
               
             </ul>
           </div>
+        </div>
+        
+        <div class="col">
+          <label for="tags">Tags</label><br />
+          <div id="fliter-checkbox5" class="checkbox-dropdown">
+            Tags
+            <ul class="checkbox-dropdown-list" name="tags" id="testing">
+              <input type="text" placeholder="Search.." id="searchInput" onkeyup="filterFunction()" />
+              <!-- <li id="">
+                <label>
+                  <input type="checkbox" value="hey" name="tag" /> hey
+                </label>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+        <!-- <div class="col">
+          <label for="tags">Tags</label><br>
+          <input type="text" placeholder="Select the tags" name="tags" id="pt_filter_tags" />
+        </div> -->
+        <div class="col">
+          <label for="tracking_url">Trackings Url</label><br>
+          <input type="text" placeholder="Enter the url" name="tracking_url" id="pt_filter_trackingUrl"/>
+        </div>
+       
+      </div>
+      <br />
+      <div class="row">
+        <div class="col">
+          <label for="search_volume">Search Volume</label><br>
+          <input type="number" min="0" step="1" style="width: 40%" name="low" id="pt_filter_svlow" placeholder="Min(0)" />
+          <input type="number" min="0" step="1" style="width: 40%" name="high" id="pt_filter_svhigh"  placeholder="Max(1 Cr)"/>
+          
         </div>
 
         <div class="col">
@@ -219,7 +231,7 @@
               {% for i in competitor %}
               <li>
                 <label>
-                  <input type="checkbox" value={{ i.0 }} name="competitor" class="competitor" id="competitor{{ i.0 |cut:" "}}" onclick="ptCheckboxAppendTwo(this.id)"/> {{i.0}}
+                  <input type="checkbox" value={{ i.0 }} name="competitor" class="competitor" id="competitor{{ i.0 |cut:' '}}" onclick="ptCheckboxAppendTwo(this.id)"/> {{i.0}}
                 </label>
               </li>      
               {% endfor %}   
@@ -357,7 +369,8 @@
     <form action="" method="get">
       <select class="form-select time-range" name="row-counter" id="row-counter" aria-label="Default select example"  onchange="rowCounter(this.id);"
       >
-        <option selected value="10">10</option>
+      <option id="showRowCounter" value="" disabled selected hidden>10</option>
+        <option value="10">10</option>
         <option value="25">25</option>
         <option value="100">100</option>
         

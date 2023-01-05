@@ -12,13 +12,16 @@ import pandas as pd
 import sqlalchemy
 from celery import shared_task
 import logging
+from web_analytics.auth.adwords import kwvolume
+
 
 #from macpath import join
 
 logger = logging.getLogger("django")
 pd.options.mode.chained_assignment = None
 
-
+conn = sqlalchemy.create_engine("postgresql://{user}:{pw}@165.232.184.253/{db}".format(user="analyst", pw="12345", db="postgres"))
+ 
 @shared_task()
 def database_update(input_path, output_path): 
     """ This function  is used for update to database by  csv files and insert record on all tables 
@@ -26,8 +29,6 @@ def database_update(input_path, output_path):
     input_path= data directry path , output_path=destination directory path after updation of database """   
     input_path = input_path+"/"
    
-    conn = sqlalchemy.create_engine(
-        "postgresql://{user}:{pw}@localhost/{db}".format(user="analyst", pw="12345", db="postgres"))
     try:
         for brand in os.listdir(input_path):
             if brand in ['collegedunia','left']:
@@ -52,7 +53,7 @@ def database_update(input_path, output_path):
                                         update_keyword_table(glob(rel_path+"/data*.csv")[0],conn)
                                         update_keyword_frequency_table(glob(rel_path+"/data*.csv")[0],conn,frequency)
                                         update_tag_table(glob(rel_path+"/data*.csv")[0],conn)
-                                        update_domain_table('/home/ranking_data/domain.csv', conn)
+                                        update_domain_table(glob(rel_path+"/result*.csv")[0],conn)
 
                                         update_description_table(glob(rel_path+"/result*.csv")[0], conn,frequency)
 
@@ -66,6 +67,7 @@ def database_update(input_path, output_path):
                                         # update_rel_question_table(glob(rel_path+"/related_question*.csv")[0],conn)
 
                                     print("data uploaded successfully for " + today_files)
+                                    
                                     shutil.move(os.path.join(input_path,brand,time_period,today_files),os.path.join(output_path,brand,time_period,today_files))
                             
     except Exception as e:
@@ -80,7 +82,9 @@ def update_keyword_table(path, conn):
     path= csv file path, conn =  database connection string  """
     try:
         
-        data=pd.read_csv(path,usecols=['Keyword','search_volume','category',"tracking_url"]  ,on_bad_lines='skip',skipinitialspace = True).drop_duplicates(keep='first')
+        data=pd.read_csv(path,usecols=['Keyword','search_volume','category',"tracking_url"]  ,on_bad_lines='skip',skipinitialspace = True)
+        data['Keyword']=data['Keyword'].str.strip()
+        data=data.drop_duplicates(subset=['Keyword'],keep='last')
         data.columns=data.columns.str.lower()        
         df = data[data["keyword"].str.contains("site:https") == False]
         #df = data[data["sv"].str.contains("-") == False]
@@ -218,8 +222,7 @@ def update_domain_table(path, conn):
     path= csv file path, conn =  database connection string  """
     try:
 
-        df = pd.read_csv(path, on_bad_lines='skip',skipinitialspace = True)[
-            ['domain']].dropna().drop_duplicates(keep='first')
+        df = pd.read_csv(path,usecols=['domain'], on_bad_lines='skip',skipinitialspace = True).dropna().drop_duplicates(keep='first')
         if df.empty != True:
            
             data_type = {'domain': sqlalchemy.String}
@@ -410,3 +413,37 @@ def unique_upload(df, target_table, conn, query_string='', data_type=''):
 def scrapper():
     from scrapper.main_for_bd import  main
     main()
+@shared_task
+def search_volume_update():
+    sql=""" select Distinct keyword from cd_ranking_keyword_table """
+    data=pd.read_sql(sql,con=conn)    
+    data=list(data['keyword'])
+    l=len(data)
+    i=0
+    j=50
+    n=1
+    while j<151:
+        try:
+            df1=kwvolume(data[i:j])
+            df1=df1.rename(columns={'keywords':'keyword'})
+            df1["search_volume"] = df1["search_volume"].astype(str).astype(int)
+        except:
+            break
+
+        # df1.to_sql('temp_table', conn, if_exists='replace')
+        # sql = """
+        #     UPDATE cd_ranking_keyword_table AS f
+        #     SET search_volume = t.search_volume 
+        #     FROM temp_table AS t
+        #     WHERE f.keyword = t.keyword 
+        # """
+        
+        # conn.execute(sql)
+        # conn.execute("DROP Table temp_table")
+       
+        i=j
+        j=j+50
+        print(df1)
+        print(n)
+        n=n+1
+        sleep(3)
